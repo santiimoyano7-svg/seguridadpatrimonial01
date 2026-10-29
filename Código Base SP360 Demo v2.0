@@ -76,13 +76,14 @@ Santiago Moyano
  
 </body>
 </html> 
-assets/
-│
-├── css/
-│ └── style.css
-│
-└── js/
-└── app.js
+└── assets
+
+    ├── css
+    │      └── style.css
+
+    └── js
+           └── app.js
+
 function loadModule(module){
  
 const content =
