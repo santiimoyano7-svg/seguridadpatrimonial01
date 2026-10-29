@@ -1,0 +1,29 @@
+SP360_DEMO_V1/
+2
+ 
+3
+├── index.html
+4
+├── styles.css
+5
+├── app.js
+6
+├── modules/
+7
+│ ├── dashboard.html
+8
+│ ├── alertas.html
+9
+│ ├── rondas.html
+10
+│ ├── transporte.html
+11
+│ ├── llaves.html
+12
+│ ├── cofres.html
+13
+│ ├── cctv.html
+14
+│ └── precintos.html
+15
+└── assets/
