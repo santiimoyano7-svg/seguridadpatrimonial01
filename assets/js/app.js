@@ -1,3 +1,7 @@
+/* ==========================
+   SP360 APP
+========================== */
+
 let alertas =
 JSON.parse(
     localStorage.getItem("sp360_alertas")
@@ -16,6 +20,11 @@ JSON.parse(
         "sp360_libro_guardia"
     )
 ) || [];
+
+/* ==========================
+   GUARDAR DATOS
+========================== */
+
 function guardarDatos(){
 
     localStorage.setItem(
@@ -38,3 +47,41 @@ function guardarDatos(){
     );
 
 }
+
+/* ==========================
+   ALERTAS
+========================== */
+
+function generarAlerta(
+    titulo,
+    detalle
+){
+
+    alertas.push({
+
+        fecha:
+        new Date().toLocaleString(),
+
+        titulo,
+        detalle
+
+    });
+
+    guardarDatos();
+
+}
+
+/* ==========================
+   NOVEDAD TRANSPORTE
+========================== */
+
+function generarNovedadTransporte(
+    control,
+    estado,
+    observacion
+){
+
+    const novedad = {
+
+        fecha:
+        new Date().toLocaleString
