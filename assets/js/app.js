@@ -97,4 +97,12 @@ function loadModule(module) {
 
                     <br><br>
 
-   
+           default:
+            content.innerHTML =
+            "<h2>Módulo no encontrado</h2>";
+    }
+}
+
+window.onload = function () {
+    loadModule("dashboard");
+};
