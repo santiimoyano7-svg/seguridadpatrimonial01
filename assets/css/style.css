@@ -21,8 +21,7 @@ font-family:Segoe UI, sans-serif;
 }
  
 body{
-background:var(--bg);
-color:var(--text);
+background:red !important;
 }
  
  
