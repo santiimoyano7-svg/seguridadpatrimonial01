@@ -1,0 +1,342 @@
+/* ==========================
+   SP360 - SECURITY OPERATIONS CENTER
+========================== */
+
+:root{
+
+    --bg:#0B1220;
+    --panel:#111827;
+    --card:#1F2937;
+
+    --blue:#2563EB;
+    --green:#10B981;
+    --yellow:#FBBF24;
+    --red:#EF4444;
+    --orange:#F97316;
+
+    --text:#F8FAFC;
+    --text-secondary:#CBD5E1;
+}
+
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Segoe UI, Arial, sans-serif;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.app{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ==========================
+   SIDEBAR
+========================== */
+
+.sidebar{
+    width:280px;
+    min-width:280px;
+    background:var(--panel);
+    height:100vh;
+    padding:20px;
+    position:fixed;
+    left:0;
+    top:0;
+    overflow-y:auto;
+    border-right:1px solid #334155;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    color:var(--blue);
+    margin-bottom:10px;
+}
+
+.site-name{
+    color:var(--text-secondary);
+    margin-bottom:20px;
+}
+
+.sidebar nav{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.sidebar button{
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:transparent;
+
+    color:white;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.sidebar button:hover{
+    background:var(--card);
+}
+
+.sidebar button:active{
+    background:var(--blue);
+}
+
+/* ==========================
+   CONTENIDO
+========================== */
+
+main{
+    flex:1;
+    margin-left:280px;
+    padding:25px;
+    min-height:100vh;
+    overflow-y:auto;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    font-size:30px;
+}
+
+.user{
+    color:var(--text-secondary);
+}
+
+#content{
+    width:100%;
+}
+
+/* ==========================
+   CARDS
+========================== */
+
+.card{
+
+    background:var(--card);
+
+    border-radius:12px;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    color:white;
+
+    box-shadow:
+      0 2px 8px rgba(0,0,0,.25);
+
+}
+
+/* ==========================
+   DASHBOARD
+========================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:20px;
+
+}
+
+.stat{
+
+    background:var(--card);
+
+    padding:20px;
+
+    border-left:4px solid var(--blue);
+
+    border-radius:12px;
+
+}
+
+.stat-title{
+
+    color:var(--text-secondary);
+
+    font-size:14px;
+
+}
+
+.stat-value{
+
+    margin-top:10px;
+
+    font-size:36px;
+
+    font-weight:bold;
+
+}
+
+/* ==========================
+   FORMULARIOS
+========================== */
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:10px;
+
+    margin-top:5px;
+
+    margin-bottom:15px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#374151;
+
+    color:white;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:2px solid
+             var(--blue);
+
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+.btn{
+
+    padding:10px 15px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+}
+
+.btn-primary{
+
+    background:var(--blue);
+
+    color:white;
+
+}
+
+.btn-success{
+
+    background:var(--green);
+
+    color:white;
+
+}
+
+.btn-danger{
+
+    background:var(--red);
+
+    color:white;
+
+}
+
+/* ==========================
+   TABLAS
+========================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+th{
+
+    background:#111827;
+
+    text-align:left;
+
+    padding:12px;
+
+}
+
+td{
+
+    padding:12px;
+
+    border-bottom:
+        1px solid #334155;
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:100%;
+
+        min-width:100%;
+
+        height:auto;
+
+        position:relative;
+
+    }
+
+    main{
+
+        margin-left:0;
+
+        width:100%;
+
+    }
+
+}
