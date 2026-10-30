@@ -1,19 +1,9 @@
-function loadModule(module){
+window.onload = function(){
 
-    const content =
-    document.getElementById("content");
-
-    content.innerHTML = `
+    document.getElementById("content").innerHTML = `
         <div class="card">
-            <h2>${module}</h2>
-
-            <p>
-                Módulo cargado correctamente
-            </p>
+            <h2>DASHBOARD FUNCIONANDO</h2>
         </div>
     `;
-}
 
-window.onload = function(){
-    loadModule("Dashboard");
 }
