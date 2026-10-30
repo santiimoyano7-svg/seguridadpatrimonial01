@@ -1,93 +1,93 @@
 :root{
---bg:#0B1220;
---panel:#111827;
---card:#1F2937;
+     --bg:#0B1220;
+     --panel:#111827;
+     --card:#1F2937;
  
---blue:#2563EB;
---green:#10B981;
---yellow:#FBBF24;
---red:#EF4444;
---orange:#F97316;
+     --blue:#2563EB;
+     --green:#10B981;
+     --yellow:#FBBF24;
+     --red:#EF4444;
+     --orange:#F97316;
  
---text:#F8FAFC;
+     --text:#F8FAFC;
 }
  
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI,sans-serif;
 }
  
 body{
-background:var(--bg);
-color:var(--text);
+     background:var(--bg);
+     color:var(--text);
 }
  
 /* CONTENEDOR PRINCIPAL */
  
 .app{
-display:flex;
-min-height:100vh;
+     display:flex;
+     min-height:100vh;
 }
  
 /* MENU IZQUIERDO */
  
 .sidebar{
  
-width:280px;
-min-width:280px;
+      width:280px;
+      min-width:280px;
  
-background:var(--panel);
+      background:var(--panel);
  
-height:100vh;
+      height:100vh;
  
-padding:20px;
+      padding:20px;
  
-position:fixed;
+      position:fixed;
  
-left:0;
-top:0;
+      left:0;
+      top:0;
  
-border-right:1px solid #334155;
+      border-right:1px solid #334155;
 }
  
 .logo{
-font-size:32px;
-font-weight:bold;
-color:var(--blue);
-margin-bottom:10px;
+      font-size:32px;
+      font-weight:bold;
+      color:var(--blue);
+      margin-bottom:10px;
 }
  
 .site-name{
-color:#94A3B8;
-margin-bottom:25px;
+      color:#94A3B8;
+      margin-bottom:25px;
 }
  
 .sidebar nav{
-display:flex;
-flex-direction:column;
+         display:flex;
+         flex-direction:column;
 }
  
 .sidebar button{
  
-width:100%;
+        width:100%;
+  
+        padding:12px;
  
-padding:12px;
+        margin-bottom:8px;
  
-margin-bottom:8px;
+        text-align:left;
  
-text-align:left;
+       border:none;
  
-border:none;
+        border-radius:8px;
  
-border-radius:8px;
+        background:transparent;
  
-background:transparent;
+       color:white;
  
-color:white;
- 
-cursor:pointer;
+       cursor:pointer;
 }
  
 .sidebar button:hover{
@@ -98,76 +98,83 @@ background:#1F2937;
  
 main{
  
-margin-left:280px;
+      margin-left:280px;
  
-width:calc(100% - 280px);
+      width:calc(100% - 280px);
  
-padding:25px;
+      padding:25px;
 }
  
 header{
  
-display:flex;
+      display:flex;
  
-justify-content:space-between;
+      justify-content:space-between;
  
-align-items:center;
+      align-items:center;
  
-margin-bottom:30px;
+      margin-bottom:30px;
 }
  
 .card{
  
-background:var(--card);
+      background:var(--card);
  
-border-radius:12px;
+      border-radius:12px;
  
-padding:20px;
+      padding:20px;
  
-margin-bottom:20px;
+      margin-bottom:20px;
 }
  
 .stats{
  
-display:grid;
+      display:grid;
  
-grid-template-columns:
-repeat(auto-fit,minmax(220px,1fr));
+      grid-template-columns:
+      repeat(auto-fit,minmax(220px,1fr));
  
-gap:20px;
+      gap:20px;
 }
  
 .stat{
  
-background:var(--card);
+      background:var(--card);
  
-padding:20px;
+      padding:20px;
  
-border-left:5px solid var(--blue);
+      border-left:5px solid var(--blue);
  
-border-radius:12px;
+      border-radius:12px;
 }
  
 .stat-title{
-color:#CBD5E1;
-font-size:14px;
+     color:#CBD5E1;
+     font-size:14px;
 }
  
 .stat-value{
-font-size:38px;
-font-weight:bold;
+     font-size:38px;
+     font-weight:bold;
 }
  
 /* CELULAR */
  
-@media(max-width:768px){
+     @media(max-width:768px){
  
 .app{
-flex-direction:column;
+     flex-direction:column;
 }
  
 .sidebar{
  
-width:100%;
+    width:100%;
  
-height:auto;
+    height:auto;
+.sidebar{
+border:5px solid yellow !important;
+}
+ 
+main{
+border:5px solid lime !important;
+}
