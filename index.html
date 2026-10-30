@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -11,6 +12,7 @@
 
     <link rel="stylesheet"
           href="assets/css/style.css">
+
 </head>
 
 <body>
@@ -29,68 +31,60 @@
 
         <nav>
 
+            <!-- Dashboard -->
+
             <button onclick="loadModule('dashboard')">
                 🏠 Dashboard
+            </button>
+
+            <!-- Gestión Operativa -->
+
+            <button onclick="loadModule('guardia')">
+                📖 Libro Guardia
+            </button>
+
+            <button onclick="loadModule('novedades')">
+                📝 Novedades
             </button>
 
             <button onclick="loadModule('alertas')">
                 🚨 Alertas
             </button>
 
-            <button onclick="loadModule('guardia')">
-                📖 Libro Guardia
-            </button>
+            <!-- Seguridad -->
 
             <button onclick="loadModule('rondas')">
                 🚶 Rondas
             </button>
 
+            <button onclick="loadModule('accesos')">
+                🚗 Accesos Vehiculares
+            </button>
+
+            <button onclick="loadModule('notebooks')">
+                💻 Registro Notebooks
+            </button>
+
+            <button onclick="loadModule('emergencias')">
+                🚑 Emergencias
+            </button>
+
+            <!-- Transporte -->
+
             <button onclick="loadModule('transporte')">
-                🚛 Transporte
+                🚛 Transporte Seguro
             </button>
 
-            <button onclick="loadModule('llaves')">
-                🔑 Llaves
+            <button onclick="loadModule('novedadesTransporte')">
+                📋 Novedades Transporte
             </button>
 
-            <button onclick="loadModule('cofres')">
-                🗄 Cofres
+            <!-- Logística -->
+
+            <button onclick="loadModule('correspondencia')">
+                📦 Correspondencia
             </button>
 
-            <button onclick="loadModule('cctv')">
-                📹 CCTV
-            </button>
+            <!-- Flota -->
 
-            <button onclick="loadModule('precintos')">
-                🚪 Precintos
-            </button>
-
-        </nav>
-
-    </aside>
-
-    <main>
-
-        <header>
-
-            <h1>
-                Security Operations Center
-            </h1>
-
-            <div class="user">
-                Santiago Moyano
-            </div>
-
-        </header>
-
-        <div id="content"></div>
-
-    </main>
-
-</div>
-
-<script src="assets/js/app.js"></script>
-
-</body>
-
-</html>
+            <button onclick="
