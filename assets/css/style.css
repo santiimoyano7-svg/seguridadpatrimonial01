@@ -1,6 +1,3 @@
-/* ==========================
-   CONTENIDO
-========================== */
 main{
     flex:1;
     margin-left:280px;
@@ -16,18 +13,9 @@ header{
     margin-bottom:30px;
 }
 
-header h1{
-    font-size:36px;
-    color:white;
-}
-
 .user{
     color:var(--text-secondary);
 }
-
-/* ==========================
-   DASHBOARD
-========================== */
 
 #content{
     width:100%;
@@ -35,118 +23,26 @@ header h1{
 
 .card{
     background:var(--card);
-    padding:20px;
     border-radius:12px;
-    margin-bottom:20px;
+    padding:20px;
+    margin-top:20px;
+    color:white;
 }
 
 .stats{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
-    margin-bottom:20px;
 }
 
 .stat{
     background:var(--card);
     padding:20px;
-    border-radius:12px;
     border-left:4px solid var(--blue);
-}
-
-.stat-title{
-    color:var(--text-secondary);
-    font-size:14px;
+    border-radius:12px;
 }
 
 .stat-value{
-    margin-top:10px;
     font-size:36px;
     font-weight:bold;
-}
-
-/* ==========================
-   COLORES DE ESTADO
-========================== */
-
-.success{
-    color:var(--green);
-}
-
-.warning{
-    color:var(--yellow);
-}
-
-.danger{
-    color:var(--red);
-}
-
-.info{
-    color:var(--blue);
-}
-
-/* ==========================
-   BOTONES
-========================== */
-
-.btn{
-    padding:10px 16px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.btn-primary{
-    background:var(--blue);
-    color:white;
-}
-
-.btn-success{
-    background:var(--green);
-    color:white;
-}
-
-.btn-danger{
-    background:var(--red);
-    color:white;
-}
-
-/* ==========================
-   RESPONSIVE
-========================== */
-
-@media(max-width:768px){
-
-    .app{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        position:relative;
-        width:100%;
-        min-width:100%;
-        height:auto;
-    }
-
-    .sidebar nav{
-        flex-direction:row;
-        flex-wrap:wrap;
-    }
-
-    main{
-        margin-left:0;
-        width:100%;
-        padding:15px;
-    }
-
-    header{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-    }
-
-    .stats{
-        grid-template-columns:1fr;
-    }
-
 }
