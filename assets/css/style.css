@@ -25,15 +25,30 @@ background:var(--bg);
 color:var(--text);
 }
  
-.app{
-display:flex;
-height:100vh;
-}
  
 .sidebar{
+ 
 width:280px;
-background:var(--panel);
+min-width:280px;
+ 
+background:#111827;
+ 
+height:100vh;
+ 
 padding:20px;
+ 
+display:flex;
+flex-direction:column;
+ 
+border-right:1px solid #334155;
+ 
+position:fixed;
+ 
+left:0;
+top:0;
+ 
+overflow-y:auto;
+ 
 }
  
 .logo{
@@ -73,9 +88,15 @@ background:var(--card);
 }
  
 main{
-flex:1;
-padding:20px;
-overflow:auto;
+ 
+margin-left:280px;
+ 
+width:calc(100% - 280px);
+ 
+padding:25px;
+ 
+overflow-y:auto;
+ 
 }
  
 header{
