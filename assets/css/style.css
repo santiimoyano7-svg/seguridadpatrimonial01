@@ -1,114 +1,16 @@
-/* ==========================
-   SP360 - SOC THEME
-========================== */
+window.onload = function(){
 
-:root{
-    --bg:#0B1220;
-    --panel:#111827;
-    --card:#1F2937;
+    document.getElementById("content").innerHTML = `
+        <div class="card">
 
-    --blue:#2563EB;
-    --green:#10B981;
-    --yellow:#FBBF24;
-    --red:#EF4444;
-    --orange:#F97316;
+            <h2>DASHBOARD FUNCIONANDO</h2>
 
-    --text:#F8FAFC;
-    --text-secondary:#CBD5E1;
+            <br>
+
+            <p>SP360 cargado correctamente</p>
+
+        </div>
+    `;
+
 }
-
-/* RESET */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-/* BODY */
-
-body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:Segoe UI, Arial, sans-serif;
-}
-
-/* LAYOUT */
-
-.app{
-    display:flex;
-    min-height:100vh;
-}
-
-/* ==========================
-   SIDEBAR
-========================== */
-
-.sidebar{
-    width:280px;
-    min-width:280px;
-
-    background:var(--panel);
-
-    padding:20px;
-
-    display:flex;
-    flex-direction:column;
-
-    position:fixed;
-
-    left:0;
-    top:0;
-
-    height:100vh;
-
-    border-right:1px solid #334155;
-}
-
-.logo{
-    font-size:32px;
-    font-weight:bold;
-    color:var(--blue);
-
-    margin-bottom:10px;
-}
-
-.site-name{
-    color:var(--text-secondary);
-    margin-bottom:25px;
-}
-
-.sidebar nav{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.sidebar button{
-
-    width:100%;
-
-    border:none;
-
-    border-radius:8px;
-
-    padding:12px;
-
-    color:white;
-
-    background:transparent;
-
-    text-align:left;
-
-    cursor:pointer;
-
-    transition:0.2s;
-}
-
-.sidebar button:hover{
-    background:#1F2937;
-}
-
-/* ==========================
-   CONTENIDO
-==============
+``
