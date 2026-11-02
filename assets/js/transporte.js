@@ -71,7 +71,7 @@ function registrarTransporte({
     const registro = {
 
         id:
-            `TRA-${Date.now()}`,
+        `TRA-${Date.now()}`,
 
         patente,
 
@@ -92,19 +92,19 @@ function registrarTransporte({
         controles,
 
         sitio:
-            trazabilidad.sitio,
+        trazabilidad.sitio,
 
         usuario:
-            trazabilidad.usuario,
+        trazabilidad.usuario,
 
         rol:
-            trazabilidad.rol,
+        trazabilidad.rol,
 
         fecha:
-            trazabilidad.fecha,
+        trazabilidad.fecha,
 
         hora:
-            trazabilidad.hora
+        trazabilidad.hora
 
     };
 
@@ -135,6 +135,7 @@ function validarControles(
         control => {
 
             if(
+
                 control.estado ===
                 "Observación"
 
@@ -142,6 +143,7 @@ function validarControles(
 
                 control.estado ===
                 "No Conforme"
+
             ){
 
                 crearNovedad({
@@ -194,7 +196,7 @@ ${control.observacion}
 }
 
 /* ==========================
-   OBTENER TODOS
+   CONSULTAS
 ========================== */
 
 function obtenerTransportes(){
@@ -202,10 +204,6 @@ function obtenerTransportes(){
     return transportesSP360;
 
 }
-
-/* ==========================
-   BUSCAR POR PATENTE
-========================== */
 
 function obtenerTransportePatente(
     patente
@@ -215,16 +213,12 @@ function obtenerTransportePatente(
 
         transporte =>
 
-        transporte.patente
-        === patente
+        transporte.patente ===
+        patente
 
     );
 
 }
-
-/* ==========================
-   BUSCAR POR FECHA
-========================== */
 
 function obtenerTransportesFecha(
     fecha
@@ -234,16 +228,12 @@ function obtenerTransportesFecha(
 
         transporte =>
 
-        transporte.fecha
-        === fecha
+        transporte.fecha ===
+        fecha
 
     );
 
 }
-
-/* ==========================
-   BUSCAR POR SITIO
-========================== */
 
 function obtenerTransportesSitio(
     sitio
@@ -253,8 +243,8 @@ function obtenerTransportesSitio(
 
         transporte =>
 
-        transporte.sitio
-        === sitio
+        transporte.sitio ===
+        sitio
 
     );
 
@@ -319,243 +309,91 @@ function obtenerEstadisticasTransporte(){
 }
 
 /* ==========================
-   RENDER MODULO
+   UI AUXILIAR
 ========================== */
 
-function cargarModuloTransporte(){
+function crearSelectChecklist(
 
-    const content =
-        document.getElementById(
-            "content"
-        );
+    id,
+    titulo
 
-    const registros =
-        obtenerTransportes();
+){
 
-    let filas = "";
+    return `
 
-    registros.forEach(t => {
+        <label>
 
-        filas += `
+            ${titulo}
 
-            <tr>
+        </label>
 
-                <td>${t.patente}</td>
+        <select id="${id}">
 
-                <td>${t.transportista}</td>
+            <option>
+                Conforme
+            </option>
 
-                <td>${t.chofer}</td>
+            <option>
+                Observación
+            </option>
 
-                <td>${t.fecha}</td>
+            <option>
+                No Conforme
+            </option>
 
-            </tr>
+        </select>
 
-        `;
-
-    });
-
-    content.innerHTML = `
-
-        <h2>
-            🚛 Transporte Seguro
-        </h2>
-
-        <div class="card">
-
-            <h3>
-                Nuevo Transporte
-            </h3>
-
-            <input
-                id="tra_patente"
-                placeholder="Patente">
-
-            <input
-                id="tra_transportista"
-                placeholder="Transportista">
-
-            <input
-                id="tra_chofer"
-                placeholder="Chofer">
-
-            <input
-                id="tra_dni"
-                placeholder="DNI">
-
-            <input
-                id="tra_origen"
-                placeholder="Origen">
-
-            <input
-                id="tra_destino"
-                placeholder="Destino">
-
-            <input
-                id="tra_remito"
-                placeholder="Remito">
-
-            <input
-                id="tra_precinto"
-                placeholder="Precinto">
-
-            <h4>Checklist</h4>
-
-            ${crearSelectChecklist("chk_satelital","Satelital")}
-            ${crearSelectChecklist("chk_precinto","Precinto")}
-            ${crearSelectChecklist("chk_candado","Candado")}
-            ${crearSelectChecklist("chk_matafuego","Matafuego")}
-            ${crearSelectChecklist("chk_licencia","Licencia")}
-            ${crearSelectChecklist("chk_epp","EPP")}
-            ${crearSelectChecklist("chk_documentacion","Documentación")}
-
-            <br><br>
-
-            <button
-                onclick="guardarFormularioTransporte()">
-
-                Guardar Transporte
-
-            </button>
-
-        </div>
-
-        <div class="card">
-
-            <h3>
-                Historial
-            </h3>
-
-            <table
-                style="width:100%">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Patente</th>
-                        <th>Transportista</th>
-                        <th>Chofer</th>
-                        <th>Fecha</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${filas}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-
-}
-
-    const stats =
-        obtenerEstadisticasTransporte();
-
-    content.innerHTML = `
-
-        <h2>
-            🚛 Transporte Seguro
-        </h2>
-
-        <div class="card">
-
-            <strong>
-                Transportes Registrados
-            </strong>
-
-            <br><br>
-
-            ${stats.total}
-
-            <br><br>
-
-            <strong>
-                Observaciones
-            </strong>
-
-            <br>
-
-            ${stats.observaciones}
-
-            <br><br>
-
-            <strong>
-                No Conformes
-            </strong>
-
-            <br>
-
-            ${stats.noConformes}
-
-        </div>
-
-        <div class="card">
-
-            Próxima versión:
-
-            <br><br>
-
-            ✅ Alta Transporte
-
-            <br>
-
-            ✅ Checklist interactivo
-
-            <br>
-
-            ✅ Generación automática
-            de NOV
-
-            <br>
-
-            ✅ Integración Libro Guardia
-
-            <br>
-
-            ✅ Reportes mensuales
-
-        </div>
+        <br><br>
 
     `;
 
 }
 
 /* ==========================
-   UI TRANSPORTE
+   GUARDAR FORMULARIO
 ========================== */
 
 function guardarFormularioTransporte(){
 
     const patente =
-        document.getElementById("tra_patente").value;
+        document.getElementById(
+            "tra_patente"
+        ).value;
 
     const transportista =
-        document.getElementById("tra_transportista").value;
+        document.getElementById(
+            "tra_transportista"
+        ).value;
 
     const chofer =
-        document.getElementById("tra_chofer").value;
+        document.getElementById(
+            "tra_chofer"
+        ).value;
 
     const dni =
-        document.getElementById("tra_dni").value;
+        document.getElementById(
+            "tra_dni"
+        ).value;
 
     const origen =
-        document.getElementById("tra_origen").value;
+        document.getElementById(
+            "tra_origen"
+        ).value;
 
     const destino =
-        document.getElementById("tra_destino").value;
+        document.getElementById(
+            "tra_destino"
+        ).value;
 
     const remito =
-        document.getElementById("tra_remito").value;
+        document.getElementById(
+            "tra_remito"
+        ).value;
 
     const numeroPrecinto =
-        document.getElementById("tra_precinto").value;
+        document.getElementById(
+            "tra_precinto"
+        ).value;
 
     const controles = [
 
@@ -622,5 +460,124 @@ function guardarFormularioTransporte(){
     );
 
     cargarModuloTransporte();
+
+}
+
+/* ==========================
+   MODULO
+========================== */
+
+function cargarModuloTransporte(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const registros =
+        obtenerTransportes();
+
+    let filas = "";
+
+    registros.forEach(t => {
+
+        filas += `
+
+            <tr>
+
+                <td>${t.patente}</td>
+
+                <td>${t.transportista}</td>
+
+                <td>${t.chofer}</td>
+
+                <td>${t.fecha}</td>
+
+            </tr>
+
+        `;
+
+    });
+
+    content.innerHTML = `
+
+        <h2>
+            🚛 Transporte Seguro
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Nuevo Transporte
+            </h3>
+
+            <input id="tra_patente" placeholder="Patente">
+
+            <input id="tra_transportista" placeholder="Transportista">
+
+            <input id="tra_chofer" placeholder="Chofer">
+
+            <input id="tra_dni" placeholder="DNI">
+
+            <input id="tra_origen" placeholder="Origen">
+
+            <input id="tra_destino" placeholder="Destino">
+
+            <input id="tra_remito" placeholder="Remito">
+
+            <input id="tra_precinto" placeholder="Precinto">
+
+            <h4>Checklist</h4>
+
+            ${crearSelectChecklist("chk_satelital","Satelital")}
+            ${crearSelectChecklist("chk_precinto","Precinto")}
+            ${crearSelectChecklist("chk_candado","Candado")}
+            ${crearSelectChecklist("chk_matafuego","Matafuego")}
+            ${crearSelectChecklist("chk_licencia","Licencia")}
+            ${crearSelectChecklist("chk_epp","EPP")}
+            ${crearSelectChecklist("chk_documentacion","Documentación")}
+
+            <button
+                onclick="guardarFormularioTransporte()">
+
+                Guardar Transporte
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Historial de Transportes
+            </h3>
+
+            <table
+                style="width:100%">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patente</th>
+                        <th>Transportista</th>
+                        <th>Chofer</th>
+                        <th>Fecha</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
 
 }
