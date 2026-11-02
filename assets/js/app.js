@@ -181,10 +181,7 @@ function loadModule(module){
         break;
 
         case "accesos":
-            cargarModuloSimple(
-                "🚗 Accesos Vehiculares",
-                "Módulo en desarrollo"
-            );
+            cargarModuloAccesos();
         break;
 
         case "notebooks":
