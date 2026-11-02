@@ -849,6 +849,8 @@ function cargarPantallaEgreso(id){
 
 `;
 
+}
+
 const estadoCabina =
     document.getElementById(
         "egreso_cabina"
