@@ -214,10 +214,7 @@ function loadModule(module){
         break;
 
         case "correspondencia":
-            cargarModulo(
-                "📦 Correspondencia",
-                "Módulo en desarrollo"
-            );
+            cargarModuloCorrespondencia();
         break;
 
         case "emergencias":
