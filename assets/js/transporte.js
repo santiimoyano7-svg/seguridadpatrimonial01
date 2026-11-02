@@ -681,6 +681,8 @@ Detalle Observación de Cabina"
 
 `;
 
+}
+
 /* ==========================
    VALIDAR CONTROLES
 ========================== */
