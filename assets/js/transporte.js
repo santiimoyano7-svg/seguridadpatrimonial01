@@ -147,41 +147,17 @@ function registrarTransporte({
 
 };
 
-/* ==========================
-   INGRESO A PLANTA
-========================== */
-
-function ingresarAPlanta(id){
-
-    const transporte =
-        transportesSP360.find(
-            t => t.id === id
-        );
-
-    if(!transporte){
-
-        return false;
-
-    }
-
-    const trazabilidad =
-        crearTrazabilidad();
-
-    transporte.estado =
-        "En Planta";
-
-    transporte.fechaIngresoPlanta =
-        trazabilidad.fecha;
-
-    transporte.horaIngresoPlanta =
-        trazabilidad.hora;
-
-    transporte.usuarioIngresoPlanta =
-        trazabilidad.usuario;
+       transportesSP360.push(
+        registro
+    );
 
     guardarTransportes();
 
-    return true;
+    validarControles(
+        registro
+    );
+
+    return registro;
 
 }
 
@@ -980,3 +956,4 @@ Números de Precintos
     `;
 
 }
+   
