@@ -329,6 +329,132 @@ function cargarModuloTransporte(){
             "content"
         );
 
+    const registros =
+        obtenerTransportes();
+
+    let filas = "";
+
+    registros.forEach(t => {
+
+        filas += `
+
+            <tr>
+
+                <td>${t.patente}</td>
+
+                <td>${t.transportista}</td>
+
+                <td>${t.chofer}</td>
+
+                <td>${t.fecha}</td>
+
+            </tr>
+
+        `;
+
+    });
+
+    content.innerHTML = `
+
+        <h2>
+            🚛 Transporte Seguro
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Nuevo Transporte
+            </h3>
+
+            <input
+                id="tra_patente"
+                placeholder="Patente">
+
+            <input
+                id="tra_transportista"
+                placeholder="Transportista">
+
+            <input
+                id="tra_chofer"
+                placeholder="Chofer">
+
+            <input
+                id="tra_dni"
+                placeholder="DNI">
+
+            <input
+                id="tra_origen"
+                placeholder="Origen">
+
+            <input
+                id="tra_destino"
+                placeholder="Destino">
+
+            <input
+                id="tra_remito"
+                placeholder="Remito">
+
+            <input
+                id="tra_precinto"
+                placeholder="Precinto">
+
+            <h4>Checklist</h4>
+
+            ${crearSelectChecklist("chk_satelital","Satelital")}
+            ${crearSelectChecklist("chk_precinto","Precinto")}
+            ${crearSelectChecklist("chk_candado","Candado")}
+            ${crearSelectChecklist("chk_matafuego","Matafuego")}
+            ${crearSelectChecklist("chk_licencia","Licencia")}
+            ${crearSelectChecklist("chk_epp","EPP")}
+            ${crearSelectChecklist("chk_documentacion","Documentación")}
+
+            <br><br>
+
+            <button
+                onclick="guardarFormularioTransporte()">
+
+                Guardar Transporte
+
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Historial
+            </h3>
+
+            <table
+                style="width:100%">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Patente</th>
+                        <th>Transportista</th>
+                        <th>Chofer</th>
+                        <th>Fecha</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+}
+
     const stats =
         obtenerEstadisticasTransporte();
 
