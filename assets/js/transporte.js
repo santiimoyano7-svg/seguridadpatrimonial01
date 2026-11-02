@@ -499,23 +499,72 @@ function cargarPantallaEgreso(id){
 
     content.innerHTML = `
 
-        <h2>
-            🚪 Egreso Transporte
-        </h2>
+<h2>
+    🚪 Egreso Transporte
+</h2>
 
-        <div class="card">
+<div class="card">
 
     <h3>
-        Datos de Egreso
+        📄 Información del Transporte
     </h3>
+
+    <p><strong>Patente:</strong> ${transporte.patente}</p>
+
+    <p><strong>Empresa Transporte:</strong> ${transporte.transportista}</p>
+
+    <p><strong>Chofer:</strong> ${transporte.chofer}</p>
+
+    <p><strong>DNI:</strong> ${transporte.dni}</p>
+
+    <p><strong>Movimiento:</strong> ${transporte.tipoMovimiento}</p>
+
+    <p><strong>Remito:</strong> ${transporte.remito}</p>
+
+    <p><strong>Candados Ingreso:</strong>
+    ${transporte.cantidadCandados || 0}</p>
+
+    <p><strong>Precintos Ingreso:</strong>
+    ${transporte.cantidadPrecintos || 0}</p>
+
+    <p><strong>N° Precintos Ingreso:</strong>
+    ${transporte.numerosPrecintos || "-"}</p>
+
+</div>
+
+<div class="card">
+
+    <h3>
+        🚚 Datos de Salida
+    </h3>
+
+    <label>
+        N° Viaje / BP
+    </label>
 
     <input
         id="egreso_viaje"
         placeholder="N° Viaje / BP">
 
+    <label>
+        Destino Final
+    </label>
+
     <input
         id="egreso_destino"
         placeholder="Destino Final">
+
+</div>
+
+<div class="card">
+
+    <h3>
+        🔒 Control de Precintos
+    </h3>
+
+    <label>
+        ¿Lleva Precintos?
+    </label>
 
     <select id="egreso_precintos">
 
@@ -524,14 +573,34 @@ function cargarPantallaEgreso(id){
 
     </select>
 
+    <label>
+        Cantidad de Precintos
+    </label>
+
     <input
         id="egreso_cantidad_precintos"
         placeholder="Cantidad Precintos">
 
+    <label>
+        Números de Precintos
+    </label>
+
     <textarea
         id="egreso_numeros_precintos"
-        placeholder="Números de Precintos">
+        placeholder="N° Precintos de salida">
     </textarea>
+
+</div>
+
+<div class="card">
+
+    <h3>
+        🔐 Control de Candados
+    </h3>
+
+    <label>
+        ¿Lleva Candados?
+    </label>
 
     <select id="egreso_candados">
 
@@ -540,32 +609,63 @@ function cargarPantallaEgreso(id){
 
     </select>
 
+    <label>
+        Cantidad de Candados
+    </label>
+
     <input
         id="egreso_cantidad_candados"
         placeholder="Cantidad Candados">
 
+</div>
+
+<div class="card">
+
+    <h3>
+        🚚 Control de Cabina
+    </h3>
+
+    <label>
+        Estado de Cabina
+    </label>
+
     <select
         id="egreso_cabina"
-        onchange="
-        toggleObservacionCabina()
-        ">
+        onchange="toggleObservacionCabina()">
 
         <option>Conforme</option>
+
         <option>Observación</option>
+
         <option>No Conforme</option>
 
     </select>
 
     <textarea
+
         id="egreso_obs_cabina"
-        placeholder="Detalle Observación Cabina"
-        style="display:none;">
-    </textarea>
+
+        placeholder="
+Detalle Observación de Cabina"
+
+        style="display:none;"
+
+    ></textarea>
+
+</div>
+
+<div class="card">
+
+    <h3>
+        📝 Observación General
+    </h3>
 
     <textarea
         id="egreso_obs_final"
         placeholder="Observación Final">
     </textarea>
+
+    <br><br>
 
     <button
         class="btn btn-success"
@@ -573,15 +673,14 @@ function cargarPantallaEgreso(id){
         confirmarEgreso('${transporte.id}')
         ">
 
-        Confirmar Egreso
+        ✅ Confirmar Egreso
 
     </button>
 
 </div>
 
-    `;
+`;
 
-}
 /* ==========================
    VALIDAR CONTROLES
 ========================== */
