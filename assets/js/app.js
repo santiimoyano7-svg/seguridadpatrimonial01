@@ -228,10 +228,7 @@ function loadModule(module){
         break;
 
         case "precintos":
-            cargarModuloSimple(
-                "🚪 Precintos",
-                "Módulo en desarrollo"
-            );
+            cargarModuloPrecintos();
         break;
 
         case "usuarios":
