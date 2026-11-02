@@ -816,7 +816,7 @@ function cargarModuloTransporte(){
 
                 <input
                     id="tra_transportista"
-                    placeholder="Transportista">
+                    placeholder="Empresa de Transporte">
 
                 <input
                     id="tra_chofer"
