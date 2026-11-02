@@ -570,13 +570,17 @@ function cargarModuloTransporte(){
 
             <tr>
 
+                <td>${t.fecha || ""}</td>
+
                 <td>${t.patente}</td>
 
                 <td>${t.transportista}</td>
 
                 <td>${t.chofer}</td>
 
-                <td>${t.fecha}</td>
+                <td>${t.cantidadCandados || 0}</td>
+
+                <td>${t.cantidadPrecintos || 0}</td>
 
             </tr>
 
@@ -596,51 +600,99 @@ function cargarModuloTransporte(){
                 Nuevo Transporte
             </h3>
 
-            <input id="tra_patente" placeholder="Patente">
+            <div class="form-grid">
 
-            <input id="tra_transportista" placeholder="Transportista">
+                <input
+                    id="tra_patente"
+                    placeholder="Patente">
 
-            <input id="tra_chofer" placeholder="Chofer">
+                <input
+                    id="tra_transportista"
+                    placeholder="Transportista">
 
-            <input id="tra_dni" placeholder="DNI">
+                <input
+                    id="tra_chofer"
+                    placeholder="Chofer">
 
-            <input id="tra_origen" placeholder="Origen">
+                <input
+                    id="tra_dni"
+                    placeholder="DNI">
 
-            <input id="tra_destino" placeholder="Destino">
+                <input
+                    id="tra_origen"
+                    placeholder="Origen">
 
-            <input id="tra_remito" placeholder="Remito">
+                <input
+                    id="tra_destino"
+                    placeholder="Destino">
 
-<input
-    id="tra_candados"
-    type="number"
-    placeholder="Cantidad Candados">
+                <input
+                    id="tra_remito"
+                    placeholder="Remito">
 
-<input
-    id="tra_cant_precintos"
-    type="number"
-    placeholder="Cantidad Precintos">
+                <input
+                    id="tra_candados"
+                    type="number"
+                    placeholder="Cantidad Candados">
 
-<textarea
+                <input
+                    id="tra_cant_precintos"
+                    type="number"
+                    placeholder="Cantidad Precintos">
 
-    id="tra_numeros_precintos"
+                <textarea
 
-    placeholder="
-    Números de Precintos
-    separados por coma"
+                    id="tra_numeros_precintos"
 
-></textarea>
+                    placeholder="
+Números de Precintos
+(separados por coma)"
 
-            <h4>Checklist</h4>
+                ></textarea>
 
-            ${crearSelectChecklist("chk_satelital","Satelital")}
-            ${crearSelectChecklist("chk_precinto","Precinto")}
-            ${crearSelectChecklist("chk_candado","Candado")}
-            ${crearSelectChecklist("chk_matafuego","Matafuego")}
-            ${crearSelectChecklist("chk_licencia","Licencia")}
-            ${crearSelectChecklist("chk_epp","EPP")}
-            ${crearSelectChecklist("chk_documentacion","Documentación")}
+            </div>
+
+            <h4>
+                Checklist de Control
+            </h4>
+
+            ${crearSelectChecklist(
+                "chk_satelital",
+                "Satelital"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_precinto",
+                "Precinto"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_candado",
+                "Candado"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_matafuego",
+                "Matafuego"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_licencia",
+                "Licencia"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_epp",
+                "EPP"
+            )}
+
+            ${crearSelectChecklist(
+                "chk_documentacion",
+                "Documentación"
+            )}
 
             <button
+                class="btn btn-primary"
                 onclick="guardarFormularioTransporte()">
 
                 Guardar Transporte
@@ -655,17 +707,23 @@ function cargarModuloTransporte(){
                 Historial de Transportes
             </h3>
 
-            <table
-                style="width:100%">
+            <table>
 
                 <thead>
 
                     <tr>
 
-                        <th>Patente</th>
-                        <th>Transportista</th>
-                        <th>Chofer</th>
                         <th>Fecha</th>
+
+                        <th>Patente</th>
+
+                        <th>Transportista</th>
+
+                        <th>Chofer</th>
+
+                        <th>Candados</th>
+
+                        <th>Precintos</th>
 
                     </tr>
 
@@ -682,5 +740,7 @@ function cargarModuloTransporte(){
         </div>
 
     `;
+
+}
 
 }
