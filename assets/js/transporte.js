@@ -476,63 +476,49 @@ const numerosPrecintos =
 
     const controles = [
 
-        {
-            item: "Satelital",
-            estado: document.getElementById("chk_satelital").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "Satelital",
+        estado: document.getElementById("chk_satelital").value,
+        observacion: document.getElementById("chk_satelital_obs").value
+    },
 
-        {
-            item: "Precinto",
-            estado: document.getElementById("chk_precinto").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "Precinto",
+        estado: document.getElementById("chk_precinto").value,
+        observacion: document.getElementById("chk_precinto_obs").value
+    },
 
-        {
-            item: "Candado",
-            estado: document.getElementById("chk_candado").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value,
+    {
+        item: "Candado",
+        estado: document.getElementById("chk_candado").value,
+        observacion: document.getElementById("chk_candado_obs").value
+    },
 
-        {
-            item: "Matafuego",
-            estado: document.getElementById("chk_matafuego").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "Matafuego",
+        estado: document.getElementById("chk_matafuego").value,
+        observacion: document.getElementById("chk_matafuego_obs").value
+    },
 
-        {
-            item: "Licencia",
-            estado: document.getElementById("chk_licencia").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "Licencia",
+        estado: document.getElementById("chk_licencia").value,
+        observacion: document.getElementById("chk_licencia_obs").value
+    },
 
-        {
-            item: "EPP",
-            estado: document.getElementById("chk_epp").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "EPP",
+        estado: document.getElementById("chk_epp").value,
+        observacion: document.getElementById("chk_epp_obs").value
+    },
 
-        {
-            item: "Documentacion",
-            estado: document.getElementById("chk_documentacion").value,
-            observacion:
-document.getElementById(
-    "chk_licencia_obs"
-).value
+    {
+        item: "Documentacion",
+        estado: document.getElementById("chk_documentacion").value,
+        observacion: document.getElementById("chk_documentacion_obs").value
+    }
 
-    ];
+];
 
    registrarTransporte({
 
