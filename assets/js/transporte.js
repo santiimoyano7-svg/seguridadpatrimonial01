@@ -68,7 +68,7 @@ function registrarTransporte({
     cantidadPrecintos,
     numerosPrecintos,
 
-    controles,
+    controles
 
 }){
 
