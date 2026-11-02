@@ -210,10 +210,7 @@ function loadModule(module){
         break;
 
         case "cofres":
-            cargarModuloSimple(
-                "🗄 Gestión de Cofres",
-                "Módulo en desarrollo"
-            );
+            cargarModuloCofres();
         break;
 
         case "correspondencia":
