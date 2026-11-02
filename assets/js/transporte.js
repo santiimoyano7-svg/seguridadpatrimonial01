@@ -807,32 +807,6 @@ function cargarModuloTransporte(){
                 }
 
                 ${
-                    t.estado !== "Egresado"
-
-                    ?
-
-                    `<button
-                        class="btn btn-success"
-                        onclick="abrirEgreso('${t.id}')">
-
-                        ⚪ Egreso
-
-                    </button>`
-
-                    :
-
-                    ""
-                }
-
-            </td>
-
-        </tr>
-
-    `;
-
-});
-
-                ${
                     t.estado === "En Playa"
                     ?
 
