@@ -1,21 +1,168 @@
-Inicio de sesión
+/* ==========================
+   SP360 - SEGURIDAD
+========================== */
 
-Usuarios
+/* ============
+   USUARIOS DEMO
+=========== */
 
-Contraseñas
+const usuariosSistema = [
 
-Roles
+    {
+        id: 1,
+        usuario: "smoyano",
+        password: "admin123",
+        nombre: "Santiago Moyano",
+        rol: "Super Administrador",
+        sitio: "Corporativo"
+    },
 
-Permisos
+    {
+        id: 2,
+        usuario: "admin_bagley_tot",
+        password: "admin123",
+        nombre: "Administrador Bagley Totoral",
+        rol: "Administrador Sitio",
+        sitio: "Bagley Totoral"
+    },
 
-Trazabilidad
+    {
+        id: 3,
+        usuario: "guardia01",
+        password: "guardia123",
+        nombre: "Guardia T1",
+        rol: "Guardia",
+        sitio: "Bagley Totoral"
+    }
 
-Super Administrador
+];
 
-Administrador de Sitio
+/* ============
+   SESION ACTIVA
+=========== */
 
-Encargado de Turno
+let usuarioActivo = JSON.parse(
+    localStorage.getItem(
+        "sp360_usuario_activo"
+    )
+) || null;
 
-Guardia
+/* ============
+   LOGIN
+=========== */
 
-Jefe de Seguridad
+function iniciarSesion(
+    usuario,
+    password
+){
+
+    const encontrado =
+        usuariosSistema.find(
+            u =>
+            u.usuario === usuario &&
+            u.password === password
+        );
+
+    if(!encontrado){
+
+        return false;
+
+    }
+
+    usuarioActivo = encontrado;
+
+    localStorage.setItem(
+        "sp360_usuario_activo",
+        JSON.stringify(
+            usuarioActivo
+        )
+    );
+
+    return true;
+
+}
+
+/* ============
+   LOGOUT
+=========== */
+
+function cerrarSesion(){
+
+    localStorage.removeItem(
+        "sp360_usuario_activo"
+    );
+
+    usuarioActivo = null;
+
+    location.reload();
+
+}
+
+/* ============
+   SESION
+=========== */
+
+function haySesionActiva(){
+
+    return usuarioActivo !== null;
+
+}
+
+/* ============
+   DATOS USUARIO
+=========== */
+
+function obtenerUsuario(){
+
+    return usuarioActivo;
+
+}
+
+/* ============
+   ROL
+=========== */
+
+function obtenerRol(){
+
+    if(!usuarioActivo){
+
+        return null;
+
+    }
+
+    return usuarioActivo.rol;
+
+}
+
+/* ============
+   SITIO
+=========== */
+
+function obtenerSitio(){
+
+    if(!usuarioActivo){
+
+        return null;
+
+    }
+
+    return usuarioActivo.sitio;
+
+}
+
+/* ============
+   PERMISOS
+=========== */
+
+function tienePermiso(
+    rolesPermitidos
+){
+
+    if(!usuarioActivo){
+
+        return false;
+
+    }
+
+    return rolesPermitidos.includes(
+        
