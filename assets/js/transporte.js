@@ -400,3 +400,101 @@ function cargarModuloTransporte(){
     `;
 
 }
+
+/* ==========================
+   UI TRANSPORTE
+========================== */
+
+function guardarFormularioTransporte(){
+
+    const patente =
+        document.getElementById("tra_patente").value;
+
+    const transportista =
+        document.getElementById("tra_transportista").value;
+
+    const chofer =
+        document.getElementById("tra_chofer").value;
+
+    const dni =
+        document.getElementById("tra_dni").value;
+
+    const origen =
+        document.getElementById("tra_origen").value;
+
+    const destino =
+        document.getElementById("tra_destino").value;
+
+    const remito =
+        document.getElementById("tra_remito").value;
+
+    const numeroPrecinto =
+        document.getElementById("tra_precinto").value;
+
+    const controles = [
+
+        {
+            item: "Satelital",
+            estado: document.getElementById("chk_satelital").value,
+            observacion: ""
+        },
+
+        {
+            item: "Precinto",
+            estado: document.getElementById("chk_precinto").value,
+            observacion: ""
+        },
+
+        {
+            item: "Candado",
+            estado: document.getElementById("chk_candado").value,
+            observacion: ""
+        },
+
+        {
+            item: "Matafuego",
+            estado: document.getElementById("chk_matafuego").value,
+            observacion: ""
+        },
+
+        {
+            item: "Licencia",
+            estado: document.getElementById("chk_licencia").value,
+            observacion: ""
+        },
+
+        {
+            item: "EPP",
+            estado: document.getElementById("chk_epp").value,
+            observacion: ""
+        },
+
+        {
+            item: "Documentacion",
+            estado: document.getElementById("chk_documentacion").value,
+            observacion: ""
+        }
+
+    ];
+
+    registrarTransporte({
+
+        patente,
+        transportista,
+        chofer,
+        dni,
+        origen,
+        destino,
+        remito,
+        numeroPrecinto,
+        controles
+
+    });
+
+    alert(
+        "Transporte registrado correctamente"
+    );
+
+    cargarModuloTransporte();
+
+}
