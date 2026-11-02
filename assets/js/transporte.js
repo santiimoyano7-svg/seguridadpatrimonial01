@@ -428,11 +428,11 @@ function obtenerEstadisticasTransporte(){
 
     transportesSP360.forEach(
 
-        transporte => {
+    transporte => {
 
-            transporte.controles.forEach(
+        (transporte.controles || []).forEach(
 
-                control => {
+            control => {
 
                     if(
                         control.estado ===
