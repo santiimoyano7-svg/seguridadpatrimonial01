@@ -340,3 +340,35 @@ td{
     }
 
 }
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+.form-grid input,
+.form-grid textarea{
+
+    width:100%;
+
+}
+
+.check-item{
+
+    margin-bottom:12px;
+
+}
+
+.check-item textarea{
+
+    width:100%;
+
+    min-height:60px;
+
+}
