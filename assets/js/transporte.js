@@ -60,7 +60,11 @@ function registrarTransporte({
     origen,
     destino,
     remito,
-    numeroPrecinto,
+
+    cantidadCandados,
+    cantidadPrecintos,
+    numerosPrecintos,
+
     controles
 
 }){
@@ -68,45 +72,49 @@ function registrarTransporte({
     const trazabilidad =
         crearTrazabilidad();
 
-    const registro = {
+   const registro = {
 
-        id:
-        `TRA-${Date.now()}`,
+    id:
+    `TRA-${Date.now()}`,
 
-        patente,
+    patente,
 
-        transportista,
+    transportista,
 
-        chofer,
+    chofer,
 
-        dni,
+    dni,
 
-        origen,
+    origen,
 
-        destino,
+    destino,
 
-        remito,
+    remito,
 
-        numeroPrecinto,
+    cantidadCandados,
 
-        controles,
+    cantidadPrecintos,
 
-        sitio:
-        trazabilidad.sitio,
+    numerosPrecintos,
 
-        usuario:
-        trazabilidad.usuario,
+    controles,
 
-        rol:
-        trazabilidad.rol,
+    sitio:
+    trazabilidad.sitio,
 
-        fecha:
-        trazabilidad.fecha,
+    usuario:
+    trazabilidad.usuario,
 
-        hora:
-        trazabilidad.hora
+    rol:
+    trazabilidad.rol,
 
-    };
+    fecha:
+    trazabilidad.fecha,
+
+    hora:
+    trazabilidad.hora
+
+};
 
     transportesSP360.push(
         registro
@@ -321,31 +329,93 @@ function crearSelectChecklist(
 
     return `
 
-        <label>
+        <div class="check-item">
 
-            ${titulo}
+            <label>
 
-        </label>
+                ${titulo}
 
-        <select id="${id}">
+            </label>
 
-            <option>
-                Conforme
-            </option>
+            <select
 
-            <option>
-                Observación
-            </option>
+                id="${id}"
 
-            <option>
-                No Conforme
-            </option>
+                onchange="
+                toggleObservacion('${id}')
+                "
 
-        </select>
+            >
 
-        <br><br>
+                <option>
+                    Conforme
+                </option>
+
+                <option>
+                    Observación
+                </option>
+
+                <option>
+                    No Conforme
+                </option>
+
+            </select>
+
+            <textarea
+
+                id="${id}_obs"
+
+                placeholder="
+                Detalle de la observación"
+
+                style="
+                    display:none;
+                    width:100%;
+                    margin-top:5px;
+                "
+
+            ></textarea>
+
+        </div>
 
     `;
+
+}
+
+function toggleObservacion(id){
+
+    const estado =
+        document.getElementById(id);
+
+    const observacion =
+        document.getElementById(
+            id + "_obs"
+        );
+
+    if(
+
+        estado.value ===
+        "Observación"
+
+        ||
+
+        estado.value ===
+        "No Conforme"
+
+    ){
+
+        observacion.style.display =
+        "block";
+
+    }
+    else{
+
+        observacion.style.display =
+        "none";
+
+        observacion.value = "";
+
+    }
 
 }
 
@@ -390,70 +460,100 @@ function guardarFormularioTransporte(){
             "tra_remito"
         ).value;
 
-    const numeroPrecinto =
-        document.getElementById(
-            "tra_precinto"
-        ).value;
+    const cantidadCandados =
+    document.getElementById(
+        "tra_candados"
+    ).value;
+
+const cantidadPrecintos =
+    document.getElementById(
+        "tra_cant_precintos"
+    ).value;
+
+const numerosPrecintos =
+    document.getElementById(
+        "tra_numeros_precintos"
+    ).value;
 
     const controles = [
 
         {
             item: "Satelital",
             estado: document.getElementById("chk_satelital").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
         {
             item: "Precinto",
             estado: document.getElementById("chk_precinto").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
         {
             item: "Candado",
             estado: document.getElementById("chk_candado").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value,
 
         {
             item: "Matafuego",
             estado: document.getElementById("chk_matafuego").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
         {
             item: "Licencia",
             estado: document.getElementById("chk_licencia").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
         {
             item: "EPP",
             estado: document.getElementById("chk_epp").value,
-            observacion: ""
-        },
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
         {
             item: "Documentacion",
             estado: document.getElementById("chk_documentacion").value,
-            observacion: ""
-        }
+            observacion:
+document.getElementById(
+    "chk_licencia_obs"
+).value
 
     ];
 
-    registrarTransporte({
+   registrarTransporte({
 
-        patente,
-        transportista,
-        chofer,
-        dni,
-        origen,
-        destino,
-        remito,
-        numeroPrecinto,
-        controles
+    patente,
+    transportista,
+    chofer,
+    dni,
+    origen,
+    destino,
+    remito,
 
-    });
+    cantidadCandados,
+
+    cantidadPrecintos,
+
+    numerosPrecintos,
+
+    controles
+
+});
 
     alert(
         "Transporte registrado correctamente"
@@ -525,7 +625,25 @@ function cargarModuloTransporte(){
 
             <input id="tra_remito" placeholder="Remito">
 
-            <input id="tra_precinto" placeholder="Precinto">
+<input
+    id="tra_candados"
+    type="number"
+    placeholder="Cantidad Candados">
+
+<input
+    id="tra_cant_precintos"
+    type="number"
+    placeholder="Cantidad Precintos">
+
+<textarea
+
+    id="tra_numeros_precintos"
+
+    placeholder="
+    Números de Precintos
+    separados por coma"
+
+></textarea>
 
             <h4>Checklist</h4>
 
