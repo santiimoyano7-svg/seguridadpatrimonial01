@@ -59,6 +59,9 @@ function registrarTransporte({
     dni,
     origen,
     destino,
+
+    tipoMovimiento,
+
     remito,
 
     cantidadCandados,
@@ -88,6 +91,8 @@ function registrarTransporte({
     origen,
 
     destino,
+
+   TipoMovimiento
 
     remito,
 
@@ -241,6 +246,27 @@ function ingresarAPlanta(id){
         trazabilidad.usuario;
 
     guardarTransportes();
+
+    cargarModuloTransporte();
+
+}
+
+function abrirEgreso(id){
+
+    const observacionFinal =
+
+        prompt(
+            "Observación Final del Transporte"
+        );
+
+    registrarEgresoTransporte({
+
+        id,
+
+        observacionFinal:
+        observacionFinal || ""
+
+    });
 
     cargarModuloTransporte();
 
@@ -620,6 +646,11 @@ function guardarFormularioTransporte(){
             "tra_destino"
         ).value;
 
+   const tipoMovimiento =
+    document.getElementById(
+        "tra_movimiento"
+    ).value;
+
     const remito =
         document.getElementById(
             "tra_remito"
@@ -693,8 +724,11 @@ const numerosPrecintos =
     chofer,
     dni,
     origen,
-    destino,
-    remito,
+destino,
+
+tipoMovimiento,
+
+remito,
 
     cantidadCandados,
 
@@ -734,6 +768,10 @@ function cargarModuloTransporte(){
 
     filas += `
 
+        registros.forEach(t => {
+
+    filas += `
+
         <tr>
 
             <td>${t.fecha || ""}</td>
@@ -753,6 +791,50 @@ function cargarModuloTransporte(){
             <td>${t.cantidadPrecintos || 0}</td>
 
             <td>
+
+                ${
+                    t.estado === "En Playa"
+
+                    ?
+
+                    `<button
+                        class="btn btn-warning"
+                        onclick="ingresarAPlanta('${t.id}')">
+
+                        🟡 En Planta
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
+
+                ${
+                    t.estado !== "Egresado"
+
+                    ?
+
+                    `<button
+                        class="btn btn-success"
+                        onclick="abrirEgreso('${t.id}')">
+
+                        ⚪ Egreso
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
+
+            </td>
+
+        </tr>
+
+    `;
+
+});
 
                 ${
                     t.estado === "En Playa"
@@ -826,17 +908,37 @@ function cargarModuloTransporte(){
                     id="tra_dni"
                     placeholder="DNI">
 
-                <input
-                    id="tra_origen"
-                    placeholder="Origen">
+               <input
+    id="tra_origen"
+    placeholder="Origen">
 
-                <input
-                    id="tra_destino"
-                    placeholder="Destino">
+<input
+    id="tra_destino"
+    placeholder="Destino">
 
-                <input
-                    id="tra_remito"
-                    placeholder="Remito">
+<select id="tra_movimiento">
+
+    <option value="">
+        Tipo Movimiento
+    </option>
+
+    <option>
+        Descargar
+    </option>
+
+    <option>
+        Cargar
+    </option>
+
+    <option>
+        Descargar y Cargar
+    </option>
+
+</select>
+
+<input
+    id="tra_remito"
+    placeholder="Remito / N° Viaje">
 
                 <input
                     id="tra_candados"
@@ -923,21 +1025,21 @@ Números de Precintos
 
         <th>Fecha</th>
 
-        <th>Patente</th>
+<th>Patente</th>
 
-        <th>Transportista</th>
+<th>Transportista</th>
 
-        <th>Chofer</th>
+<th>Chofer</th>
 
-        <th>Estado</th>
+<th>Estado</th>
 
-        <th>Resultado</th>
+<th>Resultado</th>
 
-        <th>Candados</th>
+<th>Candados</th>
 
-        <th>Precintos</th>
+<th>Precintos</th>
 
-        <th>Acciones</th>
+<th>Acciones</th>
 
     </tr>
 
