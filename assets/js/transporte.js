@@ -148,21 +148,21 @@ function registrarTransporte({
     trazabilidad.fecha,
 
     hora:
-    trazabilidad.hora
+trazabilidad.hora
 
 };
 
-       transportesSP360.push(
-        registro
-    );
+transportesSP360.push(
+    registro
+);
 
-    guardarTransportes();
+guardarTransportes();
 
-    validarControles(
-        registro
-    );
+validarControles(
+    registro
+);
 
-    return registro;
+return registro;
 
 }
 
