@@ -365,8 +365,7 @@ function crearSelectChecklist(
 
                 id="${id}_obs"
 
-                placeholder="
-                Detalle de la observación"
+                placeholder="Detalle de la observación"
 
                 style="
                     display:none;
