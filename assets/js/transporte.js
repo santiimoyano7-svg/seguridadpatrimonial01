@@ -62,13 +62,21 @@ function registrarTransporte({
 
     tipoMovimiento,
 
-    remito,
+remito,
 
-    cantidadCandados,
-    cantidadPrecintos,
-    numerosPrecintos,
+tienePrecintos,
 
-    controles
+tieneSogaPrecinto,
+
+tieneCandados,
+
+cantidadCandados,
+
+cantidadPrecintos,
+
+numerosPrecintos,
+
+controles
 
 }){
 
@@ -94,15 +102,19 @@ function registrarTransporte({
 
    tipoMovimiento,
 
-    remito,
+remito,
 
-    cantidadCandados,
+tienePrecintos,
 
-    cantidadPrecintos,
+tieneSogaPrecinto,
 
-    numerosPrecintos,
+tieneCandados,
 
-    controles,
+cantidadCandados,
+
+cantidadPrecintos,
+
+numerosPrecintos,
 
     /* NUEVO */
 
@@ -656,6 +668,21 @@ function guardarFormularioTransporte(){
             "tra_remito"
         ).value;
 
+   const tienePrecintos =
+    document.getElementById(
+        "tra_tiene_precintos"
+    ).value;
+
+const tieneSogaPrecinto =
+    document.getElementById(
+        "tra_tiene_soga"
+    ).value;
+
+const tieneCandados =
+    document.getElementById(
+        "tra_tiene_candados"
+    ).value;
+   
     const cantidadCandados =
     document.getElementById(
         "tra_candados"
@@ -729,6 +756,12 @@ destino,
 tipoMovimiento,
 
 remito,
+
+tienePrecintos,
+
+tieneSogaPrecinto,
+
+tieneCandados,
 
     cantidadCandados,
 
@@ -909,6 +942,54 @@ function cargarModuloTransporte(){
 <input
     id="tra_remito"
     placeholder="Remito / N° Viaje">
+
+    <select id="tra_tiene_precintos">
+
+    <option value="">
+        ¿Tiene Precintos?
+    </option>
+
+    <option>
+        Sí
+    </option>
+
+    <option>
+        No
+    </option>
+
+</select>
+
+<select id="tra_tiene_soga">
+
+    <option value="">
+        ¿Tiene Soga Precinto?
+    </option>
+
+    <option>
+        Sí
+    </option>
+
+    <option>
+        No
+    </option>
+
+</select>
+
+<select id="tra_tiene_candados">
+
+    <option value="">
+        ¿Tiene Candados?
+    </option>
+
+    <option>
+        Sí
+    </option>
+
+    <option>
+        No
+    </option>
+
+</select>
 
                 <input
                     id="tra_candados"
