@@ -165,4 +165,77 @@ function tienePermiso(
     }
 
     return rolesPermitidos.includes(
-        
+        usuarioActivo.rol
+    );
+
+}
+
+/* ============
+   TRAZABILIDAD
+=========== */
+
+function crearTrazabilidad(){
+
+    return {
+
+        usuario:
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Sistema",
+
+        rol:
+            usuarioActivo
+            ?
+            usuarioActivo.rol
+            :
+            "Sistema",
+
+        sitio:
+            usuarioActivo
+            ?
+            usuarioActivo.sitio
+            :
+            "Sin Sitio",
+
+        fecha:
+            new Date()
+            .toLocaleDateString(),
+
+        hora:
+            new Date()
+            .toLocaleTimeString()
+
+    };
+
+}
+
+/* ============
+   NOVEDADES
+=========== */
+
+function generarIdNovedad(){
+
+    let ultimoId =
+        parseInt(
+            localStorage.getItem(
+                "sp360_contador_novedades"
+            )
+        ) || 0;
+
+    ultimoId++;
+
+    localStorage.setItem(
+        "sp360_contador_novedades",
+        ultimoId
+    );
+
+    const anio =
+        new Date().getFullYear();
+
+    return `NOV-${anio}-${String(
+        ultimoId
+    ).padStart(6,"0")}`;
+
+}
