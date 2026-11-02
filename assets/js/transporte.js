@@ -231,6 +231,45 @@ function registrarEgresoTransporte({
     return true;
 
 }
+
+/* ==========================
+   INGRESO A PLANTA
+========================== */
+
+function ingresarAPlanta(id){
+
+    const transporte =
+        transportesSP360.find(
+            t => t.id === id
+        );
+
+    if(!transporte){
+
+        return false;
+
+    }
+
+    const trazabilidad =
+        crearTrazabilidad();
+
+    transporte.estado =
+        "En Planta";
+
+    transporte.fechaIngresoPlanta =
+        trazabilidad.fecha;
+
+    transporte.horaIngresoPlanta =
+        trazabilidad.hora;
+
+    transporte.usuarioIngresoPlanta =
+        trazabilidad.usuario;
+
+    guardarTransportes();
+
+    cargarModuloTransporte();
+
+}
+
 /* ==========================
    VALIDAR CONTROLES
 ========================== */
@@ -904,23 +943,29 @@ Números de Precintos
 
                 <thead>
 
-                    <tr>
+    <tr>
 
-                        <th>Fecha</th>
+        <th>Fecha</th>
 
-                        <th>Patente</th>
+        <th>Patente</th>
 
-                        <th>Transportista</th>
+        <th>Transportista</th>
 
-                        <th>Chofer</th>
+        <th>Chofer</th>
 
-                        <th>Candados</th>
+        <th>Estado</th>
 
-                        <th>Precintos</th>
+        <th>Resultado</th>
 
-                    </tr>
+        <th>Candados</th>
 
-                </thead>
+        <th>Precintos</th>
+
+        <th>Acciones</th>
+
+    </tr>
+
+</thead>
 
                 <tbody>
 
