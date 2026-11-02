@@ -99,6 +99,37 @@ function registrarTransporte({
 
     controles,
 
+    /* NUEVO */
+
+    estado:
+    "En Playa",
+
+    fechaIngresoPlanta:
+    null,
+
+    horaIngresoPlanta:
+    null,
+
+    usuarioIngresoPlanta:
+    null,
+
+    fechaEgreso:
+    null,
+
+    horaEgreso:
+    null,
+
+    usuarioEgreso:
+    null,
+
+    observacionFinal:
+    "",
+
+    resultadoGeneral:
+    calcularResultadoGeneral(
+        controles
+    ),
+
     sitio:
     trazabilidad.sitio,
 
@@ -116,20 +147,90 @@ function registrarTransporte({
 
 };
 
-    transportesSP360.push(
-        registro
-    );
+/* ==========================
+   INGRESO A PLANTA
+========================== */
+
+function ingresarAPlanta(id){
+
+    const transporte =
+        transportesSP360.find(
+            t => t.id === id
+        );
+
+    if(!transporte){
+
+        return false;
+
+    }
+
+    const trazabilidad =
+        crearTrazabilidad();
+
+    transporte.estado =
+        "En Planta";
+
+    transporte.fechaIngresoPlanta =
+        trazabilidad.fecha;
+
+    transporte.horaIngresoPlanta =
+        trazabilidad.hora;
+
+    transporte.usuarioIngresoPlanta =
+        trazabilidad.usuario;
 
     guardarTransportes();
 
-    validarControles(
-        registro
-    );
-
-    return registro;
+    return true;
 
 }
 
+/* ==========================
+   EGRESO
+========================== */
+
+function registrarEgresoTransporte({
+
+    id,
+
+    observacionFinal
+
+}){
+
+    const transporte =
+        transportesSP360.find(
+            t => t.id === id
+        );
+
+    if(!transporte){
+
+        return false;
+
+    }
+
+    const trazabilidad =
+        crearTrazabilidad();
+
+    transporte.estado =
+        "Egresado";
+
+    transporte.fechaEgreso =
+        trazabilidad.fecha;
+
+    transporte.horaEgreso =
+        trazabilidad.hora;
+
+    transporte.usuarioEgreso =
+        trazabilidad.usuario;
+
+    transporte.observacionFinal =
+        observacionFinal;
+
+    guardarTransportes();
+
+    return true;
+
+}
 /* ==========================
    VALIDAR CONTROLES
 ========================== */
@@ -316,6 +417,56 @@ function obtenerEstadisticasTransporte(){
 
 }
 
+/* ==========================
+   RESULTADO GENERAL
+========================== */
+
+function calcularResultadoGeneral(
+    controles
+){
+
+    let resultado =
+    "Conforme";
+
+    controles.forEach(
+
+        control => {
+
+            if(
+                control.estado ===
+                "No Conforme"
+            ){
+
+                resultado =
+                "No Conforme";
+
+            }
+
+            else if(
+
+                control.estado ===
+                "Observación"
+
+                &&
+
+                resultado !==
+                "No Conforme"
+
+            ){
+
+                resultado =
+                "Observación";
+
+            }
+
+        }
+
+    );
+
+    return resultado;
+
+}
+   
 /* ==========================
    UI AUXILIAR
 ========================== */
@@ -566,27 +717,69 @@ function cargarModuloTransporte(){
 
     registros.forEach(t => {
 
-        filas += `
+    filas += `
 
-            <tr>
+        <tr>
 
-                <td>${t.fecha || ""}</td>
+            <td>${t.fecha || ""}</td>
 
-                <td>${t.patente}</td>
+            <td>${t.patente}</td>
 
-                <td>${t.transportista}</td>
+            <td>${t.transportista}</td>
 
-                <td>${t.chofer}</td>
+            <td>${t.chofer}</td>
 
-                <td>${t.cantidadCandados || 0}</td>
+            <td>${t.estado || "En Playa"}</td>
 
-                <td>${t.cantidadPrecintos || 0}</td>
+            <td>${t.resultadoGeneral || "Conforme"}</td>
 
-            </tr>
+            <td>${t.cantidadCandados || 0}</td>
 
-        `;
+            <td>${t.cantidadPrecintos || 0}</td>
 
-    });
+            <td>
+
+                ${
+                    t.estado === "En Playa"
+                    ?
+
+                    `<button
+                        class="btn btn-warning"
+                        onclick="ingresarAPlanta('${t.id}')">
+
+                        🟡 En Planta
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
+
+                ${
+                    t.estado !== "Egresado"
+                    ?
+
+                    `<button
+                        class="btn btn-success"
+                        onclick="abrirEgreso('${t.id}')">
+
+                        ⚪ Egreso
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
+
+            </td>
+
+        </tr>
+
+    `;
+
+});
 
     content.innerHTML = `
 
