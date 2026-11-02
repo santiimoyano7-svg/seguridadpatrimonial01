@@ -1,0 +1,7 @@
+Recepción
+
+Entrega
+
+Fotografía
+
+Seguimiento
