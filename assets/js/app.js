@@ -220,10 +220,7 @@ function loadModule(module){
         break;
 
         case "movimientosFlota":
-            cargarModuloSimple(
-                "🔄 Movimiento de Flota",
-                "Módulo en desarrollo"
-            );
+            cargarModuloMovimientosFlota();
         break;
 
         case "cctv":
