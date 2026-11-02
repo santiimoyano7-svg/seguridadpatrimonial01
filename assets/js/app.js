@@ -37,7 +37,7 @@ function inicializarSP360(){
         `${APP_CONFIG.nombre} v${APP_CONFIG.version}`
     );
 
-    cargarDashboard();
+    cargarDashboardSP360();
 
 }
 
@@ -152,7 +152,7 @@ function loadModule(module){
     switch(module){
 
         case "dashboard":
-            cargarDashboard();
+            cargarDashboardSP360();
         break;
 
         case "guardia":
