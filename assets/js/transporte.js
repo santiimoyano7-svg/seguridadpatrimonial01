@@ -231,7 +231,7 @@ function registrarEgresoTransporte({
 
     controlCabina,
 
-    observacionCabina,
+    observacionCabina
 
    transporte.viajeSalida =
     viajeSalida;
