@@ -764,10 +764,6 @@ function cargarModuloTransporte(){
 
     let filas = "";
 
-    registros.forEach(t => {
-
-    filas += `
-
         registros.forEach(t => {
 
     filas += `
