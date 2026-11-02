@@ -216,10 +216,7 @@ function loadModule(module){
         break;
 
         case "flota":
-            cargarModuloSimple(
-                "🚙 Flota",
-                "Módulo en desarrollo"
-            );
+            cargarModuloFlota();
         break;
 
         case "movimientosFlota":
