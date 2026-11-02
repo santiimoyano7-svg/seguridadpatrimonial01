@@ -293,6 +293,46 @@ transporte.observacionCabina =
     transporte.observacionFinal =
         observacionFinal;
 
+   if(
+
+    controlCabina ===
+    "Observación"
+
+    ||
+
+    controlCabina ===
+    "No Conforme"
+
+){
+
+    crearNovedad({
+
+        modulo:
+        "Transporte Seguro",
+
+        titulo:
+        `Control Cabina - ${transporte.patente}`,
+
+        descripcion:
+        observacionCabina,
+
+        criticidad:
+
+        controlCabina ===
+        "No Conforme"
+
+        ?
+
+        criticidades.ALTA
+
+        :
+
+        criticidades.MEDIA
+
+    });
+
+}
+   
     guardarTransportes();
 
     return true;
@@ -340,6 +380,42 @@ function ingresarAPlanta(id){
 function abrirEgreso(id){
 
     cargarPantallaEgreso(id);
+
+}
+function toggleObservacionCabina(){
+
+    const estado =
+        document.getElementById(
+            "egreso_cabina"
+        ).value;
+
+    const obs =
+        document.getElementById(
+            "egreso_obs_cabina"
+        );
+
+    if(
+
+        estado === "Observación"
+
+        ||
+
+        estado === "No Conforme"
+
+    ){
+
+        obs.style.display =
+        "block";
+
+    }
+    else{
+
+        obs.style.display =
+        "none";
+
+        obs.value = "";
+
+    }
 
 }
 
@@ -429,68 +505,79 @@ function cargarPantallaEgreso(id){
 
         <div class="card">
 
-            <h3>
-                Datos de Ingreso
-            </h3>
+    <h3>
+        Datos de Egreso
+    </h3>
 
-            <strong>Patente:</strong>
-            ${transporte.patente}
+    <input
+        id="egreso_viaje"
+        placeholder="N° Viaje / BP">
 
-            <br><br>
+    <input
+        id="egreso_destino"
+        placeholder="Destino Final">
 
-            <strong>Empresa:</strong>
-            ${transporte.transportista}
+    <select id="egreso_precintos">
 
-            <br><br>
+        <option>Si</option>
+        <option>No</option>
 
-            <strong>Chofer:</strong>
-            ${transporte.chofer}
+    </select>
 
-            <br><br>
+    <input
+        id="egreso_cantidad_precintos"
+        placeholder="Cantidad Precintos">
 
-            <strong>DNI:</strong>
-            ${transporte.dni}
+    <textarea
+        id="egreso_numeros_precintos"
+        placeholder="Números de Precintos">
+    </textarea>
 
-            <br><br>
+    <select id="egreso_candados">
 
-            <strong>Movimiento:</strong>
-            ${transporte.tipoMovimiento}
+        <option>Si</option>
+        <option>No</option>
 
-            <br><br>
+    </select>
 
-            <strong>Remito:</strong>
-            ${transporte.remito}
+    <input
+        id="egreso_cantidad_candados"
+        placeholder="Cantidad Candados">
 
-        </div>
+    <select
+        id="egreso_cabina"
+        onchange="
+        toggleObservacionCabina()
+        ">
 
-        <div class="card">
+        <option>Conforme</option>
+        <option>Observación</option>
+        <option>No Conforme</option>
 
-            <h3>
-                Datos de Egreso
-            </h3>
+    </select>
 
-            <input
-                id="egreso_viaje"
-                placeholder="N° Viaje">
+    <textarea
+        id="egreso_obs_cabina"
+        placeholder="Detalle Observación Cabina"
+        style="display:none;">
+    </textarea>
 
-            <input
-                id="egreso_destino"
-                placeholder="Destino Final">
+    <textarea
+        id="egreso_obs_final"
+        placeholder="Observación Final">
+    </textarea>
 
-            <textarea
-                id="egreso_obs_final"
-                placeholder="Observación Final">
-            </textarea>
+    <button
+        class="btn btn-success"
+        onclick="
+        confirmarEgreso('${transporte.id}')
+        ">
 
-            <button
-                class="btn btn-success"
-                onclick="
-                confirmarEgreso('${transporte.id}')
-                ">
-                Confirmar Egreso
-            </button>
+        Confirmar Egreso
 
-        </div>
+    </button>
+
+</div>
 
     `;
 
