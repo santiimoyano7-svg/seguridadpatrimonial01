@@ -224,10 +224,7 @@ function loadModule(module){
         break;
 
         case "cctv":
-            cargarModuloSimple(
-                "📹 CCTV",
-                "Módulo en desarrollo"
-            );
+            cargarModuloCCTV();
         break;
 
         case "precintos":
