@@ -194,12 +194,9 @@ function loadModule(module){
             );
         break;
 
-        case "transporte":
-            cargarModuloSimple(
-                "🚛 Transporte Seguro",
-                "Módulo en desarrollo"
-            );
-        break;
+case "transporte":
+    cargarModuloTransporte();
+break;
 
         case "novedadesTransporte":
             cargarModuloSimple(
