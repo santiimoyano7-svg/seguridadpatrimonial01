@@ -185,10 +185,7 @@ function loadModule(module){
         break;
 
         case "notebooks":
-            cargarModuloSimple(
-                "💻 Registro Notebooks",
-                "Módulo en desarrollo"
-            );
+            cargarModuloNotebooks();
         break;
 
         case "transporte":
