@@ -12,8 +12,7 @@ const APP_CONFIG = {
 
     version: "2.0",
 
-    empresa:
-        "Security Operations Center"
+    empresa: "Security Operations Center"
 
 };
 
@@ -21,7 +20,7 @@ const APP_CONFIG = {
    INICIO
 ========================== */
 
-window.onload = function(){
+window.onload = function () {
 
     inicializarSP360();
 
@@ -31,13 +30,13 @@ window.onload = function(){
    INICIALIZAR
 ========================== */
 
-function inicializarSP360(){
+function inicializarSP360() {
 
     console.log(
         `${APP_CONFIG.nombre} v${APP_CONFIG.version}`
     );
 
-    cargarDashboardSP360();
+    cargarDashboard();
 
 }
 
@@ -45,97 +44,38 @@ function inicializarSP360(){
    DASHBOARD
 ========================== */
 
-function cargarDashboard(){
+function cargarDashboard() {
+
+    if (
+        typeof cargarDashboardSP360 ===
+        "function"
+    ) {
+
+        cargarDashboardSP360();
+        return;
+
+    }
 
     const content =
         document.getElementById(
             "content"
         );
 
-    const estadisticas =
-        obtenerEstadisticasNovedades();
-
-    const usuario =
-        obtenerUsuario();
+    if (!content) return;
 
     content.innerHTML = `
 
         <h2>
-            Dashboard Ejecutivo
+            🏠 Dashboard
         </h2>
 
         <div class="card">
 
-            <strong>Usuario:</strong>
-            ${usuario ?
-                usuario.nombre :
-                "Sin Sesión"}
+            Bienvenido a SP360
 
             <br><br>
 
-            <strong>Rol:</strong>
-            ${usuario ?
-                usuario.rol :
-                "-"}
-
-            <br><br>
-
-            <strong>Sitio:</strong>
-            ${usuario ?
-                usuario.sitio :
-                "-"}
-
-        </div>
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    🔖 Total Novedades
-                </div>
-
-                <div class="stat-value">
-                    ${estadisticas.total}
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    🟡 Abiertas
-                </div>
-
-                <div class="stat-value">
-                    ${estadisticas.abiertas}
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    🔵 En Curso
-                </div>
-
-                <div class="stat-value">
-                    ${estadisticas.enCurso}
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-                    🟢 Cerradas
-                </div>
-
-                <div class="stat-value">
-                    ${estadisticas.cerradas}
-                </div>
-
-            </div>
+            Dashboard aún no inicializado.
 
         </div>
 
@@ -147,321 +87,380 @@ function cargarDashboard(){
    NAVEGACIÓN
 ========================== */
 
-function loadModule(module){
+function loadModule(module) {
 
-    switch(module){
+    switch (module) {
 
         case "dashboard":
-            cargarDashboardSP360();
-        break;
+            cargarDashboard();
+            break;
 
         case "guardia":
             cargarModuloSimple(
                 "📖 Libro Guardia",
-                "Integración pendiente"
+                "Módulo en desarrollo"
             );
-        break;
+            break;
 
         case "alertas":
             cargarModuloSimple(
                 "🚨 Alertas",
-                "Integración pendiente"
+                "Módulo en desarrollo"
             );
-        break;
+            break;
 
         case "novedades":
-            cargarModuloNovedades();
-        break;
+
+            if (
+                typeof cargarModuloNovedades ===
+                "function"
+            ) {
+
+                cargarModuloNovedades();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🔖 Gestión de Novedades",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "rondas":
             cargarModuloSimple(
                 "🚶 Rondas Inteligentes",
                 "Módulo en desarrollo"
             );
-        break;
+            break;
 
         case "accesos":
-            cargarModuloAccesos();
-        break;
+
+            if (
+                typeof cargarModuloAccesos ===
+                "function"
+            ) {
+
+                cargarModuloAccesos();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🚗 Accesos",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "notebooks":
-            cargarModuloNotebooks();
-        break;
+
+            if (
+                typeof cargarModuloNotebooks ===
+                "function"
+            ) {
+
+                cargarModuloNotebooks();
+
+            } else {
+
+                cargarModuloSimple(
+                    "💻 Notebooks",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "transporte":
-            cargarModuloTransporte();
-        break;
+
+            if (
+                typeof cargarModuloTransporte ===
+                "function"
+            ) {
+
+                cargarModuloTransporte();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🚛 Transporte",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "novedadesTransporte":
+
             cargarModuloSimple(
                 "📋 Novedades Transporte",
                 "Módulo en desarrollo"
             );
-        break;
+
+            break;
 
         case "llaves":
-           cargarModuloLlaves();
-        break;
+
+            if (
+                typeof cargarModuloLlaves ===
+                "function"
+            ) {
+
+                cargarModuloLlaves();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🔑 Llaves",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "cofres":
-            cargarModuloCofres();
-        break;
+
+            if (
+                typeof cargarModuloCofres ===
+                "function"
+            ) {
+
+                cargarModuloCofres();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🗄 Cofres",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "correspondencia":
-            cargarModuloCorrespondencia();
-        break;
+
+            if (
+                typeof cargarModuloCorrespondencia ===
+                "function"
+            ) {
+
+                cargarModuloCorrespondencia();
+
+            } else {
+
+                cargarModuloSimple(
+                    "📦 Correspondencia",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "emergencias":
-            cargarModuloEmergencias();
-        break;
+
+            if (
+                typeof cargarModuloEmergencias ===
+                "function"
+            ) {
+
+                cargarModuloEmergencias();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🚑 Emergencias",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "flota":
-            cargarModuloFlota();
-        break;
+
+            if (
+                typeof cargarModuloFlota ===
+                "function"
+            ) {
+
+                cargarModuloFlota();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🚙 Flota",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "movimientosFlota":
-            cargarModuloMovimientosFlota();
-        break;
+
+            if (
+                typeof cargarModuloMovimientosFlota ===
+                "function"
+            ) {
+
+                cargarModuloMovimientosFlota();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🔄 Movimiento Flota",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "cctv":
-            cargarModuloCCTV();
-        break;
+
+            if (
+                typeof cargarModuloCCTV ===
+                "function"
+            ) {
+
+                cargarModuloCCTV();
+
+            } else {
+
+                cargarModuloSimple(
+                    "📹 CCTV",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "precintos":
-            cargarModuloPrecintos();
-        break;
+
+            if (
+                typeof cargarModuloPrecintos ===
+                "function"
+            ) {
+
+                cargarModuloPrecintos();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🚪 Precintos",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "usuarios":
-            cargarModuloUsuarios();
-        break;
+
+            if (
+                typeof cargarModuloUsuarios ===
+                "function"
+            ) {
+
+                cargarModuloUsuarios();
+
+            } else {
+
+                cargarModuloSimple(
+                    "👥 Usuarios",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "sitios":
-            cargarModuloSitios();
-        break;
+
+            if (
+                typeof cargarModuloSitios ===
+                "function"
+            ) {
+
+                cargarModuloSitios();
+
+            } else {
+
+                cargarModuloSimple(
+                    "🏢 Sitios",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         case "administracion":
-            cargarModuloAdministracion();
-        break;
+
+            if (
+                typeof cargarModuloAdministracion ===
+                "function"
+            ) {
+
+                cargarModuloAdministracion();
+
+            } else {
+
+                cargarModuloSimple(
+                    "⚙ Administración",
+                    "Módulo no disponible"
+                );
+
+            }
+
+            break;
 
         default:
+
             cargarModuloSimple(
                 "SP360",
                 "Módulo no encontrado"
             );
-        break;
+
+            break;
 
     }
 
 }
 
 /* ==========================
-   MÓDULO SIMPLE
+   MODULO SIMPLE
 ========================== */
 
 function cargarModuloSimple(
     titulo,
     mensaje
-){
+) {
 
     const content =
         document.getElementById(
             "content"
         );
+
+    if (!content) return;
 
     content.innerHTML = `
 
         <h2>${titulo}</h2>
 
         <div class="card">
+
             ${mensaje}
-        </div>
-
-    `;
-
-}
-
-/* ==========================
-   NOVEDADES
-========================== */
-
-function cargarModuloNovedades(){
-
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    const novedades =
-        obtenerNovedades();
-
-    let html = `
-        <h2>
-            🔖 Gestión de Novedades
-        </h2>
-    `;
-
-    novedades.forEach(n => {
-
-        html += `
-
-        <div class="card">
-
-            <strong>${n.id}</strong>
-
-            <br><br>
-
-            ${n.titulo}
-
-            <br><br>
-
-            Estado:
-            ${n.estado}
-
-            <br>
-
-            Sitio:
-            ${n.sitio}
-
-        </div>
-
-        `;
-
-    });
-
-    content.innerHTML = html;
-
-}
-
-/* ==========================
-   USUARIOS
-========================== */
-
-function cargarModuloUsuarios(){
-
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    const usuarios =
-        obtenerUsuarios();
-
-    let html = `
-        <h2>👥 Usuarios</h2>
-    `;
-
-    usuarios.forEach(u => {
-
-        html += `
-
-        <div class="card">
-
-            <strong>
-                ${u.nombre}
-            </strong>
-
-            <br><br>
-
-            Usuario:
-            ${u.usuario}
-
-            <br>
-
-            Rol:
-            ${u.rol}
-
-            <br>
-
-            Sitio:
-            ${u.sitio}
-
-        </div>
-
-        `;
-
-    });
-
-    content.innerHTML = html;
-
-}
-
-/* ==========================
-   SITIOS
-========================== */
-
-function cargarModuloSitios(){
-
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    const sitios =
-        obtenerSitios();
-
-    let html = `
-        <h2>🏢 Sitios</h2>
-    `;
-
-    sitios.forEach(s => {
-
-        html += `
-
-        <div class="card">
-
-            <strong>
-                ${s.nombre}
-            </strong>
-
-            <br><br>
-
-            Código:
-            ${s.codigo}
-
-        </div>
-
-        `;
-
-    });
-
-    content.innerHTML = html;
-
-}
-
-/* ==========================
-   ADMINISTRACIÓN
-========================== */
-
-function cargarModuloAdministracion(){
-
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    const resumen =
-        obtenerResumenUsuarios();
-
-    content.innerHTML = `
-
-        <h2>
-            ⚙ Administración
-        </h2>
-
-        <div class="card">
-
-            Usuarios Totales:
-            ${resumen.total}
-
-            <br>
-
-            Activos:
-            ${resumen.activos}
-
-            <br>
-
-            Inactivos:
-            ${resumen.inactivos}
 
         </div>
 
