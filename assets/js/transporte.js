@@ -116,6 +116,8 @@ cantidadPrecintos,
 
 numerosPrecintos,
 
+controles,
+
     /* NUEVO */
 
     estado:
@@ -292,7 +294,7 @@ function validarControles(
     transporte
 ){
 
-    transporte.controles.forEach(
+    (transporte.controles || []).forEach(
 
         control => {
 
@@ -820,24 +822,6 @@ function cargarModuloTransporte(){
             <td>${t.cantidadPrecintos || 0}</td>
 
             <td>
-
-                ${
-                    t.estado === "En Playa"
-
-                    ?
-
-                    `<button
-                        class="btn btn-warning"
-                        onclick="ingresarAPlanta('${t.id}')">
-
-                        🟡 En Planta
-
-                    </button>`
-
-                    :
-
-                    ""
-                }
 
                 ${
                     t.estado === "En Playa"
