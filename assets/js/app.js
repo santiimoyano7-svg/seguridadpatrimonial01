@@ -194,9 +194,9 @@ function loadModule(module){
             );
         break;
 
-case "transporte":
-    cargarModuloTransporte();
-break;
+        case "transporte":
+            cargarModuloTransporte();
+        break;
 
         case "novedadesTransporte":
             cargarModuloSimple(
@@ -206,10 +206,7 @@ break;
         break;
 
         case "llaves":
-            cargarModuloSimple(
-                "🔑 Gestión de Llaves",
-                "Módulo en desarrollo"
-            );
+           cargarModuloLlaves();
         break;
 
         case "cofres":
