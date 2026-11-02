@@ -267,18 +267,22 @@ function ingresarAPlanta(id){
 
 function abrirEgreso(id){
 
-    const observacionFinal =
+    cargarPantallaEgreso(id);
 
-        prompt(
-            "Observación Final del Transporte"
-        );
+}
+
+function confirmarEgreso(id){
+
+    const observacionFinal =
+        document.getElementById(
+            "egreso_obs_final"
+        ).value;
 
     registrarEgresoTransporte({
 
         id,
 
-        observacionFinal:
-        observacionFinal || ""
+        observacionFinal
 
     });
 
@@ -286,6 +290,96 @@ function abrirEgreso(id){
 
 }
 
+function cargarPantallaEgreso(id){
+
+    const transporte =
+        transportesSP360.find(
+            t => t.id === id
+        );
+
+    if(!transporte){
+        return;
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            🚪 Egreso Transporte
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Datos de Ingreso
+            </h3>
+
+            <strong>Patente:</strong>
+            ${transporte.patente}
+
+            <br><br>
+
+            <strong>Empresa:</strong>
+            ${transporte.transportista}
+
+            <br><br>
+
+            <strong>Chofer:</strong>
+            ${transporte.chofer}
+
+            <br><br>
+
+            <strong>DNI:</strong>
+            ${transporte.dni}
+
+            <br><br>
+
+            <strong>Movimiento:</strong>
+            ${transporte.tipoMovimiento}
+
+            <br><br>
+
+            <strong>Remito:</strong>
+            ${transporte.remito}
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Datos de Egreso
+            </h3>
+
+            <input
+                id="egreso_viaje"
+                placeholder="N° Viaje">
+
+            <input
+                id="egreso_destino"
+                placeholder="Destino Final">
+
+            <textarea
+                id="egreso_obs_final"
+                placeholder="Observación Final">
+            </textarea>
+
+            <button
+                class="btn btn-success"
+                onclick="
+                confirmarEgreso('${transporte.id}')
+                ">
+                Confirmar Egreso
+            </button>
+
+        </div>
+
+    `;
+
+}
 /* ==========================
    VALIDAR CONTROLES
 ========================== */
