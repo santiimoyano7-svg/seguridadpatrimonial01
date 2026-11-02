@@ -144,6 +144,33 @@ controles,
     observacionFinal:
     "",
 
+      viajeSalida:
+null,
+
+destinoFinal:
+null,
+
+llevaPrecintosSalida:
+null,
+
+cantidadPrecintosSalida:
+null,
+
+numerosPrecintosSalida:
+"",
+
+llevaCandadosSalida:
+null,
+
+cantidadCandadosSalida:
+null,
+
+controlCabina:
+null,
+
+observacionCabina:
+"",
+
     resultadoGeneral:
     calcularResultadoGeneral(
         controles
@@ -188,9 +215,50 @@ function registrarEgresoTransporte({
 
     id,
 
-    observacionFinal
+    viajeSalida,
 
-}){
+    destinoFinal,
+
+    llevaPrecintosSalida,
+
+    cantidadPrecintosSalida,
+
+    numerosPrecintosSalida,
+
+    llevaCandadosSalida,
+
+    cantidadCandadosSalida,
+
+    controlCabina,
+
+    observacionCabina,
+
+   transporte.viajeSalida =
+    viajeSalida;
+
+transporte.destinoFinal =
+    destinoFinal;
+
+transporte.llevaPrecintosSalida =
+    llevaPrecintosSalida;
+
+transporte.cantidadPrecintosSalida =
+    cantidadPrecintosSalida;
+
+transporte.numerosPrecintosSalida =
+    numerosPrecintosSalida;
+
+transporte.llevaCandadosSalida =
+    llevaCandadosSalida;
+
+transporte.cantidadCandadosSalida =
+    cantidadCandadosSalida;
+
+transporte.controlCabina =
+    controlCabina;
+
+transporte.observacionCabina =
+    observacionCabina;
 
     const transporte =
         transportesSP360.find(
@@ -273,16 +341,59 @@ function abrirEgreso(id){
 
 function confirmarEgreso(id){
 
-    const observacionFinal =
-        document.getElementById(
-            "egreso_obs_final"
-        ).value;
-
     registrarEgresoTransporte({
 
         id,
 
-        observacionFinal
+        viajeSalida:
+        document.getElementById(
+            "egreso_viaje"
+        ).value,
+
+        destinoFinal:
+        document.getElementById(
+            "egreso_destino"
+        ).value,
+
+        llevaPrecintosSalida:
+        document.getElementById(
+            "egreso_precintos"
+        ).value,
+
+        cantidadPrecintosSalida:
+        document.getElementById(
+            "egreso_cantidad_precintos"
+        ).value,
+
+        numerosPrecintosSalida:
+        document.getElementById(
+            "egreso_numeros_precintos"
+        ).value,
+
+        llevaCandadosSalida:
+        document.getElementById(
+            "egreso_candados"
+        ).value,
+
+        cantidadCandadosSalida:
+        document.getElementById(
+            "egreso_cantidad_candados"
+        ).value,
+
+        controlCabina:
+        document.getElementById(
+            "egreso_cabina"
+        ).value,
+
+        observacionCabina:
+        document.getElementById(
+            "egreso_obs_cabina"
+        ).value,
+
+        observacionFinal:
+        document.getElementById(
+            "egreso_obs_final"
+        ).value
 
     });
 
