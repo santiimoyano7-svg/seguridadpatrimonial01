@@ -1,0 +1,7 @@
+Cámaras
+
+Estados
+
+Fallas
+
+Seguimiento
