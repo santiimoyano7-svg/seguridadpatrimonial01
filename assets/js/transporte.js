@@ -421,7 +421,174 @@ function toggleObservacionCabina(){
 
 function confirmarEgreso(id){
 
+   const viaje =
+    document.getElementById(
+        "egreso_viaje"
+    ).value;
+
+const destino =
+    document.getElementById(
+        "egreso_destino"
+    ).value;
+
+if(
+    viaje.trim() === ""
+){
+
+    alert(
+        "Debe completar el N° Viaje / BP"
+    );
+
+    return;
+
+}
+
+if(
+    destino.trim() === ""
+){
+
+    alert(
+        "Debe completar el Destino Final"
+    );
+
+    return;
+
+}
+   
     registrarEgresoTransporte({
+
+       function confirmarEgreso(id){
+
+    const viaje =
+        document.getElementById(
+            "egreso_viaje"
+        ).value;
+
+    const destino =
+        document.getElementById(
+            "egreso_destino"
+        ).value;
+
+    if(
+        viaje.trim() === ""
+    ){
+
+        alert(
+            "Debe completar el N° Viaje / BP"
+        );
+
+        return;
+
+    }
+
+    if(
+        destino.trim() === ""
+    ){
+
+        alert(
+            "Debe completar el Destino Final"
+        );
+
+        return;
+
+    }
+
+    const estadoCabina =
+        document.getElementById(
+            "egreso_cabina"
+        ).value;
+
+    const observacionCabina =
+        document.getElementById(
+            "egreso_obs_cabina"
+        ).value;
+
+    if(
+
+        (
+            estadoCabina ===
+            "Observación"
+
+            ||
+
+            estadoCabina ===
+            "No Conforme"
+
+        )
+
+        &&
+
+        observacionCabina.trim() === ""
+
+    ){
+
+        alert(
+            "Debe completar la observación de cabina"
+        );
+
+        return;
+
+    }
+
+    registrarEgresoTransporte({
+
+        id,
+
+        viajeSalida:
+        document.getElementById(
+            "egreso_viaje"
+        ).value,
+
+        destinoFinal:
+        document.getElementById(
+            "egreso_destino"
+        ).value,
+
+        llevaPrecintosSalida:
+        document.getElementById(
+            "egreso_precintos"
+        ).value,
+
+        cantidadPrecintosSalida:
+        document.getElementById(
+            "egreso_cantidad_precintos"
+        ).value,
+
+        numerosPrecintosSalida:
+        document.getElementById(
+            "egreso_numeros_precintos"
+        ).value,
+
+        llevaCandadosSalida:
+        document.getElementById(
+            "egreso_candados"
+        ).value,
+
+        cantidadCandadosSalida:
+        document.getElementById(
+            "egreso_cantidad_candados"
+        ).value,
+
+        controlCabina:
+        document.getElementById(
+            "egreso_cabina"
+        ).value,
+
+        observacionCabina:
+        document.getElementById(
+            "egreso_obs_cabina"
+        ).value,
+
+        observacionFinal:
+        document.getElementById(
+            "egreso_obs_final"
+        ).value
+
+    });
+
+    cargarModuloTransporte();
+
+}
 
         id,
 
