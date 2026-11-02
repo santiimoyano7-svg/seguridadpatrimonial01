@@ -569,6 +569,7 @@ function cargarPantallaEgreso(id){
     <select id="egreso_precintos">
 
         <option>Si</option>
+
         <option>No</option>
 
     </select>
@@ -587,7 +588,7 @@ function cargarPantallaEgreso(id){
 
     <textarea
         id="egreso_numeros_precintos"
-        placeholder="N° Precintos de salida">
+        placeholder="N° Precintos de Salida">
     </textarea>
 
 </div>
@@ -605,6 +606,7 @@ function cargarPantallaEgreso(id){
     <select id="egreso_candados">
 
         <option>Si</option>
+
         <option>No</option>
 
     </select>
@@ -626,7 +628,7 @@ function cargarPantallaEgreso(id){
     </h3>
 
     <label>
-        Estado de Cabina
+        Estado Cabina
     </label>
 
     <select
@@ -645,8 +647,7 @@ function cargarPantallaEgreso(id){
 
         id="egreso_obs_cabina"
 
-        placeholder="
-Detalle Observación de Cabina"
+        placeholder="Detalle Observación de Cabina"
 
         style="display:none;"
 
@@ -680,6 +681,44 @@ Detalle Observación de Cabina"
 </div>
 
 `;
+
+const estadoCabina =
+    document.getElementById(
+        "egreso_cabina"
+    ).value;
+
+const observacionCabina =
+    document.getElementById(
+        "egreso_obs_cabina"
+    ).value;
+
+if(
+
+    (
+        estadoCabina ===
+        "Observación"
+
+        ||
+
+        estadoCabina ===
+        "No Conforme"
+
+    )
+
+    &&
+
+    observacionCabina.trim() === ""
+
+){
+
+    alert(
+        "Debe completar la observación de cabina."
+    );
+
+    return;
+
+}
+
 
 }
 
