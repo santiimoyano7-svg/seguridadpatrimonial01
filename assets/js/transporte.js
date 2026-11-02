@@ -92,7 +92,7 @@ function registrarTransporte({
 
     destino,
 
-   TipoMovimiento,
+   tipoMovimiento,
 
     remito,
 
