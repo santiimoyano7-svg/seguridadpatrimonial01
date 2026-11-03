@@ -102,6 +102,106 @@ const inventarioInicialLlaves = [
     {
         codigo: "20",
         descripcion: "PORTÓN S.O. CHAPA ( MATERIAS PRIMAS )"
-    }
+    },
+   
+{
+    codigo: "21",
+    descripcion: "DEP.AUXILIAR ( MATERIAS PRIMAS )"
+},
+
+{
+    codigo: "22",
+    descripcion: "CAMARA DE LEVADURA ( MATERIAS PRIMAS )"
+},
+
+{
+    codigo: "23",
+    descripcion: "OF.JEFE DE SECTOR ( MATERIAS PRIMAS )"
+},
+
+{
+    codigo: "24",
+    descripcion: "FILTRO SANITARIO ( MATERIAS PRIMAS )"
+},
+
+{
+    codigo: "25",
+    descripcion: "PUERTA ACCESO A VESTUARIOS"
+},
+
+{
+    codigo: "26",
+    descripcion: "PUERTA DE ACCESO A PLANTA (S.E)"
+},
+
+{
+    codigo: "27",
+    descripcion: "INGRESO A PLANTA (FILTRO SANITARIO)"
+},
+
+{
+    codigo: "28",
+    descripcion: "INGRESO A PLANTA (TALLER-ENVASADO)"
+},
+
+{
+    codigo: "29",
+    descripcion: "FILTRO SANITARIO (MODO TÉRMICO)"
+},
+
+{
+    codigo: "30",
+    descripcion: "ACCESO A PLANTA POR LAVADERO"
+},
+
+{
+    codigo: "31",
+    descripcion: "DEP.RESIDUOS PELIGROSOS (OBRADOR)"
+},
+
+{
+    codigo: "32",
+    descripcion: "DEPÓSITO DE SGI (OBRADOR)"
+},
+
+{
+    codigo: "33",
+    descripcion: "TALLER ELÉCTRICO EDILICIO (OBRADOR)"
+},
+
+{
+    codigo: "34",
+    descripcion: "DEPÓSITO PAÑOL (OBRADOR)"
+},
+
+{
+    codigo: "35",
+    descripcion: "DEPÓSITO MEC.ENVASADO (OBRADOR)"
+},
+
+{
+    codigo: "36",
+    descripcion: "DEPÓSITO MEC.ELABORACIÓN (OBRADOR)"
+},
+
+{
+    codigo: "37",
+    descripcion: "DEPÓSITO ELÉCTRICO (OBRADOR)"
+},
+
+{
+    codigo: "38",
+    descripcion: "DEPÓSITO MAQUINAS (OBRADOR)"
+},
+
+{
+    codigo: "39",
+    descripcion: "SALA SABER ( ENTRE PISO )"
+},
+
+{
+    codigo: "40",
+    descripcion: "PUERTA DE TALLER SGI"
+},
 
 ];
