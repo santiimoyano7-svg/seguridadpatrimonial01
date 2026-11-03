@@ -1458,6 +1458,8 @@ function cargarInventarioInicialLlaves(){
 
     cargarModuloLlaves();
 
+}
+
 function buscarLlave(){
 
     const texto =
