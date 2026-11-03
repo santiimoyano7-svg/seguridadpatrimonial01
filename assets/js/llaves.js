@@ -422,31 +422,156 @@ function cargarModuloLlaves(){
     const stats =
         obtenerEstadisticasLlaves();
 
+    let tarjetas = "";
+
+    llavesSP360.forEach(llave => {
+
+        let color = "#10B981";
+        let icono = "🟢";
+
+        if(
+            llave.estado ===
+            "Prestada"
+        ){
+
+            color = "#FBBF24";
+            icono = "🟡";
+
+        }
+
+        if(
+            llave.estado ===
+            "Demorada"
+        ){
+
+            color = "#EF4444";
+            icono = "🔴";
+
+        }
+
+        if(
+            llave.activa === false
+        ){
+
+            color = "#111827";
+            icono = "⚫";
+
+        }
+
+        tarjetas += `
+
+            <div
+                class="llave-card"
+
+                style="
+                background:${color};
+                ">
+
+                <h3>
+                    🔑 ${llave.codigo}
+                </h3>
+
+                <strong>
+                    ${llave.descripcion}
+                </strong>
+
+                <br><br>
+
+                Sector:
+
+                ${llave.sector}
+
+                <br><br>
+
+                ${icono}
+                ${llave.estado}
+
+            </div>
+
+        `;
+
+    });
+
     content.innerHTML = `
 
         <h2>
             🔑 Gestión de Llaves
         </h2>
 
-        <div class="card">
+        <div class="stats">
 
-            <strong>Total:</strong>
-            ${stats.total}
+            <div class="stat">
 
-            <br><br>
+                <div class="stat-title">
 
-            <strong>Disponibles:</strong>
-            ${stats.disponibles}
+                    🟢 Disponibles
 
-            <br>
+                </div>
 
-            <strong>Prestadas:</strong>
-            ${stats.prestadas}
+                <div class="stat-value">
 
-            <br>
+                    ${stats.disponibles}
 
-            <strong>Demoradas:</strong>
-            ${stats.demoradas}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    🟡 Prestadas
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${stats.prestadas}
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    🔴 Demoradas
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${stats.demoradas}
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    ⚫ Inactivas
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${stats.total -
+                      stats.disponibles -
+                      stats.prestadas -
+                      stats.demoradas}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="llaves-grid">
+
+            ${tarjetas}
 
         </div>
 
