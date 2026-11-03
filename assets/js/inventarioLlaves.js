@@ -104,7 +104,6 @@ const inventarioInicialLlaves = [
         descripcion: "PORTÓN S.O. CHAPA ( MATERIAS PRIMAS )"
     },
    
-,
 {
     codigo: "21",
     descripcion: "DEP.AUXILIAR ( MATERIAS PRIMAS )"
@@ -205,7 +204,6 @@ const inventarioInicialLlaves = [
     descripcion: "PUERTA DE TALLER SGI"
 },
 
-,
 {
     codigo: "41",
     descripcion: "OFICINA MAHPI"
