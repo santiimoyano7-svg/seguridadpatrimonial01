@@ -425,138 +425,182 @@ function cargarModuloLlaves(){
 
     let tarjetas = "";
 
-    llavesSP360.forEach(llave => {
+    llavesSP360
 
-        let color = "#10B981";
-        let icono = "🟢";
+        .filter(
 
-        if(llave.estado === "Prestada"){
+            llave =>
 
-            color = "#FBBF24";
-            icono = "🟡";
+            llave.estado === "Prestada"
 
-        }
+            ||
 
-        if(llave.estado === "Demorada"){
+            llave.estado === "Demorada"
 
-            color = "#EF4444";
-            icono = "🔴";
+        )
 
-        }
+        .forEach(llave => {
 
-        if(llave.activa === false){
+            let color = "#FBBF24";
+            let icono = "🟡";
 
-            color = "#111827";
-            icono = "⚫";
+            if(
+                llave.estado ===
+                "Demorada"
+            ){
 
-        }
+                color = "#EF4444";
+                icono = "🔴";
 
-        tarjetas += `
+            }
 
-            <div
-                class="llave-card"
-                style="background:${color};">
+            let datosPrestamo = "";
 
-                <h3>
-                    🔑 ${llave.codigo}
-                </h3>
+            const prestamo =
+                prestamosLlavesSP360.find(
 
-                <strong>
-                    ${llave.descripcion}
-                </strong>
+                    p =>
 
-                <br><br>
+                    p.llaveId === llave.id
 
-                Sector:
-                ${llave.sector}
+                    &&
 
-                <br><br>
-
-                ${icono}
-                ${llave.estado}
-
-                <br><br>
-
-                ${
-                    llave.estado ===
-                    "Disponible"
-
-                    ?
-
-                    `<button
-                        class="btn btn-success"
-                        onclick="
-                        abrirEntregaLlave(
-                            ${llave.id}
-                        )">
-
-                        ✅ Entregar
-
-                    </button>`
-
-                    :
-
-                    ""
-                }
-
-                ${
-                    llave.estado ===
+                    p.estado ===
                     "Prestada"
 
-                    ||
+                );
 
-                    llave.estado ===
-                    "Demorada"
+            if(prestamo){
 
-                    ?
+                datosPrestamo = `
 
-                    `<button
+                    <br>
+
+                    <strong>
+                    ${prestamo.persona}
+                    </strong>
+
+                    <br>
+
+                    Legajo:
+                    ${prestamo.legajo}
+
+                    <br>
+
+                    Empresa:
+                    ${prestamo.empresa}
+
+                    <br>
+
+                    Entrega:
+                    ${prestamo.horaEntrega}
+
+                `;
+
+            }
+
+            tarjetas += `
+
+                <div
+                    class="llave-card"
+
+                    style="
+                    background:${color};
+                    ">
+
+                    <h3>
+                        🔑 ${llave.codigo}
+                    </h3>
+
+                    <strong>
+                        ${llave.descripcion}
+                    </strong>
+
+                    <br><br>
+
+                    Sector:
+                    ${llave.sector}
+
+                    <br><br>
+
+                    ${icono}
+                    ${llave.estado}
+
+                    ${datosPrestamo}
+
+                    <br><br>
+
+                    <button
+
                         class="btn btn-primary"
+
                         onclick="
                         abrirDevolucionLlave(
                             ${llave.id}
-                        )">
+                        )
+                        ">
 
                         🔄 Devolver
 
-                    </button>`
+                    </button>
 
-                    :
+                </div>
 
-                    ""
-                }
+            `;
 
-            </div>
-
-        `;
-
-    });
+        });
 
     content.innerHTML = `
 
         <h2>
             🔑 Gestión de Llaves
         </h2>
-<button
-    class="btn btn-success"
-    onclick="abrirAltaLlave()">
 
-    ➕ Nueva Llave
+        <div
+            class="llaves-menu">
 
-</button>
+            <button
 
-<br><br>
+                class="btn btn-success"
+
+                onclick="
+                abrirEntregaLlave()
+                ">
+
+                ➕ Entregar Llave
+
+            </button>
+
+            <button
+
+                class="btn btn-primary"
+
+                onclick="
+                cargarInventarioLlaves()
+                ">
+
+                📚 Inventario
+
+            </button>
+
+        </div>
+
+        <br>
 
         <div class="stats">
 
             <div class="stat">
 
                 <div class="stat-title">
+
                     🟢 Disponibles
+
                 </div>
 
                 <div class="stat-value">
+
                     ${stats.disponibles}
+
                 </div>
 
             </div>
@@ -564,11 +608,15 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
+
                     🟡 Prestadas
+
                 </div>
 
                 <div class="stat-value">
+
                     ${stats.prestadas}
+
                 </div>
 
             </div>
@@ -576,11 +624,15 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
+
                     🔴 Demoradas
+
                 </div>
 
                 <div class="stat-value">
+
                     ${stats.demoradas}
+
                 </div>
 
             </div>
@@ -588,14 +640,20 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
+
                     ⚫ Inactivas
+
                 </div>
 
                 <div class="stat-value">
-                    ${stats.total -
-                      stats.disponibles -
-                      stats.prestadas -
-                      stats.demoradas}
+
+                    ${
+                        stats.total -
+                        stats.disponibles -
+                        stats.prestadas -
+                        stats.demoradas
+                    }
+
                 </div>
 
             </div>
@@ -604,9 +662,25 @@ function cargarModuloLlaves(){
 
         <div class="llaves-grid">
 
-    ${tarjetas}
+            ${
+                tarjetas !== ""
 
-</div>
+                ?
+
+                tarjetas
+
+                :
+
+                `<div class="card">
+
+                    No existen llaves prestadas
+                    o demoradas actualmente.
+
+                </div>`
+
+            }
+
+        </div>
 
     `;
 
@@ -1408,6 +1482,206 @@ function buscarLlave(){
         llave.descripcion
         .toUpperCase()
         .includes(texto)
+
+    );
+
+}
+
+/* ==========================
+   INVENTARIO DE LLAVES
+========================== */
+
+function cargarInventarioLlaves(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let filas = "";
+
+    llavesSP360.forEach(
+
+        llave => {
+
+            let estado = "🟢 Disponible";
+
+            if(
+                llave.estado ===
+                "Prestada"
+            ){
+
+                estado =
+                "🟡 Prestada";
+
+            }
+
+            if(
+                llave.estado ===
+                "Demorada"
+            ){
+
+                estado =
+                "🔴 Demorada";
+
+            }
+
+            if(
+                llave.activa ===
+                false
+            ){
+
+                estado =
+                "⚫ Inactiva";
+
+            }
+
+            filas += `
+
+                <tr>
+
+                    <td>
+                        ${llave.codigo}
+                    </td>
+
+                    <td>
+                        ${llave.descripcion}
+                    </td>
+
+                    <td>
+                        ${estado}
+                    </td>
+
+                    <td>
+
+                        ${
+                            llave.requiereAutorizacion
+
+                            ?
+
+                            "MAHPI"
+
+                            :
+
+                            "-"
+
+                        }
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+            📚 Inventario de Llaves
+        </h2>
+
+        <div class="card">
+
+            <input
+
+                id="buscar_llave"
+
+                placeholder="
+                Buscar por número o sector"
+
+                onkeyup="
+                filtrarInventarioLlaves()
+                ">
+
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+
+                        <th>
+                            Sector
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Requiere Autorización
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="inventario_llaves">
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   FILTRO INVENTARIO
+========================== */
+
+function filtrarInventarioLlaves(){
+
+    const texto =
+        document.getElementById(
+            "buscar_llave"
+        )
+        .value
+        .toUpperCase();
+
+    const filas =
+        document.querySelectorAll(
+            "#inventario_llaves tr"
+        );
+
+    filas.forEach(
+
+        fila => {
+
+            const contenido =
+                fila.innerText
+                .toUpperCase();
+
+            fila.style.display =
+
+                contenido.includes(
+                    texto
+                )
+
+                ?
+
+                ""
+
+                :
+
+                "none";
+
+        }
 
     );
 
