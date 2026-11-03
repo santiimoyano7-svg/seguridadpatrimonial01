@@ -302,6 +302,106 @@ const inventarioInicialLlaves = [
 {
     codigo: "60",
     descripcion: "PLANTA PILOTO"
+},
+
+{
+    codigo: "61",
+    descripcion: "OFICINA ADUANA SUR"
+},
+
+{
+    codigo: "62",
+    descripcion: "PUERTA ALUM. SUR PRIMER PISO"
+},
+
+{
+    codigo: "63",
+    descripcion: "SALA DE MICROINGREDIENTES"
+},
+
+{
+    codigo: "64",
+    descripcion: "OFICINA DE RR.HH"
+},
+
+{
+    codigo: "65",
+    descripcion: "SALA DE REUNION RR.HH"
+},
+
+{
+    codigo: "66",
+    descripcion: "ARCHIVO RR.HH"
+},
+
+{
+    codigo: "67",
+    descripcion: "PUERTA COMPLEJO REL. INDUSTRIALES"
+},
+
+{
+    codigo: "68",
+    descripcion: "SERVICIO MEDICO"
+},
+
+{
+    codigo: "69",
+    descripcion: "SALA APRENDER ( PATIO INTERNO )"
+},
+
+{
+    codigo: "70",
+    descripcion: "SALA DE CONTRAMUESTRA"
+},
+
+{
+    codigo: "71",
+    descripcion: "PUERTA COMEDOR"
+},
+
+{
+    codigo: "72",
+    descripcion: "PUERTA COCINA"
+},
+
+{
+    codigo: "73",
+    descripcion: "SALA CONOCER ( PASILLO OESTE )"
+},
+
+{
+    codigo: "74",
+    descripcion: "OFICINA AUXILIAR DE PRODUCCIÓN"
+},
+
+{
+    codigo: "75",
+    descripcion: "OFICINA DE PRODUCCIÓN"
+},
+
+{
+    codigo: "76",
+    descripcion: "S.TERMOTANQUE ( LAVADERO NUEVO )"
+},
+
+{
+    codigo: "77",
+    descripcion: "PORTON LAVADERO NUEVO ( P.OESTE )"
+},
+
+{
+    codigo: "78",
+    descripcion: "SALA DE CREMAS"
+},
+
+{
+    codigo: "79",
+    descripcion: "OFICINA ADUANA INSUMOS"
+},
+
+{
+    codigo: "80",
+    descripcion: "SUBESTACIÓN ELÉCTRICA N°2"
 }
-   
+
 ];
