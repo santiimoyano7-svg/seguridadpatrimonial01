@@ -604,9 +604,9 @@ function cargarModuloLlaves(){
 
         <div class="llaves-grid">
 
-            ${tarjetas}
+    ${tarjetas}
 
-        </div>
+</div>
 
     `;
 
