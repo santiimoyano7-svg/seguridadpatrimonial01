@@ -1085,9 +1085,15 @@ function confirmarEntregaLlave(id){
 
     }
 
-    const llave =
-        obtenerLlavePorId(id);
+    console.log(
+    "ID recibido:",
+    id
+);
 
+console.log(
+    "LLAVE:",
+    llave
+);
     if(
         llave.requiereAutorizacion
     ){
