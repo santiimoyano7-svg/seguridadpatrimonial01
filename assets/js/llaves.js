@@ -536,36 +536,15 @@ function cargarModuloLlaves(){
         <h2>
             🔑 Gestión de Llaves
         </h2>
-${
-    tienePermiso([
-        "Super Administrador",
-        "Administrador Sitio",
-        "Encargado de Turno"
-    ])
+<button
+    class="btn btn-success"
+    onclick="abrirAltaLlave()">
 
-    ?
+    ➕ Nueva Llave
 
-    `
+</button>
 
-    <button
-
-        class="btn btn-success"
-
-        onclick="abrirAltaLlave()">
-
-        ➕ Nueva Llave
-
-    </button>
-
-    <br><br>
-
-    `
-
-    :
-
-    ""
-
-}
+<br><br>
 
         <div class="stats">
 
