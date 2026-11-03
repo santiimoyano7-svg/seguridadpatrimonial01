@@ -13,108 +13,7 @@ JSON.parse(
     )
 ) || [];
 
-const inventarioInicialLlaves = [
 
-    { codigo:"1", descripcion:"INGRESO AL COMPLEJO" },
-    { codigo:"2", descripcion:"PUERTA NORTE OFICINA DE GUARDIA" },
-    { codigo:"3", descripcion:"PUERTA SUR OFICINA DE GUARDIA" },
-    { codigo:"4", descripcion:"PORTÓN SUR GUARDIA ( REJAS )" },
-    { codigo:"5", descripcion:"PORTÓN OESTE GUARDIA ( REJAS )" },
-    { codigo:"6", descripcion:"ARMARIO COPIA DE LLAVES ( GUARDIA )" },
-
-    // ...
-
-    { codigo:"149", descripcion:"CANDADO SALA MAQ. MONTACARGAS" },
-    { codigo:"150", descripcion:"ELEVADOR JLG" },
-    { codigo:"151", descripcion:"DEPOSITO OPERARIO DE PATIO" },
-    { codigo:"152", descripcion:"LLAVE PORTÓN BASCULA" },
-    { codigo:"153", descripcion:"ARMARIO REPROCESO" },
-    { codigo:"154", descripcion:"SALA DE AISLAMIENTO (ADMINISTRACIÓN)" },
-    { codigo:"155", descripcion:"SISTEMA DE AZUCAR ( MAT.PRIMAS )" }
-
-];
-
-function cargarInventarioInicialLlaves(){
-
-    if(
-        llavesSP360.length > 0
-    ){
-
-        alert(
-            "El inventario ya fue cargado."
-        );
-
-        return;
-
-    }
-
-    inventarioInicialLlaves.forEach(
-
-        llave => {
-
-            const requiereMAHPI = [
-
-                "85",
-                "86",
-                "90",
-                "119",
-                "149",
-                "150"
-
-            ].includes(
-                llave.codigo
-            );
-
-            llavesSP360.push({
-
-                id:
-                Date.now() +
-                Math.random(),
-
-                codigo:
-                llave.codigo,
-
-                descripcion:
-                llave.descripcion,
-
-                sector:
-                llave.descripcion,
-
-                requiereAutorizacion:
-                requiereMAHPI,
-
-                areaAutorizante:
-
-                requiereMAHPI
-                ?
-                "MAHPI"
-                :
-                "",
-
-                estado:
-                "Disponible",
-
-                activa:
-                true,
-
-                trazabilidad:
-                crearTrazabilidad()
-
-            });
-
-        }
-
-    );
-
-    guardarLlaves();
-
-    alert(
-        "Inventario inicial cargado correctamente"
-    );
-
-    cargarModuloLlaves();
-
-}
 /* ==========================
    PRÉSTAMOS
 ========================== */
@@ -713,14 +612,6 @@ function cargarModuloLlaves(){
 
 }
 
-<button
-    class="btn btn-success"
-    onclick="cargarInventarioInicialLlaves()">
-
-    📥 Cargar Inventario Inicial
-
-</button>
-
 /* ==========================
    ALTA DE LLAVE
 ========================== */
@@ -1128,132 +1019,6 @@ function cargarInventarioInicialLlaves(){
         llavesSP360.length > 0
     ){
 
-        alert(
-            "El inventario ya fue cargado."
-        );
-
-        return;
-
-    }
-
-    const inventario = [
-
-        {
-            codigo:"1",
-            descripcion:"INGRESO AL COMPLEJO"
-        },
-
-        {
-            codigo:"2",
-            descripcion:"PUERTA NORTE OFICINA DE GUARDIA"
-        },
-
-        {
-            codigo:"3",
-            descripcion:"PUERTA SUR OFICINA DE GUARDIA"
-        },
-
-        {
-            codigo:"4",
-            descripcion:"PORTÓN SUR GUARDIA ( REJAS )"
-        },
-
-        {
-            codigo:"5",
-            descripcion:"PORTÓN OESTE GUARDIA (REJAS)"
-        }
-
-        // continuar con el resto del listado...
-
-    ];
-
-    inventario.forEach(item => {
-
-        const requiereMAHPI = [
-
-            "85",
-            "86",
-            "90",
-            "119",
-            "149",
-            "150"
-
-        ].includes(
-            item.codigo
-        );
-
-        llavesSP360.push({
-
-            id:
-            Date.now() +
-            Math.random(),
-
-            codigo:
-            item.codigo,
-
-            descripcion:
-            item.descripcion,
-
-            sector:
-            item.descripcion,
-
-            requiereAutorizacion:
-            requiereMAHPI,
-
-            areaAutorizante:
-
-            requiereMAHPI
-            ?
-            "MAHPI"
-            :
-            "",
-
-            estado:
-            "Disponible",
-
-            activa:
-            true,
-
-            trazabilidad:
-            crearTrazabilidad()
-
-        });
-
-    });
-
-    guardarLlaves();
-
-    alert(
-        "Inventario cargado correctamente"
-    );
-
-    cargarModuloLlaves();
-
-}
-
-const inventarioInicialLlaves = [
-
-    {
-        codigo: "1",
-        descripcion:
-        "INGRESO AL COMPLEJO"
-    },
-
-    {
-        codigo: "2",
-        descripcion:
-        "PUERTA NORTE OFICINA DE GUARDIA"
-    },
-
-    ...
-];
-
-function cargarInventarioInicialLlaves(){
-
-    if(
-        llavesSP360.length > 0
-    ){
-
         return;
 
     }
@@ -1359,20 +1124,6 @@ const inventarioInicialLlaves = [
     }
 
 ];
-
-function cargarInventarioInicialLlaves(){
-
-    if(
-        llavesSP360.length > 0
-    ){
-
-        alert(
-            "El inventario ya fue cargado."
-        );
-
-        return;
-
-    }
 
     inventarioInicialLlaves.forEach(
 
