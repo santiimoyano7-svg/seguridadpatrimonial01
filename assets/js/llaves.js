@@ -508,27 +508,42 @@ function cargarModuloLlaves(){
                     background:${color};
                     ">
 
-                    <h3>
-                        🔑 ${llave.codigo}
-                    </h3>
+<h3>
+    🔑 ${llave.codigo}
+</h3>
 
-                    <strong>
-                        ${llave.descripcion}
-                    </strong>
+<div>
 
-                    <br><br>
+    ${icono}
+    ${llave.estado}
 
-                    Sector:
-                    ${llave.sector}
+</div>
 
-                    <br><br>
+<br>
 
-                    ${icono}
-                    ${llave.estado}
+<strong>
 
-                    ${datosPrestamo}
+    ${
+        prestamo
+        ?
+        prestamo.persona
+        :
+        "-"
+    }
 
-                    <br><br>
+</strong>
+
+<br>
+
+Legajo:
+
+${
+    prestamo
+    ?
+    prestamo.legajo
+    :
+    "-"
+}
 
                     <button
 
