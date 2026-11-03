@@ -130,11 +130,17 @@ function loadModule(module) {
             break;
 
         case "rondas":
-            cargarModuloSimple(
-                "🚶 Rondas Inteligentes",
-                "Módulo en desarrollo"
-            );
-            break;
+
+    if(
+        typeof cargarModuloRondas ===
+        "function"
+    ){
+
+        cargarModuloRondas();
+
+    }
+
+break;
 
         case "accesos":
 
