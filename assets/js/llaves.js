@@ -1684,5 +1684,3 @@ function filtrarInventarioLlaves(){
         }
 
     );
-
-}
