@@ -1011,10 +1011,6 @@ function confirmarEntregaLlave(id){
 
     }
 
-        return;
-
-    }
-
     const llave =
         obtenerLlavePorId(id);
 
