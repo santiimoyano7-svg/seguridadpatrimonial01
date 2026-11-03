@@ -487,12 +487,11 @@ td{
     margin-top:20px;
 
 }
-
 .ronda-card{
 
-    min-height:120px;
+    min-height:110px;
 
-    padding:12px;
+    padding:10px;
 
     border-radius:10px;
 
@@ -500,9 +499,22 @@ td{
 
     cursor:pointer;
 
+    box-shadow:
+        0 2px 8px rgba(
+            0,0,0,.25
+        );
+
+    transition:.2s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
 }
 
-@media(max-width:1200px){
+@media(max-width:1400px){
 
     .rondas-grid{
 
@@ -513,7 +525,7 @@ td{
 
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
     .rondas-grid{
 
@@ -532,36 +544,5 @@ td{
         1fr;
 
     }
-
-}
-
-/* ==========================
-   PUNTOS DE CONTROL
-========================== */
-
-.puntos-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:12px;
-
-    margin-top:20px;
-
-}
-
-.punto-card{
-
-    min-height:120px;
-
-    padding:12px;
-
-    border-radius:10px;
-
-    color:white;
-
-    cursor:pointer;
 
 }
