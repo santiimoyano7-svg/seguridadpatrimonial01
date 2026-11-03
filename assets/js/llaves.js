@@ -1353,7 +1353,7 @@ function confirmarDevolucionLlave(
 /* ==========================
    INVENTARIO INICIAL
 ========================== */
-
+   
 const inventarioInicialLlaves = [
 
     // PEGAR AQUÍ TODAS LAS LLAVES DEL RELEVAMIENTO
@@ -1389,6 +1389,8 @@ const inventarioInicialLlaves = [
     }
 
 ];
+
+function cargarInventarioInicialLlaves(){
 
     inventarioInicialLlaves.forEach(
 
