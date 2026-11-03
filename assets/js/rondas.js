@@ -1,3 +1,7 @@
+/* ==========================
+   MODULO RONDAS
+========================== */
+
 function cargarModuloRondas(){
 
     const content =
@@ -21,7 +25,10 @@ function cargarModuloRondas(){
             </button>
 
             <button
-                class="btn btn-primary">
+                class="btn btn-primary"
+                onclick="
+                cargarModuloPuntos()
+                ">
 
                 📍 Puntos
 
@@ -113,6 +120,10 @@ function cargarModuloRondas(){
 
         </div>
 
+        <h3>
+            🟡 Rondas Activas
+        </h3>
+
         <div class="rondas-grid">
 
             <div
@@ -151,11 +162,29 @@ function cargarModuloRondas(){
 
                 <br><br>
 
-                Turno Tarde
+                Turno Mañana
 
                 <br>
 
-                15:00 hs
+                09:30 hs
+
+            </div>
+
+            <div
+                class="ronda-card"
+                style="
+                background:#DC2626;
+                ">
+
+                <h3>
+                    🚨 Hallazgo
+                </h3>
+
+                SUBSUELO
+
+                <br><br>
+
+                NOV Activa
 
             </div>
 
