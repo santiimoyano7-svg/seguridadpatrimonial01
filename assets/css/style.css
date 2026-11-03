@@ -460,3 +460,24 @@ td{
     }
 
 }
+
+.rondas-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:12px;
+
+}
+
+.ronda-card{
+
+    min-height:120px;
+
+    padding:12px;
+
+    border-radius:10px;
+
+}
