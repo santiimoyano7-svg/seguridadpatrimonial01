@@ -470,6 +470,8 @@ td{
 
     gap:12px;
 
+    margin-top:20px;
+
 }
 
 .ronda-card{
@@ -479,5 +481,9 @@ td{
     padding:12px;
 
     border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
 
 }
