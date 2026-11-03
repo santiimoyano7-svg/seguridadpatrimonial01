@@ -601,3 +601,247 @@ function cargarModuloLlaves(){
     `;
 
 }
+
+/* ==========================
+   ENTREGA DE LLAVE
+========================== */
+
+function abrirEntregaLlave(id){
+
+    const llave =
+        obtenerLlavePorId(id);
+
+    if(!llave){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            ✅ Entrega de Llave
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                🔑 Información de la Llave
+            </h3>
+
+            <p>
+                <strong>Código:</strong>
+                ${llave.codigo}
+            </p>
+
+            <p>
+                <strong>Descripción:</strong>
+                ${llave.descripcion}
+            </p>
+
+            <p>
+                <strong>Sector:</strong>
+                ${llave.sector}
+            </p>
+
+            <p>
+                <strong>Estado:</strong>
+                ${llave.estado}
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                👤 Datos de quien retira
+            </h3>
+
+            <input
+                id="entrega_nombre"
+                placeholder="Apellido y Nombre">
+
+            <input
+                id="entrega_legajo"
+                placeholder="Legajo">
+
+            <input
+                id="entrega_empresa"
+                placeholder="Empresa">
+
+            <textarea
+                id="entrega_motivo"
+                placeholder="Motivo">
+            </textarea>
+
+        </div>
+
+        ${
+            llave.requiereAutorizacion
+
+            ?
+
+            `
+
+            <div class="card">
+
+                <h3>
+                    🔒 Autorización
+                </h3>
+
+                <p>
+
+                    <strong>
+                        Área:
+                    </strong>
+
+                    ${llave.areaAutorizante}
+
+                </p>
+
+                <input
+                    id="autoriza_nombre"
+                    placeholder="Apellido y Nombre de quien autoriza">
+
+            </div>
+
+            `
+
+            :
+
+            ""
+
+        }
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                confirmarEntregaLlave(
+                    ${llave.id}
+                )
+                ">
+
+                ✅ Confirmar Entrega
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                cargarModuloLlaves()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   CONFIRMAR ENTREGA
+========================== */
+
+function confirmarEntregaLlave(id){
+
+    const nombre =
+        document.getElementById(
+            "entrega_nombre"
+        ).value;
+
+    const legajo =
+        document.getElementById(
+            "entrega_legajo"
+        ).value;
+
+    const empresa =
+        document.getElementById(
+            "entrega_empresa"
+        ).value;
+
+    const motivo =
+        document.getElementById(
+            "entrega_motivo"
+        ).value;
+
+    if(
+        nombre.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar Apellido y Nombre"
+        );
+
+        return;
+
+    }
+
+    if(
+        legajo.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar Legajo"
+        );
+
+        return;
+
+    }
+
+    if(
+        motivo.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar Motivo"
+        );
+
+        return;
+
+    }
+
+    const llave =
+        obtenerLlavePorId(id);
+
+    if(
+        llave.requiereAutorizacion
+    ){
+
+        const autorizante =
+            document.getElementById(
+                "autoriza_nombre"
+            ).value;
+
+        if(
+            autorizante.trim() === ""
+        ){
+
+            alert(
+                "Debe indicar quién autoriza la entrega"
+            );
+
+            return;
+
+        }
+
+    }
+
+    alert(
+        "Aquí conectaremos la lógica definitiva de préstamo"
+    );
+
+}
