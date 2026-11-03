@@ -461,6 +461,20 @@ td{
 
 }
 
+/* ==========================
+   RONDAS
+========================== */
+
+.rondas-menu{
+
+    display:flex;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+}
+
 .rondas-grid{
 
     display:grid;
@@ -485,5 +499,40 @@ td{
     color:white;
 
     cursor:pointer;
+
+}
+
+@media(max-width:1200px){
+
+    .rondas-grid{
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .rondas-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .rondas-grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
 
 }
