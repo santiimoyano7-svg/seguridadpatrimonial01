@@ -1086,6 +1086,223 @@ function cargarInventarioInicialLlaves(){
 }
 
 /* ==========================
+   DEVOLUCIÓN DE LLAVE
+========================== */
+
+function abrirDevolucionLlave(id){
+
+    const llave =
+        obtenerLlavePorId(id);
+
+    if(!llave){
+
+        return;
+
+    }
+
+    const prestamo =
+        prestamosLlavesSP360.find(
+
+            p =>
+
+            p.llaveId === id
+
+            &&
+
+            p.estado ===
+            "Prestada"
+
+        );
+
+    if(!prestamo){
+
+        alert(
+            "No se encontró el préstamo activo."
+        );
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            🔄 Devolución de Llave
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                🔑 Información de la Llave
+            </h3>
+
+            <p>
+                <strong>Código:</strong>
+                ${llave.codigo}
+            </p>
+
+            <p>
+                <strong>Descripción:</strong>
+                ${llave.descripcion}
+            </p>
+
+            <p>
+                <strong>Sector:</strong>
+                ${llave.sector}
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                👤 Préstamo Actual
+            </h3>
+
+            <p>
+                <strong>Nombre:</strong>
+                ${prestamo.persona}
+            </p>
+
+            <p>
+                <strong>Legajo:</strong>
+                ${prestamo.legajo}
+            </p>
+
+            <p>
+                <strong>Empresa:</strong>
+                ${prestamo.empresa}
+            </p>
+
+            <p>
+                <strong>Fecha Entrega:</strong>
+                ${prestamo.fechaEntrega}
+            </p>
+
+            <p>
+                <strong>Hora Entrega:</strong>
+                ${prestamo.horaEntrega}
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                ✅ Datos de Devolución
+            </h3>
+
+            <input
+                id="devolucion_nombre"
+                placeholder="Apellido y Nombre">
+
+            <input
+                id="devolucion_legajo"
+                placeholder="Legajo">
+
+            <textarea
+                id="devolucion_observacion"
+                placeholder="Observación">
+            </textarea>
+
+        </div>
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                confirmarDevolucionLlave(
+                    ${prestamo.id}
+                )
+                ">
+
+                ✅ Confirmar Devolución
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                cargarModuloLlaves()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   CONFIRMAR DEVOLUCIÓN
+========================== */
+
+function confirmarDevolucionLlave(
+
+    prestamoId
+
+){
+
+    const nombre =
+        document.getElementById(
+            "devolucion_nombre"
+        ).value;
+
+    const legajo =
+        document.getElementById(
+            "devolucion_legajo"
+        ).value;
+
+    if(
+        nombre.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar Apellido y Nombre"
+        );
+
+        return;
+
+    }
+
+    if(
+        legajo.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar Legajo"
+        );
+
+        return;
+
+    }
+
+    devolverLlave(
+        prestamoId
+    );
+
+    alert(
+        "Llave devuelta correctamente"
+    );
+
+    cargarModuloLlaves();
+
+}
+
+/* ==========================
    INVENTARIO INICIAL
 ========================== */
 
