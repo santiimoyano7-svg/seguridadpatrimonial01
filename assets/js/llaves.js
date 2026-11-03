@@ -755,16 +755,7 @@ function guardarNuevaLlave(){
    ENTREGA DE LLAVE
 ========================== */
 
-function abrirEntregaLlave(id){
-
-    const llave =
-        obtenerLlavePorId(id);
-
-    if(!llave){
-
-        return;
-
-    }
+function abrirEntregaLlave(){
 
     const content =
         document.getElementById(
@@ -780,27 +771,93 @@ function abrirEntregaLlave(id){
         <div class="card">
 
             <h3>
+                🔍 Buscar Llave
+            </h3>
+
+            <input
+                id="buscar_llave"
+                placeholder="Número de Llave"
+                onkeyup="
+                buscarLlaveEntrega()
+                ">
+
+        </div>
+
+        <div
+            id="detalle_llave">
+
+        </div>
+
+    `;
+
+}
+
+function buscarLlaveEntrega(){
+
+    const codigo =
+        document.getElementById(
+            "buscar_llave"
+        ).value;
+
+    const llave =
+        llavesSP360.find(
+
+            l =>
+            l.codigo === codigo
+
+        );
+
+    const detalle =
+        document.getElementById(
+            "detalle_llave"
+        );
+
+    if(!llave){
+
+        detalle.innerHTML = "";
+
+        return;
+
+    }
+
+    detalle.innerHTML = `
+
+        <div class="card">
+
+            <h3>
                 🔑 Información de la Llave
             </h3>
 
             <p>
+
                 <strong>Código:</strong>
+
                 ${llave.codigo}
+
             </p>
 
             <p>
+
                 <strong>Descripción:</strong>
+
                 ${llave.descripcion}
+
             </p>
 
             <p>
+
                 <strong>Sector:</strong>
+
                 ${llave.sector}
+
             </p>
 
             <p>
+
                 <strong>Estado:</strong>
+
                 ${llave.estado}
+
             </p>
 
         </div>
@@ -825,7 +882,7 @@ function abrirEntregaLlave(id){
 
             <textarea
                 id="entrega_motivo"
-                placeholder="Motivo">
+                placeholder="Motivo de préstamo">
             </textarea>
 
         </div>
@@ -840,22 +897,25 @@ function abrirEntregaLlave(id){
             <div class="card">
 
                 <h3>
-                    🔒 Autorización
+                    🔒 Autorización MAHPI
                 </h3>
 
                 <p>
 
-                    <strong>
-                        Área:
-                    </strong>
+                    Área:
 
                     ${llave.areaAutorizante}
 
                 </p>
 
                 <input
+
                     id="autoriza_nombre"
-                    placeholder="Apellido y Nombre de quien autoriza">
+
+                    placeholder="
+                    Nombre de quien autoriza"
+
+                >
 
             </div>
 
@@ -875,7 +935,7 @@ function abrirEntregaLlave(id){
 
                 onclick="
                 confirmarEntregaLlave(
-                    ${llave.id}
+                    '${llave.id}'
                 )
                 ">
 
@@ -950,14 +1010,6 @@ function confirmarEntregaLlave(id){
         return;
 
     }
-
-    if(
-        motivo.trim() === ""
-    ){
-
-        alert(
-            "Debe ingresar Motivo"
-        );
 
         return;
 
@@ -1407,3 +1459,28 @@ const inventarioInicialLlaves = [
     );
 
     cargarModuloLlaves();
+
+function buscarLlave(){
+
+    const texto =
+        document.getElementById(
+            "buscar_llave"
+        ).value.toUpperCase();
+
+    return llavesSP360.filter(
+
+        llave =>
+
+        llave.codigo
+        .toUpperCase()
+        .includes(texto)
+
+        ||
+
+        llave.descripcion
+        .toUpperCase()
+        .includes(texto)
+
+    );
+
+}
