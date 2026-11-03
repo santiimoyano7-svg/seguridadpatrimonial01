@@ -536,6 +536,36 @@ function cargarModuloLlaves(){
         <h2>
             🔑 Gestión de Llaves
         </h2>
+${
+    tienePermiso([
+        "Super Administrador",
+        "Administrador Sitio",
+        "Encargado de Turno"
+    ])
+
+    ?
+
+    `
+
+    <button
+
+        class="btn btn-success"
+
+        onclick="abrirAltaLlave()">
+
+        ➕ Nueva Llave
+
+    </button>
+
+    <br><br>
+
+    `
+
+    :
+
+    ""
+
+}
 
         <div class="stats">
 
@@ -599,6 +629,145 @@ function cargarModuloLlaves(){
         </div>
 
     `;
+
+}
+
+/* ==========================
+   ALTA DE LLAVE
+========================== */
+
+function abrirAltaLlave(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            ➕ Nueva Llave
+        </h2>
+
+        <div class="card">
+
+            <input
+                id="llave_codigo"
+                placeholder="Código">
+
+            <input
+                id="llave_descripcion"
+                placeholder="Descripción">
+
+            <input
+                id="llave_sector"
+                placeholder="Sector">
+
+            <select
+                id="llave_autorizacion">
+
+                <option>
+                    No
+                </option>
+
+                <option>
+                    Sí
+                </option>
+
+            </select>
+
+            <select
+                id="llave_area">
+
+                <option>
+                    Producción
+                </option>
+
+                <option>
+                    Mantenimiento
+                </option>
+
+                <option>
+                    Calidad
+                </option>
+
+                <option>
+                    Ingeniería
+                </option>
+
+                <option>
+                    RRHH
+                </option>
+
+                <option>
+                    Seguridad Patrimonial
+                </option>
+
+            </select>
+
+            <button
+                class="btn btn-success"
+                onclick="
+                guardarNuevaLlave()
+                ">
+
+                ✅ Guardar Llave
+
+            </button>
+
+            <button
+                class="btn btn-danger"
+                onclick="
+                cargarModuloLlaves()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+function guardarNuevaLlave(){
+
+    crearLlave({
+
+        codigo:
+        document.getElementById(
+            "llave_codigo"
+        ).value,
+
+        descripcion:
+        document.getElementById(
+            "llave_descripcion"
+        ).value,
+
+        sector:
+        document.getElementById(
+            "llave_sector"
+        ).value,
+
+        requiereAutorizacion:
+
+        document.getElementById(
+            "llave_autorizacion"
+        ).value === "Sí",
+
+        areaAutorizante:
+        document.getElementById(
+            "llave_area"
+        ).value
+
+    });
+
+    alert(
+        "Llave creada correctamente"
+    );
+
+    cargarModuloLlaves();
 
 }
 
