@@ -682,6 +682,51 @@ const inventarioInicialLlaves = [
 {
     codigo: "144",
     descripcion: "TERCER PISO - EX SALA MANGAS"
+},
+
+{
+    codigo: "143",
+    descripcion: "TERCER PISO - EX SALA MANGAS"
+},
+
+{
+    codigo: "144",
+    descripcion: "ARCHIVO TERCER PISO"
+},
+
+{
+    codigo: "149",
+    descripcion: "CANDADO SALA MAQ. MONTACARGAS"
+},
+
+{
+    codigo: "150",
+    descripcion: "ELEVADOR JLG"
+},
+
+{
+    codigo: "151",
+    descripcion: "DEPOSITO OPERARIO DE PATIO"
+},
+
+{
+    codigo: "152",
+    descripcion: "LLAVE PORTÓN BASCULA"
+},
+
+{
+    codigo: "153",
+    descripcion: "ARMARIO REPROSESO"
+},
+
+{
+    codigo: "154",
+    descripcion: "SALA DE AISLAMIENTO (ADMINISTRACIÓN)"
+},
+
+{
+    codigo: "155",
+    descripcion: "SISTEMA DE AZUCAR ( MAT.PRIMAS )"
 }
    
 ];
