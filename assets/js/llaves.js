@@ -1355,42 +1355,6 @@ function confirmarDevolucionLlave(
 /* ==========================
    INVENTARIO INICIAL
 ========================== */
-   
-const inventarioInicialLlaves = [
-
-    // PEGAR AQUÍ TODAS LAS LLAVES DEL RELEVAMIENTO
-
-    {
-        codigo: "85",
-        descripcion: "3° PISO SILOS MAYORES PARA BLOQUEO DE FUMIGACION"
-    },
-
-    {
-        codigo: "86",
-        descripcion: "3° PISO VENTANA ACCESO AL TECHO"
-    },
-
-    {
-        codigo: "90",
-        descripcion: "ACCESO ESCALERA DE TANQUE DE AGUA"
-    },
-
-    {
-        codigo: "119",
-        descripcion: "ACCESO SUBSUELO PARA BLOQUEO DE FUMIGACION"
-    },
-
-    {
-        codigo: "149",
-        descripcion: "3° PISO - ACCESO AL MOTOR DEL MONTACARGAS"
-    },
-
-    {
-        codigo: "150",
-        descripcion: "ELEVADOR JLG"
-    }
-
-];
 
 function cargarInventarioInicialLlaves(){
 
