@@ -237,6 +237,11 @@ observacionFinal
 
 }){
 
+   const transporte =
+    transportesSP360.find(
+        t => t.id === id
+    );
+   
    transporte.viajeSalida =
     viajeSalida;
 
@@ -263,11 +268,6 @@ transporte.controlCabina =
 
 transporte.observacionCabina =
     observacionCabina;
-
-    const transporte =
-        transportesSP360.find(
-            t => t.id === id
-        );
 
     if(!transporte){
 
@@ -421,45 +421,78 @@ function toggleObservacionCabina(){
 
 function confirmarEgreso(id){
 
-   const viaje =
-    document.getElementById(
-        "egreso_viaje"
-    ).value;
+    const viaje =
+        document.getElementById(
+            "egreso_viaje"
+        ).value;
 
-const destino =
-    document.getElementById(
-        "egreso_destino"
-    ).value;
+    const destino =
+        document.getElementById(
+            "egreso_destino"
+        ).value;
 
-if(
-    viaje.trim() === ""
-){
+    if(
+        viaje.trim() === ""
+    ){
 
-    alert(
-        "Debe completar el N° Viaje / BP"
-    );
+        alert(
+            "Debe completar el N° Viaje / BP"
+        );
 
-    return;
+        return;
 
-}
+    }
 
-if(
-    destino.trim() === ""
-){
+    if(
+        destino.trim() === ""
+    ){
 
-    alert(
-        "Debe completar el Destino Final"
-    );
+        alert(
+            "Debe completar el Destino Final"
+        );
 
-    return;
+        return;
 
-}
-   
+    }
+
+    const estadoCabina =
+        document.getElementById(
+            "egreso_cabina"
+        ).value;
+
+    const observacionCabina =
+        document.getElementById(
+            "egreso_obs_cabina"
+        ).value;
+
+    if(
+
+        (
+            estadoCabina ===
+            "Observación"
+
+            ||
+
+            estadoCabina ===
+            "No Conforme"
+
+        )
+
+        &&
+
+        observacionCabina.trim() === ""
+
+    ){
+
+        alert(
+            "Debe completar la observación de cabina"
+        );
+
+        return;
+
+    }
+
     registrarEgresoTransporte({
-
-    cargarModuloTransporte();
-
-}
 
         id,
 
@@ -514,6 +547,10 @@ if(
         ).value
 
     });
+
+    alert(
+        "Transporte egresado correctamente"
+    );
 
     cargarModuloTransporte();
 
@@ -719,46 +756,6 @@ function cargarPantallaEgreso(id){
 </div>
 
 `;
-
-}
-
-const estadoCabina =
-    document.getElementById(
-        "egreso_cabina"
-    ).value;
-
-const observacionCabina =
-    document.getElementById(
-        "egreso_obs_cabina"
-    ).value;
-
-if(
-
-    (
-        estadoCabina ===
-        "Observación"
-
-        ||
-
-        estadoCabina ===
-        "No Conforme"
-
-    )
-
-    &&
-
-    observacionCabina.trim() === ""
-
-){
-
-    alert(
-        "Debe completar la observación de cabina."
-    );
-
-    return;
-
-}
-
 
 }
 
