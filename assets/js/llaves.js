@@ -1407,5 +1407,3 @@ const inventarioInicialLlaves = [
     );
 
     cargarModuloLlaves();
-
-}
