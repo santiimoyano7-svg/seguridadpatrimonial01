@@ -402,6 +402,105 @@ const inventarioInicialLlaves = [
 {
     codigo: "80",
     descripcion: "SUBESTACIÓN ELÉCTRICA N°2"
-}
+},
 
+{
+    codigo: "81",
+    descripcion: "SUBESTACIÓN ELÉCTRICA N°1"
+},
+
+{
+    codigo: "82",
+    descripcion: "SUBESTACIÓN GAS (P.NORTE)"
+},
+
+{
+    codigo: "83",
+    descripcion: "SUBESTACIÓN GAS (P.SUR)"
+},
+
+{
+    codigo: "84",
+    descripcion: "SUBESTACIÓN 1/2 TENS.Y SECC."
+},
+
+{
+    codigo: "85",
+    descripcion: "SILO MAYOR ( TERCER PISO )"
+},
+
+{
+    codigo: "86",
+    descripcion: "VENTANA NOROESTE ( TERCER PISO )"
+},
+
+{
+    codigo: "87",
+    descripcion: "SALA DE ESENCIAS EXTERNA"
+},
+
+{
+    codigo: "88",
+    descripcion: "EFLUENTES"
+},
+
+{
+    codigo: "89",
+    descripcion: "CISTERNA DE AGUA EL PEDACITO"
+},
+
+{
+    codigo: "90",
+    descripcion: "TANQUE DE AGUA ( INFERIOR )"
+},
+
+{
+    codigo: "91",
+    descripcion: "CASILLA TERMOTANQUE ( EDILICIO )"
+},
+
+{
+    codigo: "92",
+    descripcion: "DEPÓSITO INFLAMABLES"
+},
+
+{
+    codigo: "93",
+    descripcion: "DEPÓSITO DE RESIDUOS N°1"
+},
+
+{
+    codigo: "94",
+    descripcion: "GUARDARROPAS"
+},
+
+{
+    codigo: "95",
+    descripcion: "CISTERNA DE AGUA BAGLEY"
+},
+
+{
+    codigo: "96",
+    descripcion: "ARCHIVO ADMINISTRATIVO"
+},
+
+{
+    codigo: "97",
+    descripcion: "P.REJAS ADMINISTRACIÓN-TALLER"
+},
+
+{
+    codigo: "98",
+    descripcion: "OFICINA SISTEMAS"
+},
+
+{
+    codigo: "99",
+    descripcion: "PUERTA ESTE ADMINISTRACIÓN"
+},
+
+{
+    codigo: "100",
+    descripcion: "PUERTA OESTE ADMINISTRACIÓN"
+}
 ];
