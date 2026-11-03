@@ -429,29 +429,21 @@ function cargarModuloLlaves(){
         let color = "#10B981";
         let icono = "🟢";
 
-        if(
-            llave.estado ===
-            "Prestada"
-        ){
+        if(llave.estado === "Prestada"){
 
             color = "#FBBF24";
             icono = "🟡";
 
         }
 
-        if(
-            llave.estado ===
-            "Demorada"
-        ){
+        if(llave.estado === "Demorada"){
 
             color = "#EF4444";
             icono = "🔴";
 
         }
 
-        if(
-            llave.activa === false
-        ){
+        if(llave.activa === false){
 
             color = "#111827";
             icono = "⚫";
@@ -462,10 +454,7 @@ function cargarModuloLlaves(){
 
             <div
                 class="llave-card"
-
-                style="
-                background:${color};
-                ">
+                style="background:${color};">
 
                 <h3>
                     🔑 ${llave.codigo}
@@ -478,13 +467,63 @@ function cargarModuloLlaves(){
                 <br><br>
 
                 Sector:
-
                 ${llave.sector}
 
                 <br><br>
 
                 ${icono}
                 ${llave.estado}
+
+                <br><br>
+
+                ${
+                    llave.estado ===
+                    "Disponible"
+
+                    ?
+
+                    `<button
+                        class="btn btn-success"
+                        onclick="
+                        abrirEntregaLlave(
+                            ${llave.id}
+                        )">
+
+                        ✅ Entregar
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
+
+                ${
+                    llave.estado ===
+                    "Prestada"
+
+                    ||
+
+                    llave.estado ===
+                    "Demorada"
+
+                    ?
+
+                    `<button
+                        class="btn btn-primary"
+                        onclick="
+                        abrirDevolucionLlave(
+                            ${llave.id}
+                        )">
+
+                        🔄 Devolver
+
+                    </button>`
+
+                    :
+
+                    ""
+                }
 
             </div>
 
@@ -503,15 +542,11 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
-
                     🟢 Disponibles
-
                 </div>
 
                 <div class="stat-value">
-
                     ${stats.disponibles}
-
                 </div>
 
             </div>
@@ -519,15 +554,11 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
-
                     🟡 Prestadas
-
                 </div>
 
                 <div class="stat-value">
-
                     ${stats.prestadas}
-
                 </div>
 
             </div>
@@ -535,15 +566,11 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
-
                     🔴 Demoradas
-
                 </div>
 
                 <div class="stat-value">
-
                     ${stats.demoradas}
-
                 </div>
 
             </div>
@@ -551,18 +578,14 @@ function cargarModuloLlaves(){
             <div class="stat">
 
                 <div class="stat-title">
-
                     ⚫ Inactivas
-
                 </div>
 
                 <div class="stat-value">
-
                     ${stats.total -
                       stats.disponibles -
                       stats.prestadas -
                       stats.demoradas}
-
                 </div>
 
             </div>
