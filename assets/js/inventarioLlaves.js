@@ -597,6 +597,91 @@ const inventarioInicialLlaves = [
 {
     codigo: "120",
     descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "121",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "122",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "123",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "124",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "125",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "126",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "127",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "128",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "129",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "130",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "131",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "132",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
+},
+
+{
+    codigo: "133",
+    descripcion: "TALLER ( TORNO )"
+},
+
+{
+    codigo: "135",
+    descripcion: "P. EMERGENCIAS ( MATERIA PRIMAS ESTE )"
+},
+
+{
+    codigo: "136",
+    descripcion: "ESCALERA TANQUE DE AGUA"
+},
+
+{
+    codigo: "143",
+    descripcion: "PUERTA SALA LAVADERO NUEVO ( ASPIRADORA )"
+},
+
+{
+    codigo: "144",
+    descripcion: "TERCER PISO - EX SALA MANGAS"
 }
    
 ];
