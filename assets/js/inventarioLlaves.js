@@ -505,103 +505,103 @@ const inventarioInicialLlaves = [
 },
 
 {
-    codigo: "81",
-    descripcion: "SUBESTACIÓN ELÉCTRICA N°1"
+    codigo: "101",
+    descripcion: "TALLER AISLACIONES ( OBRADOR )"
 },
 
 {
-    codigo: "82",
-    descripcion: "SUBESTACIÓN GAS (P.NORTE)"
+    codigo: "102",
+    descripcion: "TALLER EDILICIO ( OBRADOR )"
 },
 
 {
-    codigo: "83",
-    descripcion: "SUBESTACIÓN GAS (P.SUR)"
+    codigo: "103",
+    descripcion: "SALA DE EXTINTORES ( OBRADOR )"
 },
 
 {
-    codigo: "84",
-    descripcion: "SUBESTACIÓN 1/2 TENS.Y SECC."
+    codigo: "104",
+    descripcion: "TALLER ENVASADO ( OBRADOR )"
 },
 
 {
-    codigo: "85",
-    descripcion: "SILO MAYOR ( TERCER PISO )"
+    codigo: "105",
+    descripcion: "TALLER PROYECTO ( OBRADOR )"
 },
 
 {
-    codigo: "86",
-    descripcion: "VENTANA NOROESTE ( TERCER PISO )"
+    codigo: "106",
+    descripcion: "TALLER BOVO ( OBRADOR )"
 },
 
 {
-    codigo: "87",
-    descripcion: "SALA DE ESENCIAS EXTERNA"
+    codigo: "107",
+    descripcion: "DEPÓSITO EDILICIO ( OBRADOR )"
 },
 
 {
-    codigo: "88",
-    descripcion: "EFLUENTES"
+    codigo: "108",
+    descripcion: "PORTÓN CHACARITA"
 },
 
 {
-    codigo: "89",
-    descripcion: "CISTERNA DE AGUA EL PEDACITO"
+    codigo: "109",
+    descripcion: "PUERTA EPEC"
 },
 
 {
-    codigo: "90",
-    descripcion: "TANQUE DE AGUA ( INFERIOR )"
+    codigo: "110",
+    descripcion: "GUARDIA REQUISA NORTE"
 },
 
 {
-    codigo: "91",
-    descripcion: "CASILLA TERMOTANQUE ( EDILICIO )"
+    codigo: "111",
+    descripcion: "GUARDIA REQUISA SUR"
 },
 
 {
-    codigo: "92",
-    descripcion: "DEPÓSITO INFLAMABLES"
+    codigo: "112",
+    descripcion: "DEPÓSITO DULCINA"
 },
 
 {
-    codigo: "93",
-    descripcion: "DEPÓSITO DE RESIDUOS N°1"
+    codigo: "113",
+    descripcion: "SALA DE COMPRESORES ( NORTE )"
 },
 
 {
-    codigo: "94",
-    descripcion: "GUARDARROPAS"
+    codigo: "114",
+    descripcion: "SALA DE COMPRESORES ( SUR )"
 },
 
 {
-    codigo: "95",
-    descripcion: "CISTERNA DE AGUA BAGLEY"
+    codigo: "115",
+    descripcion: "VÁLVULAS RED CONTRA INCENDIO"
 },
 
 {
-    codigo: "96",
-    descripcion: "ARCHIVO ADMINISTRATIVO"
+    codigo: "116",
+    descripcion: "GRUPO ELECTRÓGENO"
 },
 
 {
-    codigo: "97",
-    descripcion: "P.REJAS ADMINISTRACIÓN-TALLER"
+    codigo: "117",
+    descripcion: "PUERTA REJA SUBESTACIÓN"
 },
 
 {
-    codigo: "98",
-    descripcion: "OFICINA SISTEMAS"
+    codigo: "118",
+    descripcion: "SALA DE PLAGUICIDAS ( EDILICIO )"
 },
 
 {
-    codigo: "99",
-    descripcion: "PUERTA ESTE ADMINISTRACIÓN"
+    codigo: "119",
+    descripcion: "SUBSUELO ( DESCARGA DE HARINA )"
 },
 
 {
-    codigo: "100",
-    descripcion: "PUERTA OESTE ADMINISTRACIÓN"
+    codigo: "120",
+    descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
 }
-   
+ 
 ];
