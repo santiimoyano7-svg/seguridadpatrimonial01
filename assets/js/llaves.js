@@ -1358,6 +1358,18 @@ function confirmarDevolucionLlave(
 
 function cargarInventarioInicialLlaves(){
 
+    if(
+        llavesSP360.length > 0
+    ){
+
+        alert(
+            "El inventario ya fue cargado."
+        );
+
+        return;
+
+    }
+
     inventarioInicialLlaves.forEach(
 
         llave => {
@@ -1394,7 +1406,6 @@ function cargarInventarioInicialLlaves(){
                 requiereMAHPI,
 
                 areaAutorizante:
-
                 requiereMAHPI
                 ?
                 "MAHPI"
