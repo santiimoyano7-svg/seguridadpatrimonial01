@@ -1009,8 +1009,26 @@ function confirmarEntregaLlave(id){
 
     }
 
-    alert(
-        "Aquí conectaremos la lógica definitiva de préstamo"
-    );
+    prestarLlave({
+
+    llaveId: id,
+
+    persona: nombre,
+
+    legajo: legajo,
+
+    empresa: empresa,
+
+    motivo: motivo,
+
+    autorizacionRecibida: true
+
+});
+
+alert(
+    "Llave entregada correctamente"
+);
+
+cargarModuloLlaves();
 
 }
