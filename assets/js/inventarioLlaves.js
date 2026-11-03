@@ -104,6 +104,7 @@ const inventarioInicialLlaves = [
         descripcion: "PORTÓN S.O. CHAPA ( MATERIAS PRIMAS )"
     },
    
+,
 {
     codigo: "21",
     descripcion: "DEP.AUXILIAR ( MATERIAS PRIMAS )"
@@ -204,4 +205,105 @@ const inventarioInicialLlaves = [
     descripcion: "PUERTA DE TALLER SGI"
 },
 
+,
+{
+    codigo: "41",
+    descripcion: "OFICINA MAHPI"
+},
+
+{
+    codigo: "42",
+    descripcion: "OFICINA JEFE DE PLANTA"
+},
+
+{
+    codigo: "43",
+    descripcion: "OFICINA DE ABASTECIMIENTO"
+},
+
+{
+    codigo: "44",
+    descripcion: "SALA DE SGI"
+},
+
+{
+    codigo: "45",
+    descripcion: "OFICINA DE CALIDAD"
+},
+
+{
+    codigo: "46",
+    descripcion: "OFICINA DE SGI"
+},
+
+{
+    codigo: "47",
+    descripcion: "OFICINA DE JEFE EDILICIO"
+},
+
+{
+    codigo: "48",
+    descripcion: "OFICINA DE SEGURIDAD ALIMENTARIA"
+},
+
+{
+    codigo: "49",
+    descripcion: "OFICINA MANTENIMIENTO TECNICO"
+},
+
+{
+    codigo: "50",
+    descripcion: "OFICINA PROYECTO"
+},
+
+{
+    codigo: "51",
+    descripcion: "TALLER ELÉCTRICO"
+},
+
+{
+    codigo: "52",
+    descripcion: "PAÑOL DE MATERIALES AUXILIARES"
+},
+
+{
+    codigo: "53",
+    descripcion: "P.MOSQUITERO TALLER MECÁNICO"
+},
+
+{
+    codigo: "54",
+    descripcion: "P.DE CHAPA TALLER MECÁNICO"
+},
+
+{
+    codigo: "55",
+    descripcion: "P.TALLER MANT. ( ELABORACIÓN )"
+},
+
+{
+    codigo: "56",
+    descripcion: "OFICINA MECÁNICO ( ELABORACIÓN )"
+},
+
+{
+    codigo: "57",
+    descripcion: "OFICINA LABORATORIO"
+},
+
+{
+    codigo: "58",
+    descripcion: "OFICINA LIDERES PRIMER PISO"
+},
+
+{
+    codigo: "59",
+    descripcion: "OFICINA DE INGENIERO DE PROCESO"
+},
+
+{
+    codigo: "60",
+    descripcion: "PLANTA PILOTO"
+},
+   
 ];
