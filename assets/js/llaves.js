@@ -120,7 +120,7 @@ function obtenerLlavePorId(id){
     return llavesSP360.find(
 
         llave =>
-        llave.id === id
+        String(llave.id) === String(id)
 
     );
 
@@ -1061,6 +1061,19 @@ function confirmarEntregaLlave(id){
             "entrega_motivo"
         ).value;
 
+   const llave =
+    obtenerLlavePorId(id);
+
+if(!llave){
+
+    alert(
+        "No se encontró la llave seleccionada."
+    );
+
+    return;
+
+}
+   
     if(
         nombre.trim() === ""
     ){
