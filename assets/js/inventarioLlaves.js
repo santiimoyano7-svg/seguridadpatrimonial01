@@ -500,11 +500,6 @@ const inventarioInicialLlaves = [
 },
 
 {
-    codigo: "100",
-    descripcion: "PUERTA OESTE ADMINISTRACIÓN"
-},
-
-{
     codigo: "101",
     descripcion: "TALLER AISLACIONES ( OBRADOR )"
 },
@@ -603,5 +598,5 @@ const inventarioInicialLlaves = [
     codigo: "120",
     descripcion: "CANDADO LOKETS ( INGRESO A PLANTA )"
 }
- 
+   
 ];
