@@ -302,6 +302,6 @@ const inventarioInicialLlaves = [
 {
     codigo: "60",
     descripcion: "PLANTA PILOTO"
-},
+}
    
 ];
