@@ -379,20 +379,65 @@ td{
 
 .llaves-grid{
 
-    display*grid;
+    display:grid;
 
     grid-template-columns:
-*   repeat(2,1fr);
+    repeat(4, 1fr);
 
-    gap:20px;
+    gap:12px;
 
-*   margin-top:20px;
+    margin-top:20px;
 
 }
 
-.llave-car*{
+@media(max-width:1200px){
 
-    padding:20px;
+    .llaves-grid{
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .llaves-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .llaves-grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+.llave-card{
+
+    padding:10px;
+
+    min-height:110px;
+
+    border-radius:10px;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
 
     border-r*dius:12px;
 
