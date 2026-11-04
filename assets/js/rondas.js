@@ -1,4 +1,16 @@
 /* ==========================
+   BASE DE DATOS PUNTOS
+========================== */
+
+let puntosSP360 =
+
+JSON.parse(
+    localStorage.getItem(
+        "sp360_puntos"
+    )
+) || [];
+
+/* ==========================
    MODULO RONDAS
 ========================== */
 
@@ -556,5 +568,134 @@ function abrirNuevoPunto(){
         </div>
 
     `;
+
+}
+
+/* ==========================
+   GUARDAR NUEVO PUNTO
+========================== */
+
+function guardarNuevoPunto(){
+
+    const nombre =
+        document.getElementById(
+            "punto_nombre"
+        ).value;
+
+    const sector =
+        document.getElementById(
+            "punto_sector"
+        ).value;
+
+    const sitio =
+        document.getElementById(
+            "punto_sitio"
+        ).value;
+
+    const qr =
+        document.getElementById(
+            "punto_qr"
+        ).value;
+
+    const tiempo =
+        document.getElementById(
+            "punto_tiempo"
+        ).value;
+
+    const criticidad =
+        document.getElementById(
+            "punto_criticidad"
+        ).value;
+
+    const estado =
+        document.getElementById(
+            "punto_estado"
+        ).value;
+
+    if(
+        nombre.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el nombre del punto"
+        );
+
+        return;
+
+    }
+
+    if(
+        sector.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el sector"
+        );
+
+        return;
+
+    }
+
+    if(
+        qr.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el código QR"
+        );
+
+        return;
+
+    }
+
+    const nuevoPunto = {
+
+        id:
+        Date.now(),
+
+        nombre,
+
+        sector,
+
+        sitio,
+
+        qr,
+
+        tiempo,
+
+        criticidad,
+
+        estado
+
+    };
+
+    if(
+        typeof puntosSP360 ===
+        "undefined"
+    ){
+
+        window.puntosSP360 = [];
+
+    }
+
+    puntosSP360.push(
+        nuevoPunto
+    );
+
+    localStorage.setItem(
+
+        "sp360_puntos",
+
+        JSON.stringify(
+            puntosSP360
+        )
+
+    );
+
+    alert(
+        "Punto creado correctamente"
+    );
+
+    cargarModuloPuntos();
 
 }
