@@ -51,7 +51,6 @@ puntosSP360.forEach(
 
             <div
                 class="punto-card"
-
                 style="
                 background:${color};
                 ">
@@ -64,6 +63,7 @@ puntosSP360.forEach(
 
                 <br><br>
 
+                QR:
                 ${punto.qr}
 
                 <br>
@@ -77,6 +77,8 @@ puntosSP360.forEach(
     }
 
 );
+   
+
   
    content.innerHTML = `
 
@@ -399,11 +401,18 @@ function cargarModuloPuntos(){
         </div>
 
         <div
-            class="puntos-grid">
+    class="puntos-grid">
 
-            let tarjetas = "";
+    ${tarjetas}
 
-puntosSP360.forEach(
+</div>
+
+`;
+
+}
+
+function abrirNuevoPunto(){
+
     punto => {
 
         let color = "#10B981";
