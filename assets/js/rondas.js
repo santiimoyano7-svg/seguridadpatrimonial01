@@ -20,8 +20,65 @@ function cargarModuloRondas(){
         document.getElementById(
             "content"
         );
+   
+let tarjetas = "";
 
-    content.innerHTML = `
+puntosSP360.forEach(
+
+    punto => {
+
+        let color = "#10B981";
+
+        if(
+            punto.criticidad ===
+            "Alta"
+        ){
+
+            color = "#DC2626";
+
+        }
+
+        else if(
+            punto.criticidad ===
+            "Media"
+        ){
+
+            color = "#FBBF24";
+
+        }
+
+        tarjetas += `
+
+            <div
+                class="punto-card"
+
+                style="
+                background:${color};
+                ">
+
+                <h3>
+                    📍 ${punto.nombre}
+                </h3>
+
+                ${punto.criticidad}
+
+                <br><br>
+
+                ${punto.qr}
+
+                <br>
+
+                ${punto.tiempo} min
+
+            </div>
+
+        `;
+
+    }
+
+);
+  
+   content.innerHTML = `
 
         <h2>
             🚶 Rondas Inteligentes
