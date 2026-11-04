@@ -425,3 +425,136 @@ function cargarModuloPuntos(){
     `;
 
 }
+
+/* ==========================
+   NUEVO PUNTO
+========================== */
+
+function abrirNuevoPunto(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            📍 Nuevo Punto de Control
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Información General
+            </h3>
+
+            <input
+                id="punto_nombre"
+                placeholder="Nombre del Punto">
+
+            <input
+                id="punto_sector"
+                placeholder="Sector">
+
+            <select
+                id="punto_sitio">
+
+                <option>
+                    Bagley Totoral
+                </option>
+
+                <option>
+                    Cartocor Totoral
+                </option>
+
+                <option>
+                    Arcor Caroya
+                </option>
+
+                <option>
+                    Bagley Córdoba
+                </option>
+
+                <option>
+                    Edificio Chacabuco
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Configuración
+            </h3>
+
+            <input
+                id="punto_qr"
+                placeholder="Código QR">
+
+            <input
+                id="punto_tiempo"
+                type="number"
+                placeholder="Tiempo Esperado (minutos)">
+
+            <select
+                id="punto_criticidad">
+
+                <option>
+                    Baja
+                </option>
+
+                <option>
+                    Media
+                </option>
+
+                <option>
+                    Alta
+                </option>
+
+            </select>
+
+            <select
+                id="punto_estado">
+
+                <option>
+                    Activo
+                </option>
+
+                <option>
+                    Inactivo
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <button
+                class="btn btn-success"
+                onclick="
+                guardarNuevoPunto()
+                ">
+
+                ✅ Guardar Punto
+
+            </button>
+
+            <button
+                class="btn btn-danger"
+                onclick="
+                cargarModuloPuntos()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
