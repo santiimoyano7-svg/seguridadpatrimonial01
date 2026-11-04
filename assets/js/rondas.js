@@ -344,99 +344,60 @@ function cargarModuloPuntos(){
         <div
             class="puntos-grid">
 
-            <div
-                class="punto-card"
-                style="
-                background:#DC2626;
-                ">
+            let tarjetas = "";
 
-                <h3>
-                    📍 SUBSUELO
-                </h3>
+puntosSP360.forEach(
+    punto => {
 
-                🔴 Alta
+        let color = "#10B981";
 
-                <br><br>
+        if(
+            punto.criticidad ===
+            "Alta"
+        ){
 
-                QR-001
+            color = "#DC2626";
 
-                <br>
+        }
 
-                5 min
+        else if(
+            punto.criticidad ===
+            "Media"
+        ){
 
-            </div>
+            color = "#FBBF24";
 
-            <div
-                class="punto-card"
-                style="
-                background:#DC2626;
-                ">
+        }
 
-                <h3>
-                    📍 CALDERAS
-                </h3>
-
-                🔴 Alta
-
-                <br><br>
-
-                QR-002
-
-                <br>
-
-                5 min
-
-            </div>
+        tarjetas += `
 
             <div
                 class="punto-card"
+
                 style="
-                background:#FBBF24;
+                background:${color};
                 ">
 
                 <h3>
-                    📍 CHATARRA
+                    📍 ${punto.nombre}
                 </h3>
 
-                🟡 Media
+                ${punto.criticidad}
 
                 <br><br>
 
-                QR-003
+                ${punto.qr}
 
                 <br>
 
-                4 min
+                ${punto.tiempo} min
 
             </div>
 
-            <div
-                class="punto-card"
-                style="
-                background:#FBBF24;
-                ">
+        `;
 
-                <h3>
-                    📍 OBRADORES
-                </h3>
-
-                🟡 Media
-
-                <br><br>
-
-                QR-004
-
-                <br>
-
-                5 min
-
-            </div>
-
-        </div>
-
-    `;
-
-}
+    }
+);
 
 /* ==========================
    NUEVO PUNTO
