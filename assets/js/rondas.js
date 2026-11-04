@@ -75,10 +75,6 @@ puntosSP360.forEach(
         `;
 
     }
-
-);
-   
-
   
    content.innerHTML = `
 
