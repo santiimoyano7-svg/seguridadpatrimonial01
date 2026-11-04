@@ -463,7 +463,6 @@ function abrirNuevoPunto(){
         `;
 
     }
-);
 
 /* ==========================
    NUEVO PUNTO
