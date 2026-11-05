@@ -768,3 +768,22 @@ function cargarCircuitos(){
 
                 <h3>
                     🗺 Circuito D
+                </h3>
+
+                11 Puntos
+
+                <br><br>
+
+                90 minutos
+
+                <br><br>
+
+                Activo
+
+            </div>
+
+        </div>
+
+    `;
+
+}
