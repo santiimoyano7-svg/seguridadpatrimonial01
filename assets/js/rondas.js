@@ -605,7 +605,7 @@ function guardarNuevoPunto(){
    MODULO CIRCUITOS
 ========================== */
 
-function cargarModuloCircuitos(*{
+function cargarModuloCircuitos(){
 
     const content =
         document.getElementById(
