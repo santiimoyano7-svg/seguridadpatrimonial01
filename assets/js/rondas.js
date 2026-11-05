@@ -605,7 +605,7 @@ function guardarNuevoPunto(){
    MODULO CIRCUITOS
 ========================== */
 
-function cargarModuloCircuitos(){
+function cargarCircuitos(){
 
     const content =
         document.getElementById(
@@ -615,40 +615,40 @@ function cargarModuloCircuitos(){
     content.innerHTML = `
 
         <h2>
-           🗺 Circuitos
+            🗺 Circuitos
         </h2>
 
-       <div class="rondas-menu">
+        <div class="rondas-menu">
 
-           <button
+            <button
                 class="btn btn-success"
-               onclick="
+                onclick="
                 abrirNuevoCircuito()
                 ">
 
-               ➕ Nuevo Circuito
+                ➕ Nuevo Circuito
 
-           </button>
+            </button>
 
             <button
                 class="btn btn-primary"
                 onclick="
-                cargarModuloRonda*()
+                cargarModuloRondas()
                 ">
 
-              🚶 Rondas
+                🚶 Rondas
 
-            </butto*>
+            </button>
 
             <button
-               class="btn btn-primary"
-           onclick="
-               *cargarModuloPuntos()
-               ">
+                class="btn btn-primary"
+                onclick="
+                cargarModuloPuntos()
+                ">
 
                 📍 Puntos
 
-          </button>
+            </button>
 
         </div>
 
@@ -660,7 +660,7 @@ function cargarModuloCircuitos(){
 
                 <div class="stat-title">
 
-                    � Circuitos
+                    🗺 Circuitos
 
                 </div>
 
@@ -668,7 +668,7 @@ function cargarModuloCircuitos(){
 
                     4
 
-               </div>
+                </div>
 
             </div>
 
@@ -684,94 +684,39 @@ function cargarModuloCircuitos(){
 
                     ${puntosSP360.length}
 
-               </div>
+                </div>
 
             </div>
 
-           <div class="stat">
+            <div class="stat">
 
-               <div class="stat-title">
+                <div class="stat-title">
 
-                   🔴 Alta Criticidad
+                    🔴 Alta Criticidad
 
                 </div>
 
-               <div class="stat-value">
+                <div class="stat-value">
 
-                   7
+                    7
 
-               </div>
+                </div>
 
             </div>
 
-       </div>
+        </div>
+
+        <br>
 
         <div class="circuitos-grid">
 
-            <div
-               class="circuito-card">
+            <div class="circuito-card">
 
                 <h3>
-                   🗺 Circuito A
-               </h3>
-
-                10 Puntos
-
-                <br><br>
-
-               90 minutos
-
-               <br><br>
-
-                Activos
-            </div>
-
-            <div
-                class="circuito-card">
-
-                <h3>
-                   🗺 Circuito B
-               </h3>
-
-                9 puntos
-
-                <br><br>
-
-               90 minutos
-
-               <br><br>
-
-                Activo
-
-            </div>
-
-           <div
-                class="circuito-card">
-
-                <h3>
-                   🗺 Circuito C
-               </h3>
-
-               8 Puntos
-
-                <br><br>
-
-                95 minutos
-
-                <br><br>
-
-                Activo
-
-            </div>
-
-            <div
-                class="circuito-card">
-
-                <h3>
-                    🗺 Circuito D
+                    🗺 Circuito A
                 </h3>
 
-                11 Puntos
+                10 Puntos
 
                 <br><br>
 
@@ -783,8 +728,43 @@ function cargarModuloCircuitos(){
 
             </div>
 
-        </div>
+            <div class="circuito-card">
 
-    `;
+                <h3>
+                    🗺 Circuito B
+                </h3>
 
-}
+                9 Puntos
+
+                <br><br>
+
+                90 minutos
+
+                <br><br>
+
+                Activo
+
+            </div>
+
+            <div class="circuito-card">
+
+                <h3>
+                    🗺 Circuito C
+                </h3>
+
+                8 Puntos
+
+                <br><br>
+
+                95 minutos
+
+                <br><br>
+
+                Activo
+
+            </div>
+
+            <div class="circuito-card">
+
+                <h3>
+                    🗺 Circuito D
