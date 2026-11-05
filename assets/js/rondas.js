@@ -273,6 +273,9 @@ puntosSP360.forEach(
 );
    
     content.innerHTML = `
+        `;
+
+}
 
         <h2>
             📍 Puntos de Control
