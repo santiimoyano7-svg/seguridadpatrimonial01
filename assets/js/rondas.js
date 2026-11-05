@@ -217,65 +217,61 @@ function cargarModuloPuntos(){
             "content"
         );
 
-   let tarjetas = "";
+    let tarjetas = "";
 
-puntosSP360.forEach(
+    puntosSP360.forEach(
 
-    punto => {
+        punto => {
 
-        let color = "#10B981";
+            let color = "#10B981";
 
-        if(
-            punto.criticidad === "Alta"
-        ){
+            if(
+                punto.criticidad === "Alta"
+            ){
 
-            color = "#DC2626";
+                color = "#DC2626";
+
+            }
+            else if(
+                punto.criticidad === "Media"
+            ){
+
+                color = "#FBBF24";
+
+            }
+
+            tarjetas += `
+
+                <div
+                    class="punto-card"
+                    style="
+                    background:${color};
+                    ">
+
+                    <h3>
+                        📍 ${punto.nombre}
+                    </h3>
+
+                    ${punto.criticidad}
+
+                    <br><br>
+
+                    QR:
+                    ${punto.qr}
+
+                    <br>
+
+                    ${punto.tiempo} min
+
+                </div>
+
+            `;
 
         }
 
-        else if(
-            punto.criticidad === "Media"
-        ){
+    );
 
-            color = "#FBBF24";
-
-        }
-
-        tarjetas += `
-
-            <div
-                class="punto-card"
-                style="
-                background:${color};
-                ">
-
-                <h3>
-                    📍 ${punto.nombre}
-                </h3>
-
-                ${punto.criticidad}
-
-                <br><br>
-
-                QR:
-                ${punto.qr}
-
-                <br>
-
-                ${punto.tiempo} min
-
-            </div>
-
-        `;
-
-    }
-
-);
-   
     content.innerHTML = `
-        `;
-
-}
 
         <h2>
             📍 Puntos de Control
@@ -314,76 +310,6 @@ puntosSP360.forEach(
 
         <br>
 
-        <div class="stats">
-
-            <div class="stat">
-
-                <div class="stat-title">
-
-                    📍 Total Puntos
-
-                </div>
-
-                <div class="stat-value">
-
-                    10
-
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-
-                    🔴 Alta Criticidad
-
-                </div>
-
-                <div class="stat-value">
-
-                    6
-
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-
-                    🟡 Media Criticidad
-
-                </div>
-
-                <div class="stat-value">
-
-                    3
-
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
-
-                    🟢 Baja Criticidad
-
-                </div>
-
-                <div class="stat-value">
-
-                    1
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <br>
-
         <div class="card">
 
             <input
@@ -400,68 +326,15 @@ puntosSP360.forEach(
         </div>
 
         <div
-    class="puntos-grid">
+            class="puntos-grid">
 
-    ${tarjetas}
+            ${tarjetas}
 
-</div>
+        </div>
 
-`;
+    `;
 
 }
-
-function abrirNuevoPunto(){
-
-    punto => {
-
-        let color = "#10B981";
-
-        if(
-            punto.criticidad ===
-            "Alta"
-        ){
-
-            color = "#DC2626";
-
-        }
-
-        else if(
-            punto.criticidad ===
-            "Media"
-        ){
-
-            color = "#FBBF24";
-
-        }
-
-        tarjetas += `
-
-            <div
-                class="punto-card"
-
-                style="
-                background:${color};
-                ">
-
-                <h3>
-                    📍 ${punto.nombre}
-                </h3>
-
-                ${punto.criticidad}
-
-                <br><br>
-
-                ${punto.qr}
-
-                <br>
-
-                ${punto.tiempo} min
-
-            </div>
-
-        `;
-
-    }
 
 /* ==========================
    NUEVO PUNTO
