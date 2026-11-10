@@ -923,3 +923,99 @@ function abrirNuevoCircuito(){
     `;
 
 }
+
+/* ==========================
+   GUARDAR CIRCUITO
+========================== */
+
+function guardarNuevoCircuito(){
+
+    const nombre =
+        document.getElementById(
+            "circuito_nombre"
+        ).value;
+
+    const duracion =
+        document.getElementById(
+            "circuito_duracion"
+        ).value;
+
+    const sitio =
+        document.getElementById(
+            "circuito_sitio"
+        ).value;
+
+    const selector =
+        document.getElementById(
+            "circuito_puntos"
+        );
+
+    const puntosSeleccionados =
+
+        Array.from(
+            selector.selectedOptions
+        ).map(
+
+            item => item.value
+
+        );
+
+    if(
+        nombre.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el nombre del circuito"
+        );
+
+        return;
+
+    }
+
+    if(
+        puntosSeleccionados.length === 0
+    ){
+
+        alert(
+            "Debe seleccionar al menos un punto"
+        );
+
+        return;
+
+    }
+
+    const nuevoCircuito = {
+
+        id:
+        Date.now(),
+
+        nombre,
+
+        sitio,
+
+        duracion,
+
+        puntos:
+        puntosSeleccionados,
+
+        activo:
+        true,
+
+        trazabilidad:
+        crearTrazabilidad()
+
+    };
+
+    circuitosSP360.push(
+        nuevoCircuito
+    );
+
+    guardarCircuitos();
+
+    alert(
+        "Circuito guardado correctamente"
+    );
+
+    cargarCircuitos();
+
+}
