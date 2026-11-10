@@ -702,12 +702,14 @@ circuitosSP360.forEach(
                 <br><br>
 
                 ${
-                    circuito.activo
-                    ?
-                    "✅ Activo"
-                    :
-                    "⚫ Inactivo"
-                   <br><br>
+    circuito.activo
+    ?
+    "✅ Activo"
+    :
+    "⚫ Inactivo"
+}
+
+<br><br>
 
 <button
 
@@ -721,21 +723,13 @@ circuitosSP360.forEach(
 
     ${
         circuito.activo
-
         ?
-
         "⚫ Inactivar"
-
         :
-
         "✅ Activar"
-
     }
 
 </button>
-                }
-
-            </div>
 
         `;
 
