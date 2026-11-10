@@ -2478,6 +2478,237 @@ Buscar Circuito o Guardia"
 }
 
 /* ==========================
+   DETALLE RONDA
+========================== */
+
+function verDetalleRonda(id){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == id
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let puntosHTML = "";
+
+    ronda.puntos.forEach(
+
+        punto => {
+
+            const resultado =
+
+                punto.resultado ||
+                "Sin Registrar";
+
+            const observacion =
+
+                punto.observacion ||
+                "-";
+
+            const fechaControl =
+
+                punto.fechaControl
+
+                ?
+
+                new Date(
+                    punto.fechaControl
+                ).toLocaleString()
+
+                :
+
+                "-";
+
+            puntosHTML += `
+
+                <tr>
+
+                    <td>
+
+                        ${punto.nombre}
+
+                    </td>
+
+                    <td>
+
+                        ${resultado}
+
+                    </td>
+
+                    <td>
+
+                        ${observacion}
+
+                    </td>
+
+                    <td>
+
+                        ${fechaControl}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📚 Detalle de Ronda
+
+        </h2>
+
+        <div class="card">
+
+            <p>
+
+                <strong>
+                    Circuito:
+                </strong>
+
+                ${ronda.circuito}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Guardia:
+                </strong>
+
+                ${ronda.guardia}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Estado:
+                </strong>
+
+                ${ronda.estado}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Inicio:
+                </strong>
+
+                ${new Date(
+                    ronda.inicio
+                ).toLocaleString()}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Fin:
+                </strong>
+
+                ${
+                    ronda.fin
+
+                    ?
+
+                    new Date(
+                        ronda.fin
+                    ).toLocaleString()
+
+                    :
+
+                    "-"
+
+                }
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+
+                📍 Puntos Recorridos
+
+            </h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Punto
+                        </th>
+
+                        <th>
+                            Resultado
+                        </th>
+
+                        <th>
+                            Observación
+                        </th>
+
+                        <th>
+                            Fecha Control
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${puntosHTML}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button
+
+            class="btn btn-primary"
+
+            onclick="
+            cargarHistorialRondas()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+/* ==========================
    FILTRAR HISTORIAL
 ========================== */
 
