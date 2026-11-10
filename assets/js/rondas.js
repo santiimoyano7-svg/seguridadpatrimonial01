@@ -113,11 +113,14 @@ cargarCircuitos()
 </button>
 
             <button
-                class="btn btn-primary">
+    class="btn btn-primary"
+    onclick="
+    cargarHistorialRondas()
+    ">
 
-                📚 Historial
+    📚 Historial
 
-            </button>
+</button>
 
         </div>
 
@@ -2256,5 +2259,247 @@ function finalizarRonda(
     );
 
     cargarModuloRondas();
+
+}
+
+/* ==========================
+   HISTORIAL RONDAS
+========================== */
+
+function cargarHistorialRondas(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let filas = "";
+
+    rondasSP360.forEach(
+
+        ronda => {
+
+            const totalPuntos =
+
+                ronda.puntos.length;
+
+            const completados =
+
+                ronda.puntos.filter(
+
+                    p => p.completado
+
+                ).length;
+
+            let hallazgos = 0;
+
+            ronda.puntos.forEach(
+
+                punto => {
+
+                    if(
+
+                        punto.resultado ===
+                        "Hallazgo"
+
+                    ){
+
+                        hallazgos++;
+
+                    }
+
+                }
+
+            );
+
+            filas += `
+
+                <tr>
+
+                    <td>
+
+                        ${
+                            new Date(
+                                ronda.inicio
+                            )
+                            .toLocaleDateString()
+                        }
+
+                    </td>
+
+                    <td>
+
+                        ${ronda.circuito}
+
+                    </td>
+
+                    <td>
+
+                        ${ronda.guardia}
+
+                    </td>
+
+                    <td>
+
+                        ${completados}
+                        /
+                        ${totalPuntos}
+
+                    </td>
+
+                    <td>
+
+                        ${hallazgos}
+
+                    </td>
+
+                    <td>
+
+                        ${ronda.estado}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📚 Historial de Rondas
+
+        </h2>
+
+        <div class="card">
+
+            <input
+
+                id="buscar_ronda"
+
+                placeholder="
+Buscar Circuito o Guardia"
+
+                onkeyup="
+                filtrarHistorialRondas()
+                ">
+
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Circuito
+                        </th>
+
+                        <th>
+                            Guardia
+                        </th>
+
+                        <th>
+                            Puntos
+                        </th>
+
+                        <th>
+                            Hallazgos
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="historial_rondas">
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button
+
+            class="btn btn-primary"
+
+            onclick="
+            cargarModuloRondas()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+/* ==========================
+   FILTRAR HISTORIAL
+========================== */
+
+function filtrarHistorialRondas(){
+
+    const texto =
+
+        document.getElementById(
+            "buscar_ronda"
+        )
+        .value
+        .toUpperCase();
+
+    const filas =
+
+        document.querySelectorAll(
+            "#historial_rondas tr"
+        );
+
+    filas.forEach(
+
+        fila => {
+
+            const contenido =
+
+                fila.innerText
+                .toUpperCase();
+
+            fila.style.display =
+
+                contenido.includes(
+                    texto
+                )
+
+                ?
+
+                ""
+
+                :
+
+                "none";
+
+        }
+
+    );
 
 }
