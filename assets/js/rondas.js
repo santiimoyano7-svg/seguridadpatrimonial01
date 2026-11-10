@@ -22,6 +22,7 @@ JSON.parse(
     )
 ) || [];
 
+
 function guardarCircuitos(){
 
     localStorage.setItem(
@@ -30,6 +31,32 @@ function guardarCircuitos(){
 
         JSON.stringify(
             circuitosSP360
+        )
+
+    );
+
+}
+
+/* ==========================
+   BASE DE DATOS RONDAS
+========================== */
+
+let rondasSP360 =
+
+JSON.parse(
+    localStorage.getItem(
+        "sp360_rondas"
+    )
+) || [];
+
+function guardarRondas(){
+
+    localStorage.setItem(
+
+        "sp360_rondas",
+
+        JSON.stringify(
+            rondasSP360
         )
 
     );
@@ -56,11 +83,14 @@ function cargarModuloRondas(){
         <div class="rondas-menu">
 
             <button
-                class="btn btn-success">
+    class="btn btn-success"
+    onclick="
+    iniciarRonda()
+    ">
 
-                ▶ Iniciar Ronda
+    ▶ Iniciar Ronda
 
-            </button>
+</button>
 
             <button
                 class="btn btn-primary"
@@ -1112,5 +1142,269 @@ function guardarNuevoCircuito(){
     );
 
     cargarCircuitos();
+
+}
+
+/* ==========================
+   INICIAR RONDA
+========================== */
+
+function iniciarRonda(){
+
+    const circuito =
+
+        circuitosSP360.find(
+
+            c => c.activo === true
+
+        );
+
+    if(
+        !circuito
+    ){
+
+        alert(
+            "No existen circuitos activos"
+        );
+
+        return;
+
+    }
+
+    const puntosCircuito =
+
+        puntosSP360.filter(
+
+            punto =>
+
+            circuito.puntos.includes(
+                String(
+                    punto.id
+                )
+            )
+
+        );
+
+    const nuevaRonda = {
+
+        id:
+        Date.now(),
+
+        circuitoId:
+        circuito.id,
+
+        circuito:
+        circuito.nombre,
+
+        inicio:
+        new Date().toISOString(),
+
+        estado:
+        "En Curso",
+
+        puntos:
+        puntosCircuito.map(
+
+            punto => ({
+
+                id:
+                punto.id,
+
+                nombre:
+                punto.nombre,
+
+                completado:
+                false,
+
+                observacion:
+                "",
+
+                evidencia:
+                []
+
+            })
+
+        )
+
+    };
+
+    rondasSP360.push(
+        nuevaRonda
+    );
+
+    guardarRondas();
+
+    mostrarRondaActiva(
+        nuevaRonda.id
+    );
+
+}
+/* ==========================
+   MOSTRAR RONDA
+========================== */
+
+function mostrarRondaActiva(
+
+    rondaId
+
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let listaPuntos = "";
+
+    ronda.puntos.forEach(
+
+        (punto,index) => {
+
+            listaPuntos += `
+
+                <div
+                    class="punto-card"
+                    onclick="
+                    registrarPunto(
+                        ${ronda.id},
+                        ${punto.id}
+                    )
+                    ">
+
+                    <h3>
+
+                        📍 ${index + 1}
+
+                    </h3>
+
+                    ${punto.nombre}
+
+                    <br><br>
+
+                    ${
+                        punto.completado
+
+                        ?
+
+                        "✅ Verificado"
+
+                        :
+
+                        "⏳ Pendiente"
+
+                    }
+
+                </div>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            🚶 Ronda en Curso
+
+        </h2>
+
+        <div class="card">
+
+            <strong>
+                Circuito:
+            </strong>
+
+            ${ronda.circuito}
+
+            <br><br>
+
+            <strong>
+                Estado:
+            </strong>
+
+            ${ronda.estado}
+
+        </div>
+
+        <div
+            class="puntos-grid">
+
+            ${listaPuntos}
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   REGISTRAR PUNTO
+========================== */
+
+function registrarPunto(
+
+    rondaId,
+    puntoId
+
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const punto =
+
+        ronda.puntos.find(
+
+            p => p.id == puntoId
+
+        );
+
+    if(
+        !punto
+    ){
+
+        return;
+
+    }
+
+    punto.completado =
+        true;
+
+    guardarRondas();
+
+    mostrarRondaActiva(
+        rondaId
+    );
 
 }
