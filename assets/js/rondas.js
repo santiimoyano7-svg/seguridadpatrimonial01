@@ -823,31 +823,11 @@ circuitosSP360.forEach(
 
 function abrirNuevoCircuito(){
 
-    const content =
-        document.getElementById(
-            "content"
-        );
-
-    let opcionesPuntos = "";
-
-    puntosSP360.forEach(
-
-        punto => {
-
-            opcionesPuntos += `
-
-                <option
-                    value="${punto.id}">
-
-                    ${punto.nombre}
-
-                </option>
-
-            `;
-
-        }
-
+    alert(
+        "Pantalla Nuevo Circuito en construcción"
     );
+
+}
 
 /* ==========================
    GUARDAR CIRCUITO
