@@ -1647,13 +1647,11 @@ function iniciarRonda(){
 
 }
 /* ==========================
-   MOSTRAR RONDA
+   MOSTRAR RONDA ACTIVA
 ========================== */
 
 function mostrarRondaActiva(
-
     rondaId
-
 ){
 
     const ronda =
@@ -1677,16 +1675,45 @@ function mostrarRondaActiva(
             "content"
         );
 
-    let listaPuntos = "";
+    let puntosHTML = "";
 
     ronda.puntos.forEach(
 
         (punto,index) => {
 
-            listaPuntos += `
+            const estado =
+
+                punto.completado
+
+                ?
+
+                "✅ Verificado"
+
+                :
+
+                "⏳ Pendiente";
+
+            const color =
+
+                punto.completado
+
+                ?
+
+                "#10B981"
+
+                :
+
+                "#FBBF24";
+
+            puntosHTML += `
 
                 <div
                     class="punto-card"
+
+                    style="
+                    background:${color};
+                    "
+
                     onclick="
                     registrarPunto(
                         ${ronda.id},
@@ -1700,22 +1727,15 @@ function mostrarRondaActiva(
 
                     </h3>
 
-                    ${punto.nombre}
+                    <strong>
+
+                        ${punto.nombre}
+
+                    </strong>
 
                     <br><br>
 
-                    ${
-                        punto.completado
-
-                        ?
-
-                        "✅ Verificado"
-
-                        :
-
-                        "⏳ Pendiente"
-
-                    }
+                    ${estado}
 
                 </div>
 
@@ -1749,31 +1769,198 @@ function mostrarRondaActiva(
 
             ${ronda.estado}
 
+            <br><br>
+
+            <strong>
+                Guardia:
+            </strong>
+
+            ${ronda.guardia}
+
+            <br><br>
+
+            <strong>
+                Inicio:
+            </strong>
+
+            ${new Date(
+                ronda.inicio
+            ).toLocaleString()}
+
         </div>
 
         <div
             class="puntos-grid">
 
-            ${listaPuntos}
+            ${puntosHTML}
 
         </div>
 
-<br>
+        <br>
 
-<button
-    class="btn btn-success"
+        <button
 
-    onclick="
-    finalizarRonda(
-        ${ronda.id}
-    )
-    ">
+            class="btn btn-success"
 
-    ✅ Finalizar Ronda
+            onclick="
+            finalizarRonda(
+                ${ronda.id}
+            )
+            ">
 
-</button>
+            ✅ Finalizar Ronda
+
+        </button>
+
+        <button
+
+            class="btn btn-danger"
+
+            onclick="
+            cargarModuloRondas()
+            ">
+
+            ❌ Cancelar
+
+        </button>
 
     `;
+
+}
+
+/* ==========================
+   REGISTRAR PUNTO
+========================== */
+
+function registrarPunto(
+
+    rondaId,
+    puntoId
+
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const punto =
+
+        ronda.puntos.find(
+
+            p => p.id == puntoId
+
+        );
+
+    if(
+        !punto
+    ){
+
+        return;
+
+    }
+
+    const observacion = prompt(
+
+        "Observación del punto:",
+
+        punto.observacion || ""
+
+    );
+
+    if(
+        observacion === null
+    ){
+
+        return;
+
+    }
+
+    punto.completado =
+        true;
+
+    punto.observacion =
+        observacion;
+
+    punto.fechaControl =
+        new Date().toISOString();
+
+    guardarRondas();
+
+    mostrarRondaActiva(
+        rondaId
+    );
+
+}
+
+/* ==========================
+   FINALIZAR RONDA
+========================== */
+
+function finalizarRonda(
+    rondaId
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const pendientes =
+
+        ronda.puntos.filter(
+
+            p => !p.completado
+
+        );
+
+    if(
+        pendientes.length > 0
+    ){
+
+        alert(
+            "Existen puntos pendientes."
+        );
+
+        return;
+
+    }
+
+    ronda.estado =
+        "Finalizada";
+
+    ronda.fin =
+        new Date().toISOString();
+
+    guardarRondas();
+
+    alert(
+        "Ronda finalizada correctamente"
+    );
+
+    cargarModuloRondas();
 
 }
 
