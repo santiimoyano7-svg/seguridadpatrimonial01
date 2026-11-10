@@ -821,11 +821,139 @@ circuitosSP360.forEach(
    NUEVO CIRCUITO
 ========================== */
 
+/* ==========================
+   NUEVO CIRCUITO
+========================== */
+
 function abrirNuevoCircuito(){
 
-    alert(
-        "Pantalla Nuevo Circuito en construcción"
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let opcionesPuntos = "";
+
+    puntosSP360.forEach(
+
+        punto => {
+
+            opcionesPuntos += `
+
+                <option
+                    value="${punto.id}">
+
+                    ${punto.nombre}
+
+                </option>
+
+            `;
+
+        }
+
     );
+
+    content.innerHTML = `
+
+        <h2>
+            🗺 Nuevo Circuito
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Información General
+            </h3>
+
+            <input
+                id="circuito_nombre"
+                placeholder="Nombre del Circuito">
+
+            <input
+                id="circuito_duracion"
+                type="number"
+                placeholder="Duración estimada (minutos)">
+
+            <select
+                id="circuito_sitio">
+
+                <option>
+                    Bagley Totoral
+                </option>
+
+                <option>
+                    Cartocor Totoral
+                </option>
+
+                <option>
+                    Arcor Caroya
+                </option>
+
+                <option>
+                    Bagley Córdoba
+                </option>
+
+                <option>
+                    Edificio Chacabuco
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                📍 Seleccionar Puntos
+            </h3>
+
+            <select
+                id="circuito_puntos"
+                multiple
+                style="
+                min-height:250px;
+                ">
+
+                ${opcionesPuntos}
+
+            </select>
+
+            <br><br>
+
+            <small>
+
+                Mantener CTRL presionado
+                para seleccionar varios puntos.
+
+            </small>
+
+        </div>
+
+        <div class="card">
+
+            <button
+                class="btn btn-success"
+                onclick="
+                guardarNuevoCircuito()
+                ">
+
+                ✅ Guardar Circuito
+
+            </button>
+
+            <button
+                class="btn btn-danger"
+                onclick="
+                cargarCircuitos()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
 
 }
 
