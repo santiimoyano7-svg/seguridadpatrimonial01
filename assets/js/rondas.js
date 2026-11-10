@@ -2355,9 +2355,27 @@ function cargarHistorialRondas(){
 
                     <td>
 
-                        ${ronda.estado}
+    ${ronda.estado}
 
-                    </td>
+</td>
+
+<td>
+
+    <button
+
+        class="btn btn-primary"
+
+        onclick="
+        verDetalleRonda(
+            ${ronda.id}
+        )
+        ">
+
+        👁 Ver
+
+    </button>
+
+</td>
 
                 </tr>
 
@@ -2419,8 +2437,12 @@ Buscar Circuito o Guardia"
                         </th>
 
                         <th>
-                            Estado
-                        </th>
+    Estado
+</th>
+
+<th>
+    Acción
+</th>
 
                     </tr>
 
