@@ -1858,6 +1858,102 @@ function registrarPunto(
         );
 
     if(
+    !punto
+){
+
+    return;
+
+}
+
+const existeHallazgo =
+
+    confirm(
+        "¿Desea registrar un hallazgo?"
+    );
+
+if(
+    existeHallazgo
+){
+
+    registrarHallazgo(
+        rondaId,
+        puntoId
+    );
+
+    return;
+
+}
+
+const observacion = prompt(
+
+    "Observación del punto:",
+
+    punto.observacion || ""
+
+);
+
+if(
+    observacion === null
+){
+
+    return;
+
+}
+
+punto.completado =
+    true;
+
+
+    punto.observacion =
+        observacion;
+
+    punto.fechaControl =
+        new Date().toISOString();
+
+    guardarRondas();
+
+    mostrarRondaActiva(
+        rondaId
+    );
+
+}
+
+/* ==========================
+   REGISTRAR HALLAZGO
+========================== */
+
+function registrarHallazgo(
+
+    rondaId,
+    puntoId
+
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(
+        !ronda
+    ){
+
+        return;
+
+    }
+
+    const punto =
+
+        ronda.puntos.find(
+
+            p => p.id == puntoId
+
+        );
+
+    if(
         !punto
     ){
 
@@ -1865,30 +1961,58 @@ function registrarPunto(
 
     }
 
-    const observacion = prompt(
+    const descripcion =
 
-        "Observación del punto:",
-
-        punto.observacion || ""
-
-    );
+        prompt(
+            "Describa el hallazgo"
+        );
 
     if(
-        observacion === null
+
+        !descripcion
+
+        ||
+
+        descripcion.trim() === ""
+
     ){
 
         return;
 
     }
 
-    punto.completado =
-        true;
+    punto.completado = true;
+
+    punto.hallazgo = true;
 
     punto.observacion =
-        observacion;
+        descripcion;
 
     punto.fechaControl =
         new Date().toISOString();
+
+    crearNovedad({
+
+        modulo:
+        "Rondas Inteligentes",
+
+        titulo:
+        `Hallazgo - ${punto.nombre}`,
+
+        descripcion:
+        `
+Punto: ${punto.nombre}
+
+Circuito: ${ronda.circuito}
+
+Hallazgo:
+${descripcion}
+        `,
+
+        criticidad:
+        criticidades.MEDIA
+
+    });
 
     guardarRondas();
 
