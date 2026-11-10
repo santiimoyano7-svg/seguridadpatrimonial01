@@ -11,6 +11,18 @@ JSON.parse(
 ) || [];
 
 /* ==========================
+   BASE DE DATOS CIRCUITOS
+========================== */
+
+let circuitosSP360 =
+
+JSON.parse(
+    localStorage.getItem(
+        "sp360_circuitos"
+    )
+) || [];
+
+/* ==========================
    MODULO RONDAS
 ========================== */
 
