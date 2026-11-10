@@ -1709,11 +1709,11 @@ function mostrarRondaActiva(
                     "
 
                     onclick="
-                    registrarPunto(
-                        ${ronda.id},
-                        ${punto.id}
-                    )
-                    ">
+abrirPuntoRonda(
+    ${ronda.id},
+    ${punto.id}
+)
+">
 
                     <h3>
 
@@ -1823,10 +1823,10 @@ function mostrarRondaActiva(
 }
 
 /* ==========================
-   REGISTRAR PUNTO
+   ABRIR PUNTO RONDA
 ========================== */
 
-function registrarPunto(
+function abrirPuntoRonda(
 
     rondaId,
     puntoId
@@ -1841,9 +1841,7 @@ function registrarPunto(
 
         );
 
-    if(
-        !ronda
-    ){
+    if(!ronda){
 
         return;
 
@@ -1857,58 +1855,237 @@ function registrarPunto(
 
         );
 
+    if(!punto){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📍 ${punto.nombre}
+
+        </h2>
+
+        <div class="card">
+
+            <strong>
+                Circuito:
+            </strong>
+
+            ${ronda.circuito}
+
+            <br><br>
+
+            <strong>
+                Estado:
+            </strong>
+
+            ${
+                punto.completado
+
+                ?
+
+                "✅ Verificado"
+
+                :
+
+                "⏳ Pendiente"
+
+            }
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                Resultado del Control
+            </h3>
+
+            <select
+                id="resultado_punto">
+
+                <option>
+                    Conforme
+                </option>
+
+                <option>
+                    Observación
+                </option>
+
+                <option>
+                    Hallazgo
+                </option>
+
+            </select>
+
+            <textarea
+
+                id="observacion_punto"
+
+                placeholder="
+Observaciones del punto">
+
+            </textarea>
+
+            <br><br>
+
+            <input
+
+                id="evidencia_punto"
+
+                type="file"
+
+                accept="image/*">
+
+        </div>
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                guardarPuntoRonda(
+                    ${ronda.id},
+                    ${punto.id}
+                )
+                ">
+
+                ✅ Guardar Punto
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                mostrarRondaActiva(
+                    ${ronda.id}
+                )
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+/* ==========================
+   GUARDAR PUNTO RONDA
+========================== */
+
+function guardarPuntoRonda(
+
+    rondaId,
+    puntoId
+
+){
+
+    const ronda =
+
+        rondasSP360.find(
+
+            r => r.id == rondaId
+
+        );
+
+    if(!ronda){
+
+        return;
+
+    }
+
+    const punto =
+
+        ronda.puntos.find(
+
+            p => p.id == puntoId
+
+        );
+
+    if(!punto){
+
+        return;
+
+    }
+
+    const resultado =
+
+        document.getElementById(
+            "resultado_punto"
+        ).value;
+
+    const observacion =
+
+        document.getElementById(
+            "observacion_punto"
+        ).value;
+
     if(
-    !punto
-){
 
-    return;
+        (
+            resultado ===
+            "Observación"
 
-}
+            ||
 
-const existeHallazgo =
+            resultado ===
+            "Hallazgo"
 
-    confirm(
-        "¿Desea registrar un hallazgo?"
-    );
+        )
 
-if(
-    existeHallazgo
-){
+        &&
 
-    registrarHallazgo(
-        rondaId,
-        puntoId
-    );
+        observacion.trim() === ""
 
-    return;
+    ){
 
-}
+        alert(
+            "Debe completar la observación."
+        );
 
-const observacion = prompt(
+        return;
 
-    "Observación del punto:",
+    }
 
-    punto.observacion || ""
+    punto.completado =
+        true;
 
-);
-
-if(
-    observacion === null
-){
-
-    return;
-
-}
-
-punto.completado =
-    true;
-
+    punto.resultado =
+        resultado;
 
     punto.observacion =
         observacion;
 
     punto.fechaControl =
         new Date().toISOString();
+
+    if(
+        resultado ===
+        "Hallazgo"
+    ){
+
+        registrarHallazgo(
+            rondaId,
+            puntoId
+        );
+
+        return;
+
+    }
 
     guardarRondas();
 
