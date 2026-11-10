@@ -638,6 +638,49 @@ function cargarCircuitos(){
             "content"
         );
 
+   let tarjetasCircuitos = "";
+
+circuitosSP360.forEach(
+
+    circuito => {
+
+        tarjetasCircuitos += `
+
+            <div
+                class="circuito-card">
+
+                <h3>
+
+                    🗺 ${circuito.nombre}
+
+                </h3>
+
+                ${circuito.puntos.length}
+                puntos
+
+                <br><br>
+
+                ${circuito.duracion}
+                minutos
+
+                <br><br>
+
+                ${
+                    circuito.activo
+                    ?
+                    "✅ Activo"
+                    :
+                    "⚫ Inactivo"
+                }
+
+            </div>
+
+        `;
+
+    }
+
+);
+   
     content.innerHTML = `
 
         <h2>
@@ -736,79 +779,9 @@ function cargarCircuitos(){
 
         <div class="circuitos-grid">
 
-            <div class="circuito-card">
+    ${tarjetasCircuitos}
 
-                <h3>
-                    🗺 Circuito A
-                </h3>
-
-                10 Puntos
-
-                <br><br>
-
-                90 minutos
-
-                <br><br>
-
-                Activo
-
-            </div>
-
-            <div class="circuito-card">
-
-                <h3>
-                    🗺 Circuito B
-                </h3>
-
-                9 Puntos
-
-                <br><br>
-
-                90 minutos
-
-                <br><br>
-
-                Activo
-
-            </div>
-
-            <div class="circuito-card">
-
-                <h3>
-                    🗺 Circuito C
-                </h3>
-
-                8 Puntos
-
-                <br><br>
-
-                95 minutos
-
-                <br><br>
-
-                Activo
-
-            </div>
-
-            <div class="circuito-card">
-
-                <h3>
-                    🗺 Circuito D
-                </h3>
-
-                11 Puntos
-
-                <br><br>
-
-                90 minutos
-
-                <br><br>
-
-                Activo
-
-            </div>
-
-        </div>
+</div>
 
     `;
 
