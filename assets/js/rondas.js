@@ -707,6 +707,32 @@ circuitosSP360.forEach(
                     "✅ Activo"
                     :
                     "⚫ Inactivo"
+                   <br><br>
+
+<button
+
+    class="btn btn-warning"
+
+    onclick="
+    toggleCircuito(
+        ${circuito.id}
+    )
+    ">
+
+    ${
+        circuito.activo
+
+        ?
+
+        "⚫ Inactivar"
+
+        :
+
+        "✅ Activar"
+
+    }
+
+</button>
                 }
 
             </div>
@@ -1050,6 +1076,37 @@ function guardarNuevoCircuito(){
     alert(
         "Circuito guardado correctamente"
     );
+
+    cargarCircuitos();
+
+}
+
+/* ==========================
+   ACTIVAR / INACTIVAR
+========================== */
+
+function toggleCircuito(id){
+
+    const circuito =
+
+        circuitosSP360.find(
+
+            c => c.id == id
+
+        );
+
+    if(
+        !circuito
+    ){
+
+        return;
+
+    }
+
+    circuito.activo =
+        !circuito.activo;
+
+    guardarCircuitos();
 
     cargarCircuitos();
 
