@@ -1537,25 +1537,34 @@ function guardarEdicionCircuito(id){
 
 function iniciarRonda(){
 
-    const circuito =
+    const circuitosActivos =
 
-        circuitosSP360.find(
+        circuitosSP360.filter(
 
-            c => c.activo === true
+            circuito => circuito.activo
 
         );
 
     if(
-        !circuito
+        circuitosActivos.length === 0
     ){
 
         alert(
-            "No existen circuitos activos"
+            "No existen circuitos activos."
         );
 
         return;
 
     }
+
+    const circuito =
+
+        circuitosActivos[
+            Math.floor(
+                Math.random() *
+                circuitosActivos.length
+            )
+        ];
 
     const puntosCircuito =
 
@@ -1588,7 +1597,16 @@ function iniciarRonda(){
         estado:
         "En Curso",
 
+        guardia:
+
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Guardia",
+
         puntos:
+
         puntosCircuito.map(
 
             punto => ({
@@ -1606,7 +1624,10 @@ function iniciarRonda(){
                 "",
 
                 evidencia:
-                []
+                [],
+
+                fechaControl:
+                null
 
             })
 
