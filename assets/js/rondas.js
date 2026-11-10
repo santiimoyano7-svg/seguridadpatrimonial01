@@ -1195,19 +1195,282 @@ function verDetalleCircuito(id){
 
             <button
 
-                class="btn btn-primary"
+    class="btn btn-warning"
 
-                onclick="
-                cargarCircuitos()
+    onclick="
+    editarCircuito(
+        ${circuito.id}
+    )
+    ">
+
+    ✏ Editar
+
+</button>
+
+<button
+
+    class="btn btn-primary"
+
+    onclick="
+    cargarCircuitos()
+    ">
+
+    ⬅ Volver
+
+</button>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   EDITAR CIRCUITO
+========================== */
+
+function editarCircuito(id){
+
+    const circuito =
+
+        circuitosSP360.find(
+
+            c => c.id == id
+
+        );
+
+    if(
+        !circuito
+    ){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let opcionesPuntos = "";
+
+    puntosSP360.forEach(
+
+        punto => {
+
+            const seleccionado =
+
+                circuito.puntos.includes(
+
+                    String(
+                        punto.id
+                    )
+
+                )
+
+                ?
+
+                "selected"
+
+                :
+
+                "";
+
+            opcionesPuntos += `
+
+                <option
+
+                    value="${punto.id}"
+
+                    ${seleccionado}>
+
+                    ${punto.nombre}
+
+                </option>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+            ✏ Editar Circuito
+        </h2>
+
+        <div class="card">
+
+            <input
+
+                id="editar_circuito_nombre"
+
+                value="${circuito.nombre}"
+
+                placeholder="Nombre">
+
+            <input
+
+                id="editar_circuito_duracion"
+
+                type="number"
+
+                value="${circuito.duracion}"
+
+                placeholder="Duración">
+
+            <select
+                id="editar_circuito_sitio">
+
+                <option
+                    ${circuito.sitio === "Bagley Totoral" ? "selected" : ""}>
+                    Bagley Totoral
+                </option>
+
+                <option
+                    ${circuito.sitio === "Cartocor Totoral" ? "selected" : ""}>
+                    Cartocor Totoral
+                </option>
+
+                <option
+                    ${circuito.sitio === "Arcor Caroya" ? "selected" : ""}>
+                    Arcor Caroya
+                </option>
+
+                <option
+                    ${circuito.sitio === "Bagley Córdoba" ? "selected" : ""}>
+                    Bagley Córdoba
+                </option>
+
+                <option
+                    ${circuito.sitio === "Edificio Chacabuco" ? "selected" : ""}>
+                    Edificio Chacabuco
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+                📍 Puntos
+            </h3>
+
+            <select
+
+                id="editar_circuito_puntos"
+
+                multiple
+
+                style="
+                min-height:250px;
                 ">
 
-                ⬅ Volver
+                ${opcionesPuntos}
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                guardarEdicionCircuito(
+                    ${circuito.id}
+                )
+                ">
+
+                ✅ Guardar Cambios
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                verDetalleCircuito(
+                    ${circuito.id}
+                )
+                ">
+
+                ❌ Cancelar
 
             </button>
 
         </div>
 
     `;
+
+}
+
+/* ==========================
+   GUARDAR EDICION CIRCUITO
+========================== */
+
+function guardarEdicionCircuito(id){
+
+    const circuito =
+
+        circuitosSP360.find(
+
+            c => c.id == id
+
+        );
+
+    if(
+        !circuito
+    ){
+
+        return;
+
+    }
+
+    circuito.nombre =
+
+        document.getElementById(
+            "editar_circuito_nombre"
+        ).value;
+
+    circuito.duracion =
+
+        document.getElementById(
+            "editar_circuito_duracion"
+        ).value;
+
+    circuito.sitio =
+
+        document.getElementById(
+            "editar_circuito_sitio"
+        ).value;
+
+    circuito.puntos =
+
+        Array.from(
+
+            document.getElementById(
+                "editar_circuito_puntos"
+            ).selectedOptions
+
+        ).map(
+
+            item => item.value
+
+        );
+
+    guardarCircuitos();
+
+    alert(
+        "Circuito actualizado correctamente"
+    );
+
+    verDetalleCircuito(id);
 
 }
 
