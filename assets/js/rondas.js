@@ -677,7 +677,13 @@ circuitosSP360.forEach(
         tarjetasCircuitos += `
 
             <div
-                class="circuito-card">
+    class="circuito-card"
+
+    onclick="
+    verDetalleCircuito(
+        ${circuito.id}
+    )
+    ">
 
                 <h3>
 
@@ -816,10 +822,6 @@ circuitosSP360.forEach(
     `;
 
 }
-
-/* ==========================
-   NUEVO CIRCUITO
-========================== */
 
 /* ==========================
    NUEVO CIRCUITO
@@ -1050,6 +1052,162 @@ function guardarNuevoCircuito(){
     );
 
     cargarCircuitos();
+
+}
+
+/* ==========================
+   DETALLE CIRCUITO
+========================== */
+
+function verDetalleCircuito(id){
+
+    const circuito =
+
+        circuitosSP360.find(
+
+            c => c.id == id
+
+        );
+
+    if(
+        !circuito
+    ){
+
+        return;
+
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let puntosCircuito = "";
+
+    circuito.puntos.forEach(
+
+        puntoId => {
+
+            const punto =
+
+                puntosSP360.find(
+
+                    p =>
+
+                    p.id == puntoId
+
+                );
+
+            if(
+                punto
+            ){
+
+                puntosCircuito += `
+
+                    <li>
+
+                        ${punto.nombre}
+
+                        (${punto.criticidad})
+
+                    </li>
+
+                `;
+
+            }
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            🗺 ${circuito.nombre}
+
+        </h2>
+
+        <div class="card">
+
+            <p>
+
+                <strong>
+                    Sitio:
+                </strong>
+
+                ${circuito.sitio}
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Duración:
+                </strong>
+
+                ${circuito.duracion}
+                minutos
+
+            </p>
+
+            <p>
+
+                <strong>
+                    Estado:
+                </strong>
+
+                ${
+
+                    circuito.activo
+
+                    ?
+
+                    "✅ Activo"
+
+                    :
+
+                    "⚫ Inactivo"
+
+                }
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>
+
+                📍 Puntos del Circuito
+
+            </h3>
+
+            <ol>
+
+                ${puntosCircuito}
+
+            </ol>
+
+        </div>
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-primary"
+
+                onclick="
+                cargarCircuitos()
+                ">
+
+                ⬅ Volver
+
+            </button>
+
+        </div>
+
+    `;
 
 }
 
