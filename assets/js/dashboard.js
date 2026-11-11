@@ -478,6 +478,41 @@ function cargarDashboardSOC(){
 
             </div>
 
+                </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>
+                🚨 Actividad Operativa
+            </h3>
+
+            <p>
+                🔑 Llaves Prestadas:
+                ${llavesPrestadas}
+            </p>
+
+            <p>
+                🔴 Llaves Demoradas:
+                ${llavesDemoradas}
+            </p>
+
+            <p>
+                🚶 Rondas En Curso:
+                ${rondasCurso}
+            </p>
+
+            <p>
+                ✅ Rondas Finalizadas:
+                ${rondasFinalizadas}
+            </p>
+
+            <p>
+                📝 Total NOV:
+                ${novedades}
+            </p>
+
         </div>
 
     `;
