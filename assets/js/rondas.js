@@ -1933,16 +1933,6 @@ function abrirPuntoRonda(
     id="categoria_hallazgo"
     onchange="actualizarSubcategorias()">
 
-<select
-    id="categoria_hallazgo"
-    onchange="actualizarSubcategorias()">
-
-    <option>
-        Seleccione categoría primero
-    </option>
-
-</select>
-
     <option>
         Seguridad Patrimonial
     </option>
@@ -1985,6 +1975,15 @@ function abrirPuntoRonda(
 
     <option>
         Calidad
+    </option>
+
+</select>
+
+<select
+    id="subcategoria_hallazgo">
+
+    <option>
+        Seleccione categoría primero
     </option>
 
 </select>
@@ -2330,7 +2329,7 @@ function registrarHallazgo(
     subcategoria,
     descripcion
 
-)
+){
 
     const ronda =
 
