@@ -265,3 +265,271 @@ function obtenerEstadisticasCCTV(){
     };
 
 }
+
+/* ==========================
+   MODULO CCTV
+========================== */
+
+function cargarModuloCCTV(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const estadisticas =
+        obtenerEstadisticasCCTV();
+
+    const rangos = [
+
+        "01:00 - 03:00",
+        "03:00 - 05:00",
+        "05:00 - 07:00",
+        "07:00 - 09:00",
+        "09:00 - 11:00",
+        "11:00 - 13:00",
+        "13:00 - 15:00",
+        "15:00 - 17:00",
+        "17:00 - 19:00",
+        "19:00 - 21:00",
+        "21:00 - 23:00",
+        "23:00 - 01:00"
+
+    ];
+
+    let columnasCamaras = "";
+
+    cctvSP360.forEach(
+
+        camara => {
+
+            columnasCamaras += `
+
+                <th>
+
+                    ${camara.codigo}
+
+                </th>
+
+            `;
+
+        }
+
+    );
+
+    let filasControl = "";
+
+    rangos.forEach(
+
+        rango => {
+
+            let controles = `
+
+                <td>
+
+                    ${rango}
+
+                </td>
+
+            `;
+
+            cctvSP360.forEach(
+
+                camara => {
+
+                    controles += `
+
+                        <td>
+
+                            <select>
+
+                                <option>
+
+                                    Funcionando
+
+                                </option>
+
+                                <option>
+
+                                    Con Falla
+
+                                </option>
+
+                                <option>
+
+                                    No Funciona
+
+                                </option>
+
+                            </select>
+
+                        </td>
+
+                    `;
+
+                }
+
+            );
+
+            filasControl += `
+
+                <tr>
+
+                    ${controles}
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📹 CCTV
+
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    📹 Cámaras
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${estadisticas.total}
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    🟢 Funcionando
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${estadisticas.funcionando}
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    🟡 Con Falla
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${estadisticas.conFalla}
+
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+
+                    🔴 No Funciona
+
+                </div>
+
+                <div class="stat-value">
+
+                    ${estadisticas.noFunciona}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>
+
+                📋 Control Diario CCTV
+
+            </h3>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+
+                            Horario
+
+                        </th>
+
+                        ${columnasCamaras}
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${filasControl}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>
+
+                🎥 Tiempo de Grabación
+
+            </h3>
+
+            <input
+
+                type="number"
+
+                placeholder="Días">
+
+            <input
+
+                type="number"
+
+                placeholder="Horas">
+
+            <textarea
+
+                placeholder="
+Observación">
+
+            </textarea>
+
+        </div>
+
+    `;
+
+}
