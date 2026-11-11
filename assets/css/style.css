@@ -593,3 +593,44 @@ td{
         );
 
 }
+
+/* ==========================
+   SOC
+========================== */
+
+.soc-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.soc-card{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+}
+
+.soc-number{
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    margin-top:10px;
+
+}
