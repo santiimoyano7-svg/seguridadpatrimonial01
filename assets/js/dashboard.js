@@ -336,3 +336,150 @@ function cargarDashboardSP360(){
     `;
 
 }
+
+/* ==========================
+   DASHBOARD SOC
+========================== */
+
+function cargarDashboardSOC(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const transportes =
+        transportesSP360
+            ? transportesSP360.length
+            : 0;
+
+    const llavesPrestadas =
+        llavesSP360.filter(
+            l =>
+            l.estado ===
+            "Prestada"
+        ).length;
+
+    const llavesDemoradas =
+        llavesSP360.filter(
+            l =>
+            l.estado ===
+            "Demorada"
+        ).length;
+
+    const rondasCurso =
+        rondasSP360.filter(
+            r =>
+            r.estado ===
+            "En Curso"
+        ).length;
+
+    const rondasFinalizadas =
+        rondasSP360.filter(
+            r =>
+            r.estado ===
+            "Finalizada"
+        ).length;
+
+    const novedades =
+        novedadesSP360
+        ? novedadesSP360.length
+        : 0;
+
+    content.innerHTML = `
+
+        <h2>
+            🛡 SP360 Security Operations Center
+        </h2>
+
+        <div class="soc-grid">
+
+            <div class="soc-card">
+
+                <h3>
+                    🚛 Transportes
+                </h3>
+
+                <div class="soc-number">
+
+                    ${transportes}
+
+                </div>
+
+            </div>
+
+            <div class="soc-card">
+
+                <h3>
+                    🔑 Prestadas
+                </h3>
+
+                <div class="soc-number">
+
+                    ${llavesPrestadas}
+
+                </div>
+
+            </div>
+
+            <div class="soc-card">
+
+                <h3>
+                    🔴 Demoradas
+                </h3>
+
+                <div class="soc-number">
+
+                    ${llavesDemoradas}
+
+                </div>
+
+            </div>
+
+            <div class="soc-card">
+
+                <h3>
+                    🚶 En Curso
+                </h3>
+
+                <div class="soc-number">
+
+                    ${rondasCurso}
+
+                </div>
+
+            </div>
+
+            <div class="soc-card">
+
+                <h3>
+                    ✅ Finalizadas
+                </h3>
+
+                <div class="soc-number">
+
+                    ${rondasFinalizadas}
+
+                </div>
+
+            </div>
+
+            <div class="soc-card">
+
+                <h3>
+                    📝 NOV
+                </h3>
+
+                <div class="soc-number">
+
+                    ${novedades}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
