@@ -47,6 +47,16 @@ function inicializarSP360() {
 function cargarDashboard() {
 
     if (
+        typeof cargarDashboardSOCAvanzado ===
+        "function"
+    ) {
+
+        cargarDashboardSOCAvanzado();
+        return;
+
+    }
+
+    if (
         typeof cargarDashboardSP360 ===
         "function"
     ) {
