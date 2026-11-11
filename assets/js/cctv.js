@@ -1330,8 +1330,6 @@ function cargarModuloCCTV(){
     cargarInventarioCCTV()
     ">
 
-    📚 Inventario
-
 </button>
 
 <br><br>
