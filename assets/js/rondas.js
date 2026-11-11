@@ -1934,7 +1934,8 @@ function abrirPuntoRonda(
     onchange="actualizarSubcategorias()">
 
 <select
-    id="subcategoria_hallazgo">
+    id="categoria_hallazgo"
+    onchange="actualizarSubcategorias()">
 
     <option>
         Seleccione categoría primero
