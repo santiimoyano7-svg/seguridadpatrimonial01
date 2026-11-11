@@ -842,39 +842,6 @@ function abrirControlCamara(
             <h3>
 
     Estado:
-
-    ${estado}
-
-</h3>
-
-<textarea
-
-    id="obs_camara"
-
-    placeholder="
-Observación">
-
-</textarea>
-
-<button
-
-    class="btn btn-success"
-
-    onclick="
-    registrarControlCompleto(
-        '${camara.id}',
-        '${rangoHorario}',
-        '${estado}'
-    )
-    ">
-
-    ✅ Guardar
-
-</button>
-
-            <h3>
-
-    Estado:
     ${estado}
 
 </h3>
