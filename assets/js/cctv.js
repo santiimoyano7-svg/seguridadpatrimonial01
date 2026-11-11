@@ -914,51 +914,39 @@ Observación">
 
 </button>
 
-            <button
+            <h3>
 
-                class="btn btn-success"
+    Estado:
+    ${estado}
 
-                onclick="
-                guardarControlCamara(
-                    '${camara.id}',
-                    '${rangoHorario}',
-                    'Funcionando'
-                )
-                ">
+</h3>
 
-                🟢 Funcionando
+<textarea
 
-            </button>
+    id="obs_camara"
 
-            <button
+    placeholder="
+Observación">
 
-                class="btn btn-warning"
+</textarea>
 
-                onclick="
-                mostrarFormularioFalla(
-                    '${camara.id}',
-                    '${rangoHorario}'
-                )
-                ">
+<br><br>
 
-                🟡 Con Falla
+<button
 
-            </button>
+    class="btn btn-success"
 
-            <button
+    onclick="
+    registrarControlCompleto(
+        '${camara.id}',
+        '${rangoHorario}',
+        '${estado}'
+    )
+    ">
 
-                class="btn btn-danger"
+    ✅ Guardar
 
-                onclick="
-                mostrarFormularioNoFunciona(
-                    '${camara.id}',
-                    '${rangoHorario}'
-                )
-                ">
-
-                🔴 No Funciona
-
-            </button>
+</button>
 
         </div>
 
@@ -1022,27 +1010,6 @@ function guardarControlCamara(
 
 }
 
-function mostrarFormularioFalla(
-
-    camaraId,
-    rangoHorario
-
-){
-
-    const observacion = prompt(
-
-        "Describa la falla"
-
-    );
-
-    if(
-        !observacion
-    ){
-
-        return;
-
-    }
-
     registrarControlCamara({
 
         camaraId,
@@ -1072,27 +1039,6 @@ function mostrarFormularioFalla(
     cargarControlDiarioCCTV();
 
 }
-
-function mostrarFormularioNoFunciona(
-
-    camaraId,
-    rangoHorario
-
-){
-
-    const observacion = prompt(
-
-        "Explique por qué no funciona"
-
-    );
-
-    if(
-        !observacion
-    ){
-
-        return;
-
-    }
 
     registrarControlCamara({
 
@@ -1413,27 +1359,58 @@ function cargarModuloCCTV(){
 
                         <td>
 
-                            <select>
+                            <div
+    class="cctv-estados">
 
-                                <option>
+    <button
 
-                                    Funcionando
+        class="btn btn-success"
 
-                                </option>
+        onclick="
+        guardarControlCamara(
+            '${camara.id}',
+            '${rango}',
+            'Funcionando'
+        )
+        ">
 
-                                <option>
+        🟢
 
-                                    Con Falla
+    </button>
 
-                                </option>
+    <button
 
-                                <option>
+        class="btn btn-warning"
 
-                                    No Funciona
+        onclick="
+        abrirControlCamara(
+            '${camara.id}',
+            '${rango}',
+            'Con Falla'
+        )
+        ">
 
-                                </option>
+        🟡
 
-                            </select>
+    </button>
+
+    <button
+
+        class="btn btn-danger"
+
+        onclick="
+        abrirControlCamara(
+            '${camara.id}',
+            '${rango}',
+            'No Funciona'
+        )
+        ">
+
+        🔴
+
+    </button>
+
+</div>
 
                         </td>
 
