@@ -1984,25 +1984,7 @@ function abrirPuntoRonda(
     
 <select
     id="criticidad_hallazgo">
-
-    <option>
-        Baja
-    </option>
-
-    <option selected>
-        Media
-    </option>
-
-    <option>
-        Alta
-    </option>
-
-</select>
-
-    <option>
-        Seleccione categoría primero
-    </option>
-
+    
 </select>
 
 <br><br>
