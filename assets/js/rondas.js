@@ -1982,6 +1982,23 @@ function abrirPuntoRonda(
 <select
     id="subcategoria_hallazgo">
 
+<select
+    id="criticidad_hallazgo">
+
+    <option>
+        Baja
+    </option>
+
+    <option selected>
+        Media
+    </option>
+
+    <option>
+        Alta
+    </option>
+
+</select>
+
     <option>
         Seleccione categoría primero
     </option>
@@ -2246,6 +2263,12 @@ const categoria =
     document.getElementById(
         "subcategoria_hallazgo"
     ).value;
+
+   const criticidad =
+
+    document.getElementById(
+        "criticidad_hallazgo"
+    ).value;
    
     if(
 
@@ -2301,6 +2324,8 @@ const categoria =
 
     subcategoria,
 
+    criticidad,
+
     observacion
 
 );
@@ -2325,8 +2350,13 @@ function registrarHallazgo(
 
     rondaId,
     puntoId,
+
     categoria,
+
     subcategoria,
+
+    criticidad,
+
     descripcion
 
 ){
@@ -2390,15 +2420,35 @@ Circuito: ${ronda.circuito}
 Categoría:
 ${categoria}
 
-Hallazgo:
-${descripcion}
-
 Subcategoría:
 ${subcategoria}
+
+Criticidad:
+${criticidad}
+
+Hallazgo:
+${descripcion}
         `,
 
         criticidad:
-        criticidades.MEDIA
+
+    criticidad === "Alta"
+
+    ?
+
+    criticidades.ALTA
+
+    :
+
+    criticidad === "Media"
+
+    ?
+
+    criticidades.MEDIA
+
+    :
+
+    criticidades.BAJA
 
     });
 
