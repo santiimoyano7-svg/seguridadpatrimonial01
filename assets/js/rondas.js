@@ -1929,6 +1929,55 @@ function abrirPuntoRonda(
 
             </select>
 
+<select
+    id="categoria_hallazgo">
+
+    <option>
+        Seguridad Patrimonial
+    </option>
+
+    <option>
+        Producción
+    </option>
+
+    <option>
+        Mantenimiento
+    </option>
+
+    <option>
+        Eléctrico
+    </option>
+
+    <option>
+        Accesos
+    </option>
+
+    <option>
+        MAHPI
+    </option>
+
+    <option>
+        Transporte
+    </option>
+
+    <option>
+        Recursos Humanos
+    </option>
+
+    <option>
+        Food Defense
+    </option>
+
+    <option>
+        Edilicio/Limpieza
+    </option>
+
+    <option>
+        Calidad
+    </option>
+
+</select>
+
             <textarea
 
                 id="observacion_punto"
@@ -1937,6 +1986,15 @@ function abrirPuntoRonda(
 Observaciones del punto">
 
             </textarea>
+
+<textarea
+
+    id="hallazgo_detalle"
+
+    placeholder="
+Descripción detallada del hallazgo">
+
+</textarea>
 
             <br><br>
 
@@ -2033,9 +2091,15 @@ function guardarPuntoRonda(
 
     const observacion =
 
-        document.getElementById(
-            "observacion_punto"
-        ).value;
+    document.getElementById(
+        "hallazgo_detalle"
+    ).value;
+
+const categoria =
+
+    document.getElementById(
+        "categoria_hallazgo"
+    ).value;
 
     if(
 
@@ -2077,18 +2141,25 @@ function guardarPuntoRonda(
         new Date().toISOString();
 
     if(
-        resultado ===
-        "Hallazgo"
-    ){
+    resultado ===
+    "Hallazgo"
+){
 
-        registrarHallazgo(
-            rondaId,
-            puntoId
-        );
+    registrarHallazgo(
 
-        return;
+        rondaId,
 
-    }
+        puntoId,
+
+        categoria,
+
+        observacion
+
+    );
+
+    return;
+
+}
 
     guardarRondas();
 
@@ -2105,7 +2176,12 @@ function guardarPuntoRonda(
 function registrarHallazgo(
 
     rondaId,
-    puntoId
+
+    puntoId,
+
+    categoria,
+
+    descripcion
 
 ){
 
@@ -2176,8 +2252,8 @@ function registrarHallazgo(
         modulo:
         "Rondas Inteligentes",
 
-        titulo:
-        `Hallazgo - ${punto.nombre}`,
+       titulo:
+`${categoria} - ${punto.nombre}`
 
         descripcion:
         `
