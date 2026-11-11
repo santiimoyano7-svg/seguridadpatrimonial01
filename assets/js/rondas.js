@@ -1930,7 +1930,17 @@ function abrirPuntoRonda(
             </select>
 
 <select
-    id="categoria_hallazgo">
+    id="categoria_hallazgo"
+    onchange="actualizarSubcategorias()">
+
+<select
+    id="subcategoria_hallazgo">
+
+    <option>
+        Seleccione categoría primero
+    </option>
+
+</select>
 
     <option>
         Seguridad Patrimonial
@@ -2044,6 +2054,137 @@ Descripción detallada del hallazgo">
     `;
 
 }
+
+/* ==========================
+   SUBCATEGORIAS HALLAZGO
+========================== */
+
+function actualizarSubcategorias(){
+
+    const categoria =
+        document.getElementById(
+            "categoria_hallazgo"
+        ).value;
+
+    const combo =
+        document.getElementById(
+            "subcategoria_hallazgo"
+        );
+
+    let opciones = "";
+
+    const categorias = {
+
+        "Seguridad Patrimonial":[
+            "Acceso no autorizado",
+            "Puerta abierta",
+            "Candado dañado",
+            "Precinto violado",
+            "Presencia sospechosa",
+            "Objeto abandonado"
+        ],
+
+        "Producción":[
+            "Detención de línea",
+            "Desvío operativo",
+            "Producto expuesto",
+            "Producto abandonado"
+        ],
+
+        "Mantenimiento":[
+            "Fuga",
+            "Rotura",
+            "Equipo dañado",
+            "Desgaste"
+        ],
+
+        "Eléctrico":[
+            "Cable expuesto",
+            "Tablero abierto",
+            "Protección faltante",
+            "Luminaria fuera de servicio"
+        ],
+
+        "Accesos":[
+            "Portón abierto",
+            "Puerta forzada",
+            "Acceso indebido",
+            "Control omitido"
+        ],
+
+        "MAHPI":[
+            "Acto inseguro",
+            "Condición insegura",
+            "Incumplimiento EPP",
+            "Derrame",
+            "Extintor vencido",
+            "Extintor descargado",
+            "Salida de emergencia bloqueada",
+            "Residuo mal segregado",
+            "Riesgo ambiental",
+            "Riesgo de incendio",
+            "Trabajo inseguro"
+        ],
+
+        "Transporte":[
+            "Precinto incorrecto",
+            "Cabina observada",
+            "Carga insegura",
+            "Documentación irregular"
+        ],
+
+        "Recursos Humanos":[
+            "Personal no identificado",
+            "Visitante sin autorización",
+            "Conducta indebida"
+        ],
+
+        "Food Defense":[
+            "Acceso no autorizado",
+            "Elemento extraño",
+            "Manipulación sospechosa",
+            "Producto vulnerable"
+        ],
+
+        "Edilicio/Limpieza":[
+            "Daño edilicio",
+            "Falta de limpieza",
+            "Derrame",
+            "Obstrucción"
+        ],
+
+        "Calidad":[
+            "Producto fuera de especificación",
+            "Material mal identificado",
+            "Incumplimiento GMP",
+            "Contaminación"
+        ]
+
+    };
+
+    categorias[categoria].forEach(
+
+        item => {
+
+            opciones += `
+
+                <option>
+
+                    ${item}
+
+                </option>
+
+            `;
+
+        }
+
+    );
+
+    combo.innerHTML =
+        opciones;
+
+}
+
 /* ==========================
    GUARDAR PUNTO RONDA
 ========================== */
@@ -2101,6 +2242,11 @@ const categoria =
         "categoria_hallazgo"
     ).value;
 
+   const subcategoria =
+    document.getElementById(
+        "subcategoria_hallazgo"
+    ).value;
+   
     if(
 
         (
@@ -2147,15 +2293,17 @@ const categoria =
 
     registrarHallazgo(
 
-        rondaId,
+    rondaId,
 
-        puntoId,
+    puntoId,
 
-        categoria,
+    categoria,
 
-        observacion
+    subcategoria,
 
-    );
+    observacion
+
+);
 
     return;
 
@@ -2178,9 +2326,10 @@ function registrarHallazgo(
     rondaId,
     puntoId,
     categoria,
+    subcategoria,
     descripcion
 
-){
+)
 
     const ronda =
 
@@ -2230,7 +2379,7 @@ function registrarHallazgo(
         "Rondas Inteligentes",
 
         titulo:
-        `${categoria} - ${punto.nombre}`,
+`${categoria} - ${subcategoria}`,
 
         descripcion:
         `
@@ -2243,6 +2392,9 @@ ${categoria}
 
 Hallazgo:
 ${descripcion}
+
+Subcategoría:
+${subcategoria}
         `,
 
         criticidad:
