@@ -1039,7 +1039,6 @@ function guardarControlCamara(
     cargarControlDiarioCCTV();
 
 }
-
     registrarControlCamara({
 
         camaraId,
