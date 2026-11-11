@@ -222,7 +222,7 @@ function registrarTiempoGrabacion({
    ESTADISTICAS
 ========================== */
 
-function obtenerEstadistic*sCCTV(){
+function obtenerEstadisticasCCTV(){
 
     return {
 
