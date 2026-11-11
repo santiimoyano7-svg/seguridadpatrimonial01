@@ -226,41 +226,41 @@ function obtenerEstadistic*sCCTV(){
 
     return {
 
-        to*al:
+        total:
         cctvSP360.length,
 
-   *    funcionando:
+      funcionando:
 
-        cctvSP36*.filter(
+        cctvSP360.filter(
 
             c =>
 
-      *     c.estado ===
-            esta*osCCTV.FUNCIONANDO
+           c.estado ===
+            estadosCCTV.FUNCIONANDO
 
-        ).leng*h,
+        ).length,
 
         conFalla:
 
-        cct*SP360.filter(
+        cctvSP360.filter(
 
             c =>
 
- *          c.estado ===
-           *estadosCCTV.CON_FALLA
+           c.estado ===
+           estadosCCTV.CON_FALLA
 
-        ).l*ngth,
+        ).length,
 
         noFunciona:
 
-      * cctvSP360.filter(
+       cctvSP360.filter(
 
-            c *>
+            c =>
 
             c.estado ===
-      *     estadosCCTV.NO_FUNCIONA
+           estadosCCTV.NO_FUNCIONA
 
-    *   ).length
+       ).length
 
     };
 
