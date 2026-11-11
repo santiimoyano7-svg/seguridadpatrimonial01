@@ -2217,26 +2217,6 @@ function registrarHallazgo(
 
     }
 
-    const descripcion =
-
-        prompt(
-            "Describa el hallazgo"
-        );
-
-    if(
-
-        !descripcion
-
-        ||
-
-        descripcion.trim() === ""
-
-    ){
-
-        return;
-
-    }
-
     punto.completado = true;
 
     punto.hallazgo = true;
