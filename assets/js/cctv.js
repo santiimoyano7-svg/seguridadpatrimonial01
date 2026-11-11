@@ -589,6 +589,290 @@ Buscar cámara"
 }
 
 /* ==========================
+   CONTROL DIARIO CCTV
+========================== */
+
+function cargarControlDiarioCCTV(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const horarios = [
+
+        "01:00 - 03:00",
+        "03:00 - 05:00",
+        "05:00 - 07:00",
+        "07:00 - 09:00",
+        "09:00 - 11:00",
+        "11:00 - 13:00",
+        "13:00 - 15:00",
+        "15:00 - 17:00",
+        "17:00 - 19:00",
+        "19:00 - 21:00",
+        "21:00 - 23:00",
+        "23:00 - 01:00"
+
+    ];
+
+    let columnas = "";
+
+    cctvSP360.forEach(
+
+        camara => {
+
+            columnas += `
+
+                <th>
+
+                    ${camara.codigo}
+
+                </th>
+
+            `;
+
+        }
+
+    );
+
+    let filas = "";
+
+    horarios.forEach(
+
+        horario => {
+
+            let fila = `
+
+                <td>
+
+                    ${horario}
+
+                </td>
+
+            `;
+
+            cctvSP360.forEach(
+
+                camara => {
+
+                    fila += `
+
+                        <td>
+
+                            <button
+
+                                class="btn btn-success"
+
+                                onclick="
+                                abrirControlCamara(
+                                    '${camara.id}',
+                                    '${horario}'
+                                )
+                                ">
+
+                                Controlar
+
+                            </button>
+
+                        </td>
+
+                    `;
+
+                }
+
+            );
+
+            filas += `
+
+                <tr>
+
+                    ${fila}
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📋 Control Diario CCTV
+
+        </h2>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+
+                            Horario
+
+                        </th>
+
+                        ${columnas}
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button
+
+            class="btn btn-primary"
+
+            onclick="
+            cargarModuloCCTV()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+/* ==========================
+   CONTROL CAMARA
+========================== */
+
+function abrirControlCamara(
+
+    camaraId,
+    horario
+
+){
+
+    const camara =
+
+        cctvSP360.find(
+
+            c => c.id == camaraId
+
+        );
+
+    if(
+        !camara
+    ){
+
+        return;
+
+    }
+
+    const estado = prompt(
+
+`📹 ${camara.codigo}
+
+Horario:
+${horario}
+
+Estado:
+
+1 = Funcionando
+2 = Con Falla
+3 = No Funciona`
+
+    );
+
+    if(
+        estado === null
+    ){
+
+        return;
+
+    }
+
+    let resultado =
+
+        estadosCCTV.FUNCIONANDO;
+
+    if(
+        estado === "2"
+    ){
+
+        resultado =
+        estadosCCTV.CON_FALLA;
+
+    }
+
+    if(
+        estado === "3"
+    ){
+
+        resultado =
+        estadosCCTV.NO_FUNCIONA;
+
+    }
+
+    const observacion =
+
+        resultado !==
+        estadosCCTV.FUNCIONANDO
+
+        ?
+
+        prompt(
+            "Observación"
+        )
+
+        :
+
+        "";
+
+    registrarControlCamara({
+
+        camaraId,
+
+        rangoHorario:
+        horario,
+
+        horaControl:
+        new Date()
+        .toLocaleTimeString(),
+
+        estado:
+        resultado,
+
+        observacion:
+        observacion || "",
+
+        usuario:
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Guardia"
+
+    });
+
+    alert(
+        "Control registrado"
+    );
+
+}
+
+/* ==========================
    FILTRAR INVENTARIO CCTV
 ========================== */
 
@@ -834,6 +1118,27 @@ function cargarModuloCCTV(){
 
 <br><br>
 
+<button
+    class="btn btn-primary"
+    onclick="
+    cargarControlDiarioCCTV()
+    ">
+
+    📋 Control Diario
+
+</button>
+
+<button
+    class="btn btn-primary"
+    onclick="
+    cargarInventarioCCTV()
+    ">
+
+    📚 Inventario
+
+</button>
+
+<br><br>
         <div class="stats">
 
             <div class="stat">
