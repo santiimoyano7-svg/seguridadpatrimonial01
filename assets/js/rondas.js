@@ -2860,13 +2860,24 @@ function verDetalleRonda(id){
 
                     <td>
 
-                        ${fechaControl}
+    ${fechaControl}
 
-                    </td>
-                    
+</td>
+
 <td>
 
-    ${punto.evidencia || "-"}
+    ${
+        punto.evidencia
+
+        ?
+
+        `📸 ${punto.evidencia}`
+
+        :
+
+        "-"
+
+    }
 
 </td>
 
