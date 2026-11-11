@@ -426,6 +426,216 @@ function guardarNuevaCamara(){
 }
 
 /* ==========================
+   INVENTARIO CCTV
+========================== */
+
+function cargarInventarioCCTV(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let filas = "";
+
+    cctvSP360.forEach(
+
+        camara => {
+
+            let estado = "🟢 Funcionando";
+
+            if(
+                camara.estado ===
+                estadosCCTV.CON_FALLA
+            ){
+
+                estado =
+                "🟡 Con Falla";
+
+            }
+
+            if(
+                camara.estado ===
+                estadosCCTV.NO_FUNCIONA
+            ){
+
+                estado =
+                "🔴 No Funciona";
+
+            }
+
+            filas += `
+
+                <tr>
+
+                    <td>
+                        ${camara.codigo}
+                    </td>
+
+                    <td>
+                        ${camara.nombre}
+                    </td>
+
+                    <td>
+                        ${camara.sector}
+                    </td>
+
+                    <td>
+                        ${camara.sitio}
+                    </td>
+
+                    <td>
+                        ${camara.criticidad}
+                    </td>
+
+                    <td>
+                        ${estado}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+
+            📚 Inventario CCTV
+
+        </h2>
+
+        <div class="card">
+
+            <input
+
+                id="buscar_camara"
+
+                placeholder="
+Buscar cámara"
+
+                onkeyup="
+                filtrarInventarioCCTV()
+                ">
+
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+
+                        <th>
+                            Nombre
+                        </th>
+
+                        <th>
+                            Sector
+                        </th>
+
+                        <th>
+                            Sitio
+                        </th>
+
+                        <th>
+                            Criticidad
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="inventario_cctv">
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button
+
+            class="btn btn-primary"
+
+            onclick="
+            cargarModuloCCTV()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+/* ==========================
+   FILTRAR INVENTARIO CCTV
+========================== */
+
+function filtrarInventarioCCTV(){
+
+    const texto =
+
+        document.getElementById(
+            "buscar_camara"
+        ).value.toUpperCase();
+
+    const filas =
+
+        document.querySelectorAll(
+            "#inventario_cctv tr"
+        );
+
+    filas.forEach(
+
+        fila => {
+
+            const contenido =
+
+                fila.innerText
+                .toUpperCase();
+
+            fila.style.display =
+
+                contenido.includes(
+                    texto
+                )
+
+                ?
+
+                ""
+
+                :
+
+                "none";
+
+        }
+
+    );
+
+}
+
+/* ==========================
    ESTADISTICAS
 ========================== */
 
@@ -599,6 +809,18 @@ function cargarModuloCCTV(){
             📹 CCTV
 
         </h2>
+
+<button
+    class="btn btn-primary"
+    onclick="
+    cargarInventarioCCTV()
+    ">
+
+    📚 Inventario
+
+</button>
+
+<br><br>
 
 <button
     class="btn btn-success"
