@@ -2253,7 +2253,13 @@ function guardarPuntoRonda(
         document.getElementById(
             "resultado_punto"
         ).value;
+   
+const evidencia =
 
+    document.getElementById(
+        "evidencia_punto"
+    ).files[0];
+   
     const observacion =
 
     document.getElementById(
@@ -2312,6 +2318,18 @@ const categoria =
 
     punto.observacion =
         observacion;
+   
+punto.evidencia =
+
+    evidencia
+
+    ?
+
+    evidencia.name
+
+    :
+
+    "";
 
     punto.fechaControl =
         new Date().toISOString();
@@ -2406,7 +2424,23 @@ function registrarHallazgo(
 
     punto.observacion =
         descripcion;
+   
+punto.evidencia =
 
+    document.getElementById(
+        "evidencia_punto"
+    ).files[0]
+
+    ?
+
+    document.getElementById(
+        "evidencia_punto"
+    ).files[0].name
+
+    :
+
+    "";
+   
     punto.fechaControl =
         new Date().toISOString();
 
@@ -2435,6 +2469,9 @@ ${criticidad}
 
 Hallazgo:
 ${descripcion}
+
+Evidencia:
+${punto.evidencia || "Sin evidencia"}
         `,
 
         criticidad:
@@ -2826,6 +2863,12 @@ function verDetalleRonda(id){
                         ${fechaControl}
 
                     </td>
+                    
+<td>
+
+    ${punto.evidencia || "-"}
+
+</td>
 
                 </tr>
 
@@ -2941,6 +2984,10 @@ function verDetalleRonda(id){
                         <th>
                             Fecha Control
                         </th>
+                        
+<th>
+    Evidencia
+</th>
 
                     </tr>
 
