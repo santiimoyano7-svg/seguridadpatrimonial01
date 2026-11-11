@@ -658,30 +658,26 @@ function cargarControlDiarioCCTV(){
 
                     fila += `
 
-                        <td>
+    <td>
 
-                            <div
-    class="cctv-control-btn"
+        <button
 
-    onclick="
-    abrirControlCamara(
-        '${camara.id}',
-        '${horario}'
-    )
-    ">
+            class="btn btn-primary"
 
-    onclick="
-abrirControlCamara(
-    '${camara.id}',
-    '${horario}'
-)
-"
+            onclick="
+            abrirControlCamara(
+                '${camara.id}',
+                '${horario}'
+            )
+            ">
 
-</div>
+            📹 Controlar
 
-                        </td>
+        </button>
 
-                    `;
+    </td>
+
+`;
 
                 }
 
