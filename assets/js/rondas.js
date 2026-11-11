@@ -1981,7 +1981,7 @@ function abrirPuntoRonda(
 
 <select
     id="subcategoria_hallazgo">
-
+    
 <select
     id="criticidad_hallazgo">
 
@@ -2001,6 +2001,31 @@ function abrirPuntoRonda(
 
     <option>
         Seleccione categoría primero
+    </option>
+
+</select>
+
+<br><br>
+
+<label>
+
+    Criticidad
+
+</label>
+
+<select
+    id="criticidad_hallazgo">
+
+    <option>
+        Baja
+    </option>
+
+    <option selected>
+        Media
+    </option>
+
+    <option>
+        Alta
     </option>
 
 </select>
