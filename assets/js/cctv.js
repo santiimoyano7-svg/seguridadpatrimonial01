@@ -660,20 +660,58 @@ function cargarControlDiarioCCTV(){
 
     <td>
 
-        <button
+        <div
+    class="cctv-estados">
 
-            class="btn btn-primary"
+    <button
 
-            onclick="
-            abrirControlCamara(
-                '${camara.id}',
-                '${horario}'
-            )
-            ">
+        class="btn btn-success"
 
-            📹 Controlar
+        onclick="
+        guardarControlCamara(
+            '${camara.id}',
+            '${horario}',
+            'Funcionando'
+        )
+        ">
 
-        </button>
+        🟢
+
+    </button>
+
+    <button
+
+        class="btn btn-warning"
+
+        onclick="
+        abrirControlCamara(
+            '${camara.id}',
+            '${horario}',
+            'Con Falla'
+        )
+        ">
+
+        🟡
+
+    </button>
+
+    <button
+
+        class="btn btn-danger"
+
+        onclick="
+        abrirControlCamara(
+            '${camara.id}',
+            '${horario}',
+            'No Funciona'
+        )
+        ">
+
+        🔴
+
+    </button>
+
+</div>
 
     </td>
 
@@ -760,7 +798,10 @@ function cargarControlDiarioCCTV(){
 function abrirControlCamara(
 
     camaraId,
-    rangoHorario
+
+    rangoHorario,
+
+    estado
 
 ){
 
@@ -842,9 +883,36 @@ function abrirControlCamara(
 
             <h3>
 
-                Estado de la Cámara
+    Estado:
 
-            </h3>
+    ${estado}
+
+</h3>
+
+<textarea
+
+    id="obs_camara"
+
+    placeholder="
+Observación">
+
+</textarea>
+
+<button
+
+    class="btn btn-success"
+
+    onclick="
+    registrarControlCompleto(
+        '${camara.id}',
+        '${rangoHorario}',
+        '${estado}'
+    )
+    ">
+
+    ✅ Guardar
+
+</button>
 
             <button
 
@@ -1067,6 +1135,109 @@ function mostrarFormularioNoFunciona(
         criticidades.MEDIA
 
     });
+
+    cargarControlDiarioCCTV();
+
+}
+
+/* ==========================
+   REGISTRAR CONTROL COMPLETO
+========================== */
+
+function registrarControlCompleto(
+
+    camaraId,
+
+    rangoHorario,
+
+    estado
+
+){
+
+    const observacion =
+
+        document.getElementById(
+            "obs_camara"
+        ).value;
+
+    if(
+
+        (
+            estado ===
+            "Con Falla"
+
+            ||
+
+            estado ===
+            "No Funciona"
+
+        )
+
+        &&
+
+        observacion.trim() === ""
+
+    ){
+
+        alert(
+            "Debe completar la observación."
+        );
+
+        return;
+
+    }
+
+    registrarControlCamara({
+
+        camaraId,
+
+        rangoHorario,
+
+        horaControl:
+
+        new Date()
+        .toLocaleTimeString(),
+
+        estado,
+
+        observacion,
+
+        usuario:
+
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Guardia"
+
+    });
+
+    if(
+        estado ===
+        "No Funciona"
+    ){
+
+        crearNovedad({
+
+            modulo:
+            "CCTV",
+
+            titulo:
+            "Camara Fuera de Servicio",
+
+            descripcion:
+            observacion,
+
+            criticidad:
+            criticidades.MEDIA
+
+        });
+
+    }
+
+    alert(
+        "Control registrado correctamente"
+    );
 
     cargarControlDiarioCCTV();
 
