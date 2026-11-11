@@ -660,20 +660,24 @@ function cargarControlDiarioCCTV(){
 
                         <td>
 
-                            <button
+                            <div
+    class="cctv-control-btn"
 
-                                class="btn btn-success"
+    onclick="
+    abrirControlCamara(
+        '${camara.id}',
+        '${horario}'
+    )
+    ">
 
-                                onclick="
-                                abrirControlCamara(
-                                    '${camara.id}',
-                                    '${horario}'
-                                )
-                                ">
+    onclick="
+abrirControlCamara(
+    '${camara.id}',
+    '${horario}'
+)
+"
 
-                                Controlar
-
-                            </button>
+</div>
 
                         </td>
 
@@ -760,7 +764,7 @@ function cargarControlDiarioCCTV(){
 function abrirControlCamara(
 
     camaraId,
-    horario
+    rangoHorario
 
 ){
 
@@ -768,7 +772,8 @@ function abrirControlCamara(
 
         cctvSP360.find(
 
-            c => c.id == camaraId
+            c =>
+            c.id == camaraId
 
         );
 
@@ -780,84 +785,163 @@ function abrirControlCamara(
 
     }
 
-    const estado = prompt(
+    const content =
+        document.getElementById(
+            "content"
+        );
 
-`📹 ${camara.codigo}
+    content.innerHTML = `
 
-Horario:
-${horario}
+        <h2>
 
-Estado:
+            📹 Control de Cámara
 
-1 = Funcionando
-2 = Con Falla
-3 = No Funciona`
+        </h2>
 
-    );
+        <div class="card">
 
-    if(
-        estado === null
-    ){
+            <p>
 
-        return;
+                <strong>
+                    Código:
+                </strong>
 
-    }
+                ${camara.codigo}
 
-    let resultado =
+            </p>
 
-        estadosCCTV.FUNCIONANDO;
+            <p>
 
-    if(
-        estado === "2"
-    ){
+                <strong>
+                    Nombre:
+                </strong>
 
-        resultado =
-        estadosCCTV.CON_FALLA;
+                ${camara.nombre}
 
-    }
+            </p>
 
-    if(
-        estado === "3"
-    ){
+            <p>
 
-        resultado =
-        estadosCCTV.NO_FUNCIONA;
+                <strong>
+                    Sector:
+                </strong>
 
-    }
+                ${camara.sector}
 
-    const observacion =
+            </p>
 
-        resultado !==
-        estadosCCTV.FUNCIONANDO
+            <p>
 
-        ?
+                <strong>
+                    Horario:
+                </strong>
 
-        prompt(
-            "Observación"
-        )
+                ${rangoHorario}
 
-        :
+            </p>
 
-        "";
+        </div>
+
+        <div class="card">
+
+            <h3>
+
+                Estado de la Cámara
+
+            </h3>
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                guardarControlCamara(
+                    '${camara.id}',
+                    '${rangoHorario}',
+                    'Funcionando'
+                )
+                ">
+
+                🟢 Funcionando
+
+            </button>
+
+            <button
+
+                class="btn btn-warning"
+
+                onclick="
+                mostrarFormularioFalla(
+                    '${camara.id}',
+                    '${rangoHorario}'
+                )
+                ">
+
+                🟡 Con Falla
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                mostrarFormularioNoFunciona(
+                    '${camara.id}',
+                    '${rangoHorario}'
+                )
+                ">
+
+                🔴 No Funciona
+
+            </button>
+
+        </div>
+
+        <br>
+
+        <button
+
+            class="btn btn-primary"
+
+            onclick="
+            cargarControlDiarioCCTV()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+function guardarControlCamara(
+
+    camaraId,
+    rangoHorario,
+    estado
+
+){
 
     registrarControlCamara({
 
         camaraId,
 
-        rangoHorario:
-        horario,
+        rangoHorario,
 
         horaControl:
+
         new Date()
         .toLocaleTimeString(),
 
-        estado:
-        resultado,
+        estado,
 
         observacion:
-        observacion || "",
+        "",
 
         usuario:
+
         usuarioActivo
         ?
         usuarioActivo.nombre
@@ -867,8 +951,128 @@ Estado:
     });
 
     alert(
-        "Control registrado"
+        "Control registrado correctamente"
     );
+
+    cargarControlDiarioCCTV();
+
+}
+
+function mostrarFormularioFalla(
+
+    camaraId,
+    rangoHorario
+
+){
+
+    const observacion = prompt(
+
+        "Describa la falla"
+
+    );
+
+    if(
+        !observacion
+    ){
+
+        return;
+
+    }
+
+    registrarControlCamara({
+
+        camaraId,
+
+        rangoHorario,
+
+        horaControl:
+
+        new Date()
+        .toLocaleTimeString(),
+
+        estado:
+        estadosCCTV.CON_FALLA,
+
+        observacion,
+
+        usuario:
+
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Guardia"
+
+    });
+
+    cargarControlDiarioCCTV();
+
+}
+
+function mostrarFormularioNoFunciona(
+
+    camaraId,
+    rangoHorario
+
+){
+
+    const observacion = prompt(
+
+        "Explique por qué no funciona"
+
+    );
+
+    if(
+        !observacion
+    ){
+
+        return;
+
+    }
+
+    registrarControlCamara({
+
+        camaraId,
+
+        rangoHorario,
+
+        horaControl:
+
+        new Date()
+        .toLocaleTimeString(),
+
+        estado:
+        estadosCCTV.NO_FUNCIONA,
+
+        observacion,
+
+        usuario:
+
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Guardia"
+
+    });
+
+    crearNovedad({
+
+        modulo:
+        "CCTV",
+
+        titulo:
+        "Camara Fuera de Servicio",
+
+        descripcion:
+        observacion,
+
+        criticidad:
+        criticidades.MEDIA
+
+    });
+
+    cargarControlDiarioCCTV();
 
 }
 
