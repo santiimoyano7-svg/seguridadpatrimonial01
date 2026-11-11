@@ -6,10 +6,37 @@
    BASE DE DATOS
 ========================== */
 
-let cctvSP360 =
+{
+    id:
+    Date.now(),
+
+    codigo:
+    "CAM-001",
+
+    nombre:
+    "Portería Principal",
+
+    sector:
+    "Portería",
+
+    criticidad:
+    "Alta",
+
+    estado:
+    "Funcionando",
+
+    activa:
+    true,
+
+    sitio:
+    "Bagley Totoral"
+}
+
+let controlesCCTVSP360 =
+
 JSON.parse(
     localStorage.getItem(
-        "sp360_cctv"
+        "sp360_controles_cctv"
     )
 ) || [];
 
@@ -37,14 +64,14 @@ function guardarCCTV(){
 
 const estadosCCTV = {
 
-    OPERATIVA:
-    "Operativa",
+    FUNCIONANDO:
+    "Funcionando",
 
-    FALLA:
+    CON_FALLA:
     "Con Falla",
 
-    FUERA_SERVICIO:
-    "Fuera de Servicio"
+    NO_FUNCIONA:
+    "No Funciona"
 
 };
 
@@ -63,22 +90,32 @@ function crearCamara({
     const trazabilidad =
         crearTrazabilidad();
 
-    const camara = {
+   const camara = {
 
-        id:
-        `CAM-${Date.now()}`,
+    id:
+    `CAM-${Date.now()}`,
 
-        nombre,
+    codigo:
+    `CAM-${cctvSP360.length + 1}`,
 
-        sector,
+    nombre,
 
-        estado:
-        estadosCCTV.OPERATIVA,
+    sector,
+
+    criticidad:
+    "Media",
+
+    estado:
+    estadosCCTV.FUNCIONANDO,
+
+    observaciones: [],
+
+    controles: [],
+
+    sitio:
+    trazabilidad.sitio,
 
         observaciones: [],
-
-        sitio:
-        trazabilidad.sitio,
 
         creadoPor:
         trazabilidad.usuario,
@@ -182,7 +219,7 @@ function actualizarEstadoCamara({
     if(
 
         estado ===
-        estadosCCTV.FALLA
+estadosCCTV.CON_FALLA
 
         ||
 
@@ -262,7 +299,7 @@ function obtenerCamarasConFalla(){
         camara =>
 
         camara.estado ===
-        estadosCCTV.FALLA
+        estadosCCTV.CON_FALLA
 
     );
 
@@ -406,5 +443,92 @@ function cargarModuloCCTV(){
         </div>
 
     `;
+
+}
+
+function guardarControlesCCTV(){
+
+    localStorage.setItem(
+
+        "sp360_controles_cctv",
+
+        JSON.stringify(
+            controlesCCTVSP360
+        )
+
+    );
+
+}
+
+function registrarControlCamara({
+
+    camaraId,
+
+    rangoHorario,
+
+    horaControl,
+
+    estado,
+
+    observacion,
+
+    usuario
+
+}){
+
+    controlesCCTVSP360.push({
+
+        id:
+        Date.now(),
+
+        camaraId,
+
+        rangoHorario,
+
+        horaControl,
+
+        estado,
+
+        observacion,
+
+        usuario,
+
+        fecha:
+        new Date().toISOString()
+
+    });
+
+    guardarControlesCCTV();
+
+}
+
+let grabacionCCTVSP360 =
+
+JSON.parse(
+    localStorage.getItem(
+        "sp360_grabacion_cctv"
+    )
+) || [];
+
+function registrarTiempoGrabacion(){
+
+}
+{
+
+    fecha:
+
+    "11/11/2026",
+
+    dias:
+    21,
+
+    horas:
+    4,
+
+    observacion:
+    "Sin novedades",
+
+    usuario:
+    "MEDRANO"
 
 }
