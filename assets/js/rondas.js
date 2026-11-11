@@ -2229,15 +2229,26 @@ function registrarHallazgo(
 
     crearNovedad({
 
-        modulo:
-        "Rondas Inteligentes",
+    modulo:
+    "Rondas Inteligentes",
 
-       titulo:
-`${categoria} - ${punto.nombre}`
+    titulo:
+    `${categoria} - ${punto.nombre}`,
 
-        descripcion:
-        `
+    descripcion:
+    `
 Punto: ${punto.nombre}
+
+Circuito: ${ronda.circuito}
+
+Hallazgo:
+${descripcion}
+    `,
+
+    criticidad:
+    criticidades.MEDIA
+
+});
 
 Circuito: ${ronda.circuito}
 
