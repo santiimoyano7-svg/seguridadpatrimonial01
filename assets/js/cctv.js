@@ -219,6 +219,213 @@ function registrarTiempoGrabacion({
 }
 
 /* ==========================
+   NUEVA CAMARA
+========================== */
+
+function abrirNuevaCamara(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+
+            ➕ Nueva Cámara
+
+        </h2>
+
+        <div class="card">
+
+            <input
+
+                id="cam_codigo"
+
+                placeholder="
+Código Cámara">
+
+            <input
+
+                id="cam_nombre"
+
+                placeholder="
+Nombre de Cámara">
+
+            <input
+
+                id="cam_sector"
+
+                placeholder="
+Sector">
+
+            <select
+                id="cam_sitio">
+
+                <option>
+                    Bagley Totoral
+                </option>
+
+                <option>
+                    Cartocor Totoral
+                </option>
+
+                <option>
+                    Arcor Caroya
+                </option>
+
+                <option>
+                    Bagley Córdoba
+                </option>
+
+                <option>
+                    Edificio Chacabuco
+                </option>
+
+            </select>
+
+            <select
+                id="cam_criticidad">
+
+                <option>
+                    Alta
+                </option>
+
+                <option>
+                    Media
+                </option>
+
+                <option>
+                    Baja
+                </option>
+
+            </select>
+
+        </div>
+
+        <div class="card">
+
+            <button
+
+                class="btn btn-success"
+
+                onclick="
+                guardarNuevaCamara()
+                ">
+
+                ✅ Guardar Cámara
+
+            </button>
+
+            <button
+
+                class="btn btn-danger"
+
+                onclick="
+                cargarModuloCCTV()
+                ">
+
+                ❌ Cancelar
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   GUARDAR CAMARA
+========================== */
+
+function guardarNuevaCamara(){
+
+    const codigo =
+        document.getElementById(
+            "cam_codigo"
+        ).value;
+
+    const nombre =
+        document.getElementById(
+            "cam_nombre"
+        ).value;
+
+    const sector =
+        document.getElementById(
+            "cam_sector"
+        ).value;
+
+    const sitio =
+        document.getElementById(
+            "cam_sitio"
+        ).value;
+
+    const criticidad =
+        document.getElementById(
+            "cam_criticidad"
+        ).value;
+
+    if(
+        codigo.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el código de cámara"
+        );
+
+        return;
+
+    }
+
+    if(
+        nombre.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el nombre de cámara"
+        );
+
+        return;
+
+    }
+
+    if(
+        sector.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar el sector"
+        );
+
+        return;
+
+    }
+
+    crearCamara({
+
+        codigo,
+
+        nombre,
+
+        sector,
+
+        criticidad,
+
+        sitio
+
+    });
+
+    alert(
+        "Cámara registrada correctamente"
+    );
+
+    cargarModuloCCTV();
+
+}
+
+/* ==========================
    ESTADISTICAS
 ========================== */
 
@@ -392,6 +599,18 @@ function cargarModuloCCTV(){
             📹 CCTV
 
         </h2>
+
+<button
+    class="btn btn-success"
+    onclick="
+    abrirNuevaCamara()
+    ">
+
+    ➕ Nueva Cámara
+
+</button>
+
+<br><br>
 
         <div class="stats">
 
