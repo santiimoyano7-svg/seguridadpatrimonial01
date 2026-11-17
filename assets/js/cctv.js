@@ -894,18 +894,30 @@ Observación">
 }
 
 function guardarControlCamara(
-
     camaraId,
     rangoHorario,
     estado
-
 ){
+    registrarControlCamara({
+        camaraId,
+        rangoHorario,
+        horaControl: new Date().toLocaleTimeString(),
+        estado,
+        observacion: "",
+        usuario:
+            usuarioActivo
+                ? usuarioActivo.nombre
+                : "Guardia"
+    });
+
+    alert("Control registrado correctamente");
+}
 
 /* ==========================
    REGISTRAR CONTROL COMPLETO
 ========================== */
-
 function registrarControlCompleto(
+
 
     camaraId,
 
