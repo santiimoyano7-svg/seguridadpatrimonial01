@@ -835,8 +835,6 @@ function abrirControlCamara(
 
         </h2>
 
-        </div>
-
         <div class="card">
 
             <h3>
