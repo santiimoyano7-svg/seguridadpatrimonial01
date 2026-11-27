@@ -1011,6 +1011,216 @@ function obtenerEstadisticasCCTV(){
 }
 
 /* ==========================
+   HISTORIAL CCTV
+========================== */
+
+function cargarHistorialCCTV(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    let filas = "";
+
+    controlesCCTVSP360
+        .slice()
+        .reverse()
+        .forEach(
+
+        control => {
+
+            const camara =
+                cctvSP360.find(
+                    c =>
+                    String(c.id)
+                    ===
+                    String(control.camaraId)
+                );
+
+            filas += `
+
+                <tr>
+
+                    <td>
+                        ${control.fecha}
+                    </td>
+
+                    <td>
+                        ${control.rangoHorario}
+                    </td>
+
+                    <td>
+                        ${
+                            camara
+                            ?
+                            camara.codigo
+                            :
+                            "-"
+                        }
+                    </td>
+
+                    <td>
+                        ${control.estado}
+                    </td>
+
+                    <td>
+                        ${control.usuario}
+                    </td>
+
+                    <td>
+                        ${control.horaControl}
+                    </td>
+
+                    <td>
+                        ${
+                            control.observacion
+                            ?
+                            control.observacion
+                            :
+                            "-"
+                        }
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+            📝 Historial CCTV
+        </h2>
+
+        <div class="card">
+
+            <input
+                id="historial_buscar"
+                placeholder="Buscar cámara, usuario o estado"
+                onkeyup="
+                filtrarHistorialCCTV()
+                ">
+
+        </div>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Horario
+                        </th>
+
+                        <th>
+                            Cámara
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Usuario
+                        </th>
+
+                        <th>
+                            Hora
+                        </th>
+
+                        <th>
+                            Observación
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="historial_cctv">
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn btn-primary"
+            onclick="
+            cargarModuloCCTV()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+/* ==========================
+   FILTRAR HISTORIAL CCTV
+========================== */
+
+function filtrarHistorialCCTV(){
+
+    const texto =
+
+        document
+        .getElementById(
+            "historial_buscar"
+        )
+        .value
+        .toUpperCase();
+
+    const filas =
+
+        document.querySelectorAll(
+            "#historial_cctv tr"
+        );
+
+    filas.forEach(
+
+        fila => {
+
+            const contenido =
+
+                fila.innerText
+                .toUpperCase();
+
+            fila.style.display =
+
+                contenido.includes(
+                    texto
+                )
+
+                ? ""
+
+                : "none";
+
+        }
+
+    );
+
+}
+
+/* ==========================
    OBTENER CONTROL DEL DIA
 ========================== */
 
