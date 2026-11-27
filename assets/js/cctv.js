@@ -935,33 +935,68 @@ function registrarControlCompleto(
     });
 
     if(
-        estado ===
-        "No Funciona"
+    estado ===
+    "No Funciona"
+){
+
+    if(
+        typeof crearNovedad ===
+        "function"
     ){
 
-        if(
-            typeof crearNovedad ===
-            "function"
-        ){
+        const camara =
 
-            crearNovedad({
+            cctvSP360.find(
+                c =>
+                String(c.id)
+                ===
+                String(camaraId)
+            );
 
-                modulo: "CCTV",
+        crearNovedad({
 
-                titulo:
-                    "Camara Fuera de Servicio",
+            modulo:
+                "CCTV",
 
-                descripcion:
-                    observacion,
+            titulo:
+                "Camara Fuera de Servicio",
 
-                criticidad:
-                    criticidades.MEDIA
+            descripcion:
 
-            });
+                `Cámara: ${
+                    camara
+                    ?
+                    camara.codigo
+                    :
+                    camaraId
+                }
 
-        }
+Horario:
+${rangoHorario}
+
+Fecha:
+${new Date().toLocaleDateString("es-AR")}
+
+Usuario:
+${
+    usuarioActivo
+    ?
+    usuarioActivo.nombre
+    :
+    "Guardia"
+}
+
+Observación:
+${observacion}`,
+
+            criticidad:
+                criticidades.MEDIA
+
+        });
 
     }
+
+}
 
     alert(
         "Control registrado correctamente"
