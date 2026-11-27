@@ -158,6 +158,32 @@ function crearNovedad({
 
     });
 
+   if(
+    typeof crearRegistroLibroGuardia
+    ===
+    "function"
+){
+
+    crearRegistroLibroGuardia({
+
+        modulo,
+
+        titulo,
+
+        descripcion,
+
+        usuario:
+
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Sistema"
+
+    });
+
+}
+   
     guardarNovedades();
 
 }
