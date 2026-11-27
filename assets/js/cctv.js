@@ -673,3 +673,260 @@ function cargarControlDiarioCCTV() {
 
 }
 
+/* ==========================
+   CONTROL CAMARA
+========================== */
+
+function abrirControlCamara(
+    camaraId,
+    rangoHorario,
+    estado
+){
+
+    const camara =
+        cctvSP360.find(
+            c => c.id == camaraId
+        );
+
+    if(!camara){
+        return;
+    }
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    content.innerHTML = `
+
+        <h2>
+            📹 Control de Cámara
+        </h2>
+
+        <div class="card">
+
+            <h3>
+                Estado: ${estado}
+            </h3>
+
+            <textarea
+                id="obs_camara"
+                placeholder="Observación">
+            </textarea>
+
+            <br><br>
+
+            <button
+                class="btn btn-success"
+                onclick="
+                registrarControlCompleto(
+                    '${camara.id}',
+                    '${rangoHorario}',
+                    '${estado}'
+                )
+                ">
+
+                ✅ Guardar
+
+            </button>
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn btn-primary"
+            onclick="
+            cargarControlDiarioCCTV()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
+
+}
+
+/* ==========================
+   GUARDAR CONTROL RAPIDO
+========================== */
+
+function guardarControlCamara(
+    camaraId,
+    rangoHorario,
+    estado
+){
+
+    registrarControlCamara({
+
+        camaraId,
+        rangoHorario,
+
+        horaControl:
+            new Date()
+            .toLocaleTimeString(),
+
+        estado,
+
+        observacion: "",
+
+        usuario:
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Guardia"
+
+    });
+
+    alert(
+        "Control registrado correctamente"
+    );
+
+}
+
+/* ==========================
+   REGISTRAR CONTROL COMPLETO
+========================== */
+
+function registrarControlCompleto(
+    camaraId,
+    rangoHorario,
+    estado
+){
+
+    const observacion =
+        document.getElementById(
+            "obs_camara"
+        ).value;
+
+    if(
+
+        (
+            estado === "Con Falla"
+            ||
+            estado === "No Funciona"
+        )
+
+        &&
+
+        observacion.trim() === ""
+
+    ){
+
+        alert(
+            "Debe completar la observación."
+        );
+
+        return;
+
+    }
+
+    registrarControlCamara({
+
+        camaraId,
+        rangoHorario,
+
+        horaControl:
+            new Date()
+            .toLocaleTimeString(),
+
+        estado,
+
+        observacion,
+
+        usuario:
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Guardia"
+
+    });
+
+    if(
+        estado ===
+        "No Funciona"
+    ){
+
+        if(
+            typeof crearNovedad ===
+            "function"
+        ){
+
+            crearNovedad({
+
+                modulo: "CCTV",
+
+                titulo:
+                    "Camara Fuera de Servicio",
+
+                descripcion:
+                    observacion,
+
+                criticidad:
+                    criticidades.MEDIA
+
+            });
+
+        }
+
+    }
+
+    alert(
+        "Control registrado correctamente"
+    );
+
+    cargarControlDiarioCCTV();
+
+}
+
+/* ==========================
+   ESTADISTICAS
+========================== */
+
+function obtenerEstadisticasCCTV(){
+
+    return {
+
+        total:
+            cctvSP360.length,
+
+        funcionando:
+
+            cctvSP360.filter(
+                c =>
+                c.estado ===
+                estadosCCTV.FUNCIONANDO
+            ).length,
+
+        conFalla:
+
+            cctvSP360.filter(
+                c =>
+                c.estado ===
+                estadosCCTV.CON_FALLA
+            ).length,
+
+        noFunciona:
+
+            cctvSP360.filter(
+                c =>
+                c.estado ===
+                estadosCCTV.NO_FUNCIONA
+            ).length
+
+    };
+
+}
+
+/* ==========================
+   MODULO CCTV
+========================== */
+
+function cargarModuloCCTV(){
+
+    cargarControlDiarioCCTV();
+
+}
