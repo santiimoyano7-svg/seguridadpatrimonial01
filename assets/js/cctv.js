@@ -886,6 +886,7 @@ function registrarControlCompleto(
 ){
 
     const observacion =
+
         document.getElementById(
             "obs_camara"
         ).value;
@@ -934,14 +935,13 @@ function registrarControlCompleto(
 
     });
 
-    if(
-    estado ===
-    "No Funciona"
-){
+    /* ==========================
+       NOVEDAD AUTOMATICA CCTV
+    ========================== */
 
     if(
-        typeof crearNovedad ===
-        "function"
+        estado ===
+        "No Funciona"
     ){
 
         const camara =
@@ -953,29 +953,38 @@ function registrarControlCompleto(
                 String(camaraId)
             );
 
-        crearNovedad({
+        if(
+            typeof crearNovedad ===
+            "function"
+        ){
 
-            modulo:
-                "CCTV",
+            crearNovedad({
 
-            titulo:
-                "Camara Fuera de Servicio",
+                modulo:
+                    "CCTV",
 
-            descripcion:
+                titulo:
+                    "Camara Fuera de Servicio",
 
-                `Cámara: ${
-                    camara
-                    ?
-                    camara.codigo
-                    :
-                    camaraId
-                }
+                descripcion:
+
+`Cámara:
+${camara ? camara.codigo : camaraId}
+
+Nombre:
+${camara ? camara.nombre : "-"}
+
+Sector:
+${camara ? camara.sector : "-"}
 
 Horario:
 ${rangoHorario}
 
 Fecha:
 ${new Date().toLocaleDateString("es-AR")}
+
+Hora:
+${new Date().toLocaleTimeString()}
 
 Usuario:
 ${
@@ -989,14 +998,14 @@ ${
 Observación:
 ${observacion}`,
 
-            criticidad:
-                criticidades.MEDIA
+                criticidad:
+                    criticidades.MEDIA
 
-        });
+            });
+
+        }
 
     }
-
-}
 
     alert(
         "Control registrado correctamente"
