@@ -299,6 +299,52 @@ function guardarNuevaCamara() {
         ).value;
 
     const criticidad =
+        document.getElementById(
+            "cam_criticidad"
+        ).value;
+
+    if (
+        codigo.trim() === ""
+    ) {
+        alert(
+            "Debe ingresar el código de cámara"
+        );
+        return;
+    }
+
+    if (
+        nombre.trim() === ""
+    ) {
+        alert(
+            "Debe ingresar el nombre de cámara"
+        );
+        return;
+    }
+
+    if (
+        sector.trim() === ""
+    ) {
+        alert(
+            "Debe ingresar el sector"
+        );
+        return;
+    }
+
+    crearCamara({
+        codigo,
+        nombre,
+        sector,
+        criticidad,
+        sitio
+    });
+
+    alert(
+        "Cámara registrada correctamente"
+    );
+
+    cargarModuloCCTV();
+
+}
 
    /* ==========================
    INVENTARIO CCTV
