@@ -1021,7 +1021,7 @@ function cargarHistorialCCTV(){
             "content"
         );
 
-    let filas = "";
+    let fechas = {};
 
     controlesCCTVSP360
         .slice()
@@ -1030,59 +1030,156 @@ function cargarHistorialCCTV(){
 
         control => {
 
-            const camara =
-                cctvSP360.find(
-                    c =>
-                    String(c.id)
-                    ===
-                    String(control.camaraId)
-                );
+            if(
+                !fechas[
+                    control.fecha
+                ]
+            ){
 
-            filas += `
+                fechas[
+                    control.fecha
+                ] = [];
 
-                <tr>
+            }
 
-                    <td>
-                        ${control.fecha}
-                    </td>
+            fechas[
+                control.fecha
+            ].push(
+                control
+            );
 
-                    <td>
-                        ${control.rangoHorario}
-                    </td>
+        }
 
-                    <td>
-                        ${
-                            camara
-                            ?
-                            camara.codigo
-                            :
-                            "-"
-                        }
-                    </td>
+    );
 
-                    <td>
-                        ${control.estado}
-                    </td>
+    let historialHTML = "";
 
-                    <td>
-                        ${control.usuario}
-                    </td>
+    Object.keys(
+        fechas
+    ).forEach(
 
-                    <td>
-                        ${control.horaControl}
-                    </td>
+        fecha => {
 
-                    <td>
-                        ${
-                            control.observacion
-                            ?
-                            control.observacion
-                            :
-                            "-"
-                        }
-                    </td>
+            let filas = "";
 
-                </tr>
+            fechas[
+                fecha
+            ].forEach(
+
+                control => {
+
+                    const camara =
+                        cctvSP360.find(
+                            c =>
+                            String(c.id)
+                            ===
+                            String(
+                                control.camaraId
+                            )
+                        );
+
+                    filas += `
+
+                        <tr>
+
+                            <td>
+                                ${
+                                    camara
+                                    ?
+                                    camara.codigo
+                                    :
+                                    "-"
+                                }
+                            </td>
+
+                            <td>
+                                ${control.rangoHorario}
+                            </td>
+
+                            <td>
+                                ${control.estado}
+                            </td>
+
+                            <td>
+                                ${control.usuario}
+                            </td>
+
+                            <td>
+                                ${control.horaControl}
+                            </td>
+
+                            <td>
+                                ${
+                                    control.observacion
+                                    ?
+                                    control.observacion
+                                    :
+                                    "-"
+                                }
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+            historialHTML += `
+
+                <div
+                    class="card fecha-historial"
+                    data-fecha="${fecha}">
+
+                    <h3>
+                        📅 ${fecha}
+                    </h3>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Cámara
+                                </th>
+
+                                <th>
+                                    Horario
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                                <th>
+                                    Usuario
+                                </th>
+
+                                <th>
+                                    Hora
+                                </th>
+
+                                <th>
+                                    Observación
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            ${filas}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <br>
 
             `;
 
@@ -1098,67 +1195,29 @@ function cargarHistorialCCTV(){
 
         <div class="card">
 
+            <label>
+                Fecha:
+            </label>
+
+            <input
+                type="date"
+                id="filtro_fecha_cctv">
+
+            <br><br>
+
             <input
                 id="historial_buscar"
-                placeholder="Buscar cámara, usuario o estado"
+                placeholder="
+Buscar cámara, estado o usuario"
                 onkeyup="
                 filtrarHistorialCCTV()
                 ">
 
         </div>
 
-        <div class="card">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Fecha
-                        </th>
-
-                        <th>
-                            Horario
-                        </th>
-
-                        <th>
-                            Cámara
-                        </th>
-
-                        <th>
-                            Estado
-                        </th>
-
-                        <th>
-                            Usuario
-                        </th>
-
-                        <th>
-                            Hora
-                        </th>
-
-                        <th>
-                            Observación
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody
-                    id="historial_cctv">
-
-                    ${filas}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
         <br>
+
+        ${historialHTML}
 
         <button
             class="btn btn-primary"
@@ -1171,6 +1230,15 @@ function cargarHistorialCCTV(){
         </button>
 
     `;
+
+    document
+        .getElementById(
+            "filtro_fecha_cctv"
+        )
+        .addEventListener(
+            "change",
+            filtrarHistorialCCTV
+        );
 
 }
 
@@ -1189,34 +1257,121 @@ function filtrarHistorialCCTV(){
         .value
         .toUpperCase();
 
-    const filas =
+    const fechaSeleccionada =
+
+        document
+        .getElementById(
+            "filtro_fecha_cctv"
+        )
+        .value;
+
+    const bloques =
 
         document.querySelectorAll(
-            "#historial_cctv tr"
+            ".fecha-historial"
         );
 
-    filas.forEach(
+    bloques.forEach(
 
-        fila => {
+        bloque => {
 
-            const contenido =
+            let mostrarBloque =
+                false;
 
-                fila.innerText
-                .toUpperCase();
+            const fechaBloque =
+                bloque.dataset.fecha;
 
-            fila.style.display =
+            const filas =
 
-                contenido.includes(
-                    texto
-                )
+                bloque.querySelectorAll(
+                    "tbody tr"
+                );
 
-                ? ""
+            filas.forEach(
 
-                : "none";
+                fila => {
+
+                    const coincideTexto =
+
+                        fila.innerText
+                        .toUpperCase()
+                        .includes(
+                            texto
+                        );
+
+                    const coincideFecha =
+
+                        fechaSeleccionada === ""
+
+                        ||
+
+                        convertirFechaInput(
+                            fechaBloque
+                        )
+                        ===
+                        fechaSeleccionada;
+
+                    if(
+                        coincideTexto
+                        &&
+                        coincideFecha
+                    ){
+
+                        fila.style.display =
+                            "";
+
+                        mostrarBloque =
+                            true;
+
+                    }else{
+
+                        fila.style.display =
+                            "none";
+
+                    }
+
+                }
+
+            );
+
+            bloque.style.display =
+
+                mostrarBloque
+                ?
+                ""
+                :
+                "none";
 
         }
 
     );
+
+}
+
+/* ==========================
+   FECHA HISTORIAL
+========================== */
+
+function convertirFechaInput(
+    fecha
+){
+
+    const partes =
+        fecha.split("/");
+
+    if(
+        partes.length !== 3
+    ){
+        return "";
+    }
+
+    return
+
+        partes[2]
+        + "-"
+        + partes[1]
+        + "-"
+        + partes[0];
 
 }
 
