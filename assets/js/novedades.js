@@ -266,8 +266,48 @@ function cargarModuloNovedades(){
                     </td>
 
                     <td>
-                        ${novedad.usuario || "Sistema"}
-                    </td>
+    ${novedad.usuario || "Sistema"}
+</td>
+
+<td>
+
+    <button
+        class="btn btn-primary"
+        onclick="
+        verNovedad(
+            '${novedad.id}'
+        )
+        ">
+
+        👁
+
+    </button>
+
+    <button
+        class="btn btn-warning"
+        onclick="
+        agregarSeguimiento(
+            '${novedad.id}'
+        )
+        ">
+
+        📝
+
+    </button>
+
+    <button
+        class="btn btn-success"
+        onclick="
+        cerrarNovedad(
+            '${novedad.id}'
+        )
+        ">
+
+        ✅
+
+    </button>
+
+</td>
 
                 </tr>
 
@@ -383,6 +423,10 @@ Buscar módulo, título o usuario"
                             Usuario
                         </th>
 
+<th>
+    Acciones
+</th>
+
                     </tr>
 
                 </thead>
@@ -445,5 +489,163 @@ function filtrarNovedades(){
         }
 
     );
+
+}
+
+/* ==========================
+   VER NOVEDAD
+========================== */
+
+function verNovedad(id){
+
+    const novedad =
+
+        novedadesSP360.find(
+            n =>
+            String(n.id)
+            ===
+            String(id)
+        );
+
+    if(!novedad){
+        return;
+    }
+
+    alert(
+
+`Título:
+${novedad.titulo}
+
+Módulo:
+${novedad.modulo}
+
+Criticidad:
+${novedad.criticidad}
+
+Estado:
+${novedad.estado}
+
+Descripción:
+
+${novedad.descripcion}`
+
+    );
+
+}
+
+/* ==========================
+   AGREGAR SEGUIMIENTO
+========================== */
+
+function agregarSeguimiento(id){
+
+    const novedad =
+
+        novedadesSP360.find(
+            n =>
+            String(n.id)
+            ===
+            String(id)
+        );
+
+    if(!novedad){
+        return;
+    }
+
+    const texto =
+
+        prompt(
+            "Ingrese seguimiento:"
+        );
+
+    if(
+        !texto
+    ){
+        return;
+    }
+
+    novedad.estado =
+
+        estadosNovedad
+        .EN_SEGUIMIENTO;
+
+    novedad.seguimiento.push({
+
+        fecha:
+            new Date()
+            .toLocaleDateString(
+                "es-AR"
+            ),
+
+        hora:
+            new Date()
+            .toLocaleTimeString(),
+
+        usuario:
+
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Sistema",
+
+        observacion:
+            texto
+
+    });
+
+    guardarNovedades();
+
+    cargarModuloNovedades();
+
+}
+
+/* ==========================
+   CERRAR NOVEDAD
+========================== */
+
+function cerrarNovedad(id){
+
+    const novedad =
+
+        novedadesSP360.find(
+            n =>
+            String(n.id)
+            ===
+            String(id)
+        );
+
+    if(!novedad){
+        return;
+    }
+
+    novedad.estado =
+
+        estadosNovedad
+        .CERRADA;
+
+    novedad.fechaCierre =
+
+        new Date()
+        .toLocaleDateString(
+            "es-AR"
+        );
+
+    novedad.horaCierre =
+
+        new Date()
+        .toLocaleTimeString();
+
+    novedad.usuarioCierre =
+
+        usuarioActivo
+        ?
+        usuarioActivo.nombre
+        :
+        "Sistema";
+
+    guardarNovedades();
+
+    cargarModuloNovedades();
 
 }
