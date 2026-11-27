@@ -200,3 +200,250 @@ function obtenerEstadisticasNovedades(){
     };
 
 }
+
+/* ==========================
+   MODULO NOVEDADES
+========================== */
+
+function cargarModuloNovedades(){
+
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const estadisticas =
+        obtenerEstadisticasNovedades();
+
+    let filas = "";
+
+    novedadesSP360
+        .slice()
+        .reverse()
+        .forEach(
+
+        novedad => {
+
+            let estadoIcono = "🔴";
+
+            if(
+                novedad.estado ===
+                estadosNovedad.EN_SEGUIMIENTO
+            ){
+                estadoIcono = "🟡";
+            }
+
+            if(
+                novedad.estado ===
+                estadosNovedad.CERRADA
+            ){
+                estadoIcono = "🟢";
+            }
+
+            filas += `
+
+                <tr>
+
+                    <td>
+                        ${novedad.fecha}
+                    </td>
+
+                    <td>
+                        ${novedad.modulo}
+                    </td>
+
+                    <td>
+                        ${novedad.titulo}
+                    </td>
+
+                    <td>
+                        ${novedad.criticidad}
+                    </td>
+
+                    <td>
+                        ${estadoIcono}
+                        ${novedad.estado}
+                    </td>
+
+                    <td>
+                        ${novedad.usuario}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+    );
+
+    content.innerHTML = `
+
+        <h2>
+            📌 Gestión de Novedades
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    📋 Total
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.total}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🔴 Abiertas
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.abiertas}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🟡 Seguimiento
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.seguimiento}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🟢 Cerradas
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.cerradas}
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <input
+                id="buscar_novedad"
+                placeholder="
+Buscar módulo, título o usuario"
+                onkeyup="
+                filtrarNovedades()
+                ">
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Módulo
+                        </th>
+
+                        <th>
+                            Título
+                        </th>
+
+                        <th>
+                            Criticidad
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Usuario
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="tabla_novedades">
+
+                    ${filas}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+}
+
+/* ==========================
+   FILTRAR NOVEDADES
+========================== */
+
+function filtrarNovedades(){
+
+    const texto =
+
+        document
+        .getElementById(
+            "buscar_novedad"
+        )
+        .value
+        .toUpperCase();
+
+    const filas =
+
+        document.querySelectorAll(
+            "#tabla_novedades tr"
+        );
+
+    filas.forEach(
+
+        fila => {
+
+            const contenido =
+
+                fila.innerText
+                .toUpperCase();
+
+            fila.style.display =
+
+                contenido.includes(
+                    texto
+                )
+
+                ? ""
+
+                : "none";
+
+        }
+
+    );
+
+}
