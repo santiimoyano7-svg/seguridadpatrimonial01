@@ -1009,7 +1009,7 @@ function obtenerEstadisticasCCTV(){
 }
 
 /* ==========================
-   OBTENER CONTROL
+   OBTENER ULTIMO CONTROL
 ========================== */
 
 function obtenerControlCCTV(
@@ -1017,19 +1017,31 @@ function obtenerControlCCTV(
     horario
 ){
 
-    return controlesCCTVSP360.find(
-        control =>
+    const controles =
 
-            String(control.camaraId)
-            ===
-            String(camaraId)
+        controlesCCTVSP360.filter(
+            control =>
 
-            &&
+                String(control.camaraId)
+                ===
+                String(camaraId)
 
-            control.rangoHorario
-            ===
-            horario
-    );
+                &&
+
+                control.rangoHorario
+                ===
+                horario
+        );
+
+    if(
+        controles.length === 0
+    ){
+        return null;
+    }
+
+    return controles[
+        controles.length - 1
+    ];
 
 }
 
