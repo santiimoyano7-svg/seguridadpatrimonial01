@@ -572,111 +572,16 @@ function cargarControlDiarioCCTV() {
     let columnas = "";
 
     cctvSP360.forEach(
-    camara => {
+        camara => {
 
-        const control =
-            obtenerControlCCTV(
-                camara.id,
-                horario
-            );
-
-        if(control){
-
-            let icono = "🟢";
-
-            if(
-                control.estado ===
-                "Con Falla"
-            ){
-                icono = "🟡";
-            }
-
-            if(
-                control.estado ===
-                "No Funciona"
-            ){
-                icono = "🔴";
-            }
-
-            fila += `
-
-                <td>
-
-                    <strong>
-                        ${icono}
-                        ${control.estado}
-                    </strong>
-
-                    <br>
-
-                    👤
-                    ${control.usuario}
-
-                    <br>
-
-                    🕒
-                    ${control.horaControl}
-
-                </td>
-
-            `;
-
-        }else{
-
-            fila += `
-
-                <td>
-
-                    <button
-                        class="btn btn-success"
-                        onclick="
-                            guardarControlCamara(
-                                '${camara.id}',
-                                '${horario}',
-                                'Funcionando'
-                            )
-                        ">
-
-                        🟢
-
-                    </button>
-
-                    <button
-                        class="btn btn-warning"
-                        onclick="
-                            abrirControlCamara(
-                                '${camara.id}',
-                                '${horario}',
-                                'Con Falla'
-                            )
-                        ">
-
-                        🟡
-
-                    </button>
-
-                    <button
-                        class="btn btn-danger"
-                        onclick="
-                            abrirControlCamara(
-                                '${camara.id}',
-                                '${horario}',
-                                'No Funciona'
-                            )
-                        ">
-
-                        🔴
-
-                    </button>
-
-                </td>
-
+            columnas += `
+                <th>
+                    ${camara.codigo}
+                </th>
             `;
 
         }
-
-    }
-);
+    );
 
     let filas = "";
 
@@ -684,21 +589,66 @@ function cargarControlDiarioCCTV() {
         horario => {
 
             let fila = `
-
                 <td>
                     ${horario}
                 </td>
-
             `;
 
             cctvSP360.forEach(
                 camara => {
 
-                    fila += `
+                    const control =
+                        obtenerControlCCTV(
+                            camara.id,
+                            horario
+                        );
 
-                        <td>
+                    if (control) {
 
-                            <div class="cctv-estados">
+                        let icono = "🟢";
+
+                        if (
+                            control.estado ===
+                            "Con Falla"
+                        ) {
+                            icono = "🟡";
+                        }
+
+                        if (
+                            control.estado ===
+                            "No Funciona"
+                        ) {
+                            icono = "🔴";
+                        }
+
+                        fila += `
+
+                            <td>
+
+                                <strong>
+                                    ${icono}
+                                    ${control.estado}
+                                </strong>
+
+                                <br>
+
+                                👤
+                                ${control.usuario}
+
+                                <br>
+
+                                🕒
+                                ${control.horaControl}
+
+                            </td>
+
+                        `;
+
+                    } else {
+
+                        fila += `
+
+                            <td>
 
                                 <button
                                     class="btn btn-success"
@@ -742,23 +692,19 @@ function cargarControlDiarioCCTV() {
 
                                 </button>
 
-                            </div>
+                            </td>
 
-                        </td>
+                        `;
 
-                    `;
+                    }
 
                 }
             );
 
             filas += `
-
                 <tr>
-
                     ${fila}
-
                 </tr>
-
             `;
 
         }
@@ -802,7 +748,9 @@ function cargarControlDiarioCCTV() {
 
         <button
             class="btn btn-primary"
-            onclick="cargarModuloCCTV()">
+            onclick="
+                cargarModuloCCTV()
+            ">
 
             ⬅ Volver
 
