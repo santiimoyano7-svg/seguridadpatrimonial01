@@ -290,7 +290,7 @@ Buscar registros"
    NUEVO REGISTRO
 ========================== */
 
-function abrirNuevoRegistroGu*rdia(){
+function abrirNuevoRegistroGuardia(){
 
     const content =
        document.getElementById(
