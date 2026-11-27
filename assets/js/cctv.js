@@ -973,6 +973,118 @@ function obtenerEstadisticasCCTV(){
 
 function cargarModuloCCTV(){
 
-    cargarControlDiarioCCTV();
+    const content =
+        document.getElementById(
+            "content"
+        );
+
+    const estadisticas =
+        obtenerEstadisticasCCTV();
+
+    content.innerHTML = `
+
+        <h2>
+            📹 CCTV
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    📹 Cámaras
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.total}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🟢 Funcionando
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.funcionando}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🟡 Con Falla
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.conFalla}
+                </div>
+
+            </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    🔴 No Funciona
+                </div>
+
+                <div class="stat-value">
+                    ${estadisticas.noFunciona}
+                </div>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <button
+                class="btn btn-success"
+                onclick="
+                abrirNuevaCamara()
+                ">
+                ➕ Nueva Cámara
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="
+                cargarInventarioCCTV()
+                ">
+                📚 Inventario
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="
+                cargarControlDiarioCCTV()
+                ">
+                📋 Control Diario
+            </button>
+
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>
+                Información del Sistema
+            </h3>
+
+            <p>
+                Desde este módulo puede administrar el inventario de cámaras,
+                registrar controles diarios, gestionar fallas y mantener la
+                trazabilidad operativa del sistema CCTV.
+            </p>
+
+        </div>
+
+    `;
 
 }
