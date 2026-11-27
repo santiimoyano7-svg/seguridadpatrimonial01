@@ -719,7 +719,7 @@ function verNovedad(id){
 
 }
 /* ==========================
-   AGREGAR SEGUIMIENTO
+   PANTALLA SEGUIMIENTO
 ========================== */
 
 function agregarSeguimiento(id){
@@ -737,51 +737,86 @@ function agregarSeguimiento(id){
         return;
     }
 
-    const texto =
-
-        prompt(
-            "Ingrese seguimiento:"
+    const content =
+        document.getElementById(
+            "content"
         );
 
-    if(
-        !texto
-    ){
-        return;
-    }
+    content.innerHTML = `
 
-    novedad.estado =
+        <h2>
+            📝 Seguimiento de Novedad
+        </h2>
 
-        estadosNovedad
-        .EN_SEGUIMIENTO;
+        <div class="card">
 
-    novedad.seguimiento.push({
+            <strong>
+                Título:
+            </strong>
 
-        fecha:
-            new Date()
-            .toLocaleDateString(
-                "es-AR"
-            ),
+            ${novedad.titulo}
 
-        hora:
-            new Date()
-            .toLocaleTimeString(),
+            <br><br>
 
-        usuario:
+            <strong>
+                Módulo:
+            </strong>
 
-            usuarioActivo
-            ?
-            usuarioActivo.nombre
-            :
-            "Sistema",
+            ${novedad.modulo}
 
-        observacion:
-            texto
+            <br><br>
 
-    });
+            <strong>
+                Estado:
+            </strong>
 
-    guardarNovedades();
+            ${novedad.estado}
 
-verNovedad(id);
+        </div>
+
+        <br>
+
+        <div class="card">
+
+            <h3>
+                Nuevo Seguimiento
+            </h3>
+
+            <textarea
+                id="nuevo_seguimiento"
+                placeholder="
+Ingrese seguimiento">
+            </textarea>
+
+        </div>
+
+        <br>
+
+        <button
+            class="btn btn-success"
+            onclick="
+                guardarSeguimientoNovedad(
+                    '${novedad.id}'
+                )
+            ">
+
+            ✅ Guardar Seguimiento
+
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="
+                verNovedad(
+                    '${novedad.id}'
+                )
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
 
 }
 
@@ -832,5 +867,80 @@ function cerrarNovedad(id){
     guardarNovedades();
 
     cargarModuloNovedades();
+
+}
+
+/* ==========================
+   GUARDAR SEGUIMIENTO
+========================== */
+
+function guardarSeguimientoNovedad(id){
+
+    const novedad =
+
+        novedadesSP360.find(
+            n =>
+            String(n.id)
+            ===
+            String(id)
+        );
+
+    if(!novedad){
+        return;
+    }
+
+    const texto =
+
+        document
+        .getElementById(
+            "nuevo_seguimiento"
+        )
+        .value;
+
+    if(
+        texto.trim() === ""
+    ){
+
+        alert(
+            "Debe ingresar un seguimiento."
+        );
+
+        return;
+
+    }
+
+    novedad.estado =
+
+        estadosNovedad
+        .EN_SEGUIMIENTO;
+
+    novedad.seguimiento.push({
+
+        fecha:
+            new Date()
+            .toLocaleDateString(
+                "es-AR"
+            ),
+
+        hora:
+            new Date()
+            .toLocaleTimeString(),
+
+        usuario:
+
+            usuarioActivo
+            ?
+            usuarioActivo.nombre
+            :
+            "Sistema",
+
+        observacion:
+            texto
+
+    });
+
+    guardarNovedades();
+
+    verNovedad(id);
 
 }
