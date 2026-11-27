@@ -511,28 +511,213 @@ function verNovedad(id){
         return;
     }
 
-    alert(
+    const content =
+        document.getElementById(
+            "content"
+        );
 
-`Título:
-${novedad.titulo}
+    let seguimientosHTML = "";
 
-Módulo:
-${novedad.modulo}
+    if(
+        novedad.seguimiento
+        &&
+        novedad.seguimiento.length > 0
+    ){
 
-Criticidad:
-${novedad.criticidad}
+        novedad.seguimiento.forEach(
 
-Estado:
-${novedad.estado}
+            item => {
 
-Descripción:
+                seguimientosHTML += `
 
-${novedad.descripcion}`
+                    <div class="card">
 
-    );
+                        <strong>
+                            📅 ${item.fecha}
+                        </strong>
+
+                        <br>
+
+                        🕒 ${item.hora}
+
+                        <br>
+
+                        👤 ${item.usuario}
+
+                        <hr>
+
+                        ${item.observacion}
+
+                    </div>
+
+                    <br>
+
+                `;
+
+            }
+
+        );
+
+    }else{
+
+        seguimientosHTML = `
+
+            <div class="card">
+
+                No existen seguimientos registrados.
+
+            </div>
+
+        `;
+
+    }
+
+    let estadoIcono = "🔴";
+
+    if(
+        novedad.estado ===
+        estadosNovedad.EN_SEGUIMIENTO
+    ){
+        estadoIcono = "🟡";
+    }
+
+    if(
+        novedad.estado ===
+        estadosNovedad.CERRADA
+    ){
+        estadoIcono = "🟢";
+    }
+
+    content.innerHTML = `
+
+        <h2>
+            📌 Detalle de Novedad
+        </h2>
+
+        <div class="card">
+
+            <h3>
+
+                ${novedad.titulo}
+
+            </h3>
+
+            <br>
+
+            <strong>
+                Módulo:
+            </strong>
+
+            ${novedad.modulo}
+
+            <br><br>
+
+            <strong>
+                Fecha:
+            </strong>
+
+            ${novedad.fecha || "-"}
+
+            <br><br>
+
+            <strong>
+                Hora:
+            </strong>
+
+            ${novedad.hora || "-"}
+
+            <br><br>
+
+            <strong>
+                Usuario:
+            </strong>
+
+            ${novedad.usuario || "Sistema"}
+
+            <br><br>
+
+            <strong>
+                Criticidad:
+            </strong>
+
+            ${novedad.criticidad || "-"}
+
+            <br><br>
+
+            <strong>
+                Estado:
+            </strong>
+
+            ${estadoIcono}
+            ${novedad.estado}
+
+            <br><br>
+
+            <strong>
+                Sitio:
+            </strong>
+
+            ${novedad.sitio || "-"}
+
+            <hr>
+
+            <strong>
+                Descripción
+            </strong>
+
+            <br><br>
+
+            ${novedad.descripcion}
+
+        </div>
+
+        <br>
+
+        <h3>
+            📝 Historial de Seguimientos
+        </h3>
+
+        ${seguimientosHTML}
+
+        <br>
+
+        <button
+            class="btn btn-warning"
+            onclick="
+                agregarSeguimiento(
+                    '${novedad.id}'
+                )
+            ">
+
+            📝 Agregar Seguimiento
+
+        </button>
+
+        <button
+            class="btn btn-success"
+            onclick="
+                cerrarNovedad(
+                    '${novedad.id}'
+                )
+            ">
+
+            ✅ Cerrar
+
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="
+                cargarModuloNovedades()
+            ">
+
+            ⬅ Volver
+
+        </button>
+
+    `;
 
 }
-
 /* ==========================
    AGREGAR SEGUIMIENTO
 ========================== */
@@ -596,7 +781,7 @@ function agregarSeguimiento(id){
 
     guardarNovedades();
 
-    cargarModuloNovedades();
+verNovedad(id);
 
 }
 
