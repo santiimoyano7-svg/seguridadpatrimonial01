@@ -1162,6 +1162,16 @@ function cargarModuloCCTV(){
                 📋 Control Diario
             </button>
 
+<button
+    class="btn btn-primary"
+    onclick="
+    cargarHistorialCCTV()
+    ">
+
+    📝 Historial
+
+</button>
+
         </div>
 
         <br>
