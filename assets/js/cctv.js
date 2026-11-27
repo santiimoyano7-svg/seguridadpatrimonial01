@@ -130,20 +130,22 @@ function registrarControlCamara({
 
     controlesCCTVSP360.push({
 
-        id:
-            Date.now(),
+    id:
+        Date.now(),
 
-        camaraId,
-        rangoHorario,
-        horaControl,
-        estado,
-        observacion,
-        usuario,
+    camaraId,
+    rangoHorario,
+    horaControl,
+    estado,
+    observacion,
+    usuario,
 
-        fecha:
-            new Date().toISOString()
+    fecha:
+        new Date().toLocaleDateString(
+            "es-AR"
+        )
 
-    });
+});
 
     guardarControlesCCTV();
 
@@ -1009,7 +1011,7 @@ function obtenerEstadisticasCCTV(){
 }
 
 /* ==========================
-   OBTENER ULTIMO CONTROL
+   OBTENER CONTROL DEL DIA
 ========================== */
 
 function obtenerControlCCTV(
@@ -1017,20 +1019,35 @@ function obtenerControlCCTV(
     horario
 ){
 
+    const fechaHoy =
+        new Date()
+        .toLocaleDateString(
+            "es-AR"
+        );
+
     const controles =
 
         controlesCCTVSP360.filter(
             control =>
 
-                String(control.camaraId)
-                ===
-                String(camaraId)
+                String(
+                    control.camaraId
+                ) ===
+                String(
+                    camaraId
+                )
 
                 &&
 
                 control.rangoHorario
                 ===
                 horario
+
+                &&
+
+                control.fecha
+                ===
+                fechaHoy
         );
 
     if(
