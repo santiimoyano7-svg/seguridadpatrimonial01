@@ -143,7 +143,7 @@ function cargarModuloLibroGuardia(){
 
     registros.forEach(
 
-        registro =>*{
+        registro =>{
 
             timeline += `
 
@@ -158,7 +158,7 @@ function cargarModuloLibroGuardia(){
 
                    <br>
 
-                    �*
+                    �
                     ${registro.hora}
 
                     <br><br>
