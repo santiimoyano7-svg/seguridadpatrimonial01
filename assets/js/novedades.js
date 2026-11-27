@@ -245,7 +245,7 @@ function cargarModuloNovedades(){
                 <tr>
 
                     <td>
-                        ${novedad.fecha}
+                        ${novedad.fecha || "-"}
                     </td>
 
                     <td>
@@ -257,16 +257,16 @@ function cargarModuloNovedades(){
                     </td>
 
                     <td>
-                        ${novedad.criticidad}
+                        ${novedad.criticidad || "Media"}
                     </td>
 
                     <td>
                         ${estadoIcono}
-                        ${novedad.estado}
+                        ${novedad.estado || "Abierta"}
                     </td>
 
                     <td>
-                        ${novedad.usuario}
+                        ${novedad.usuario || "Sistema"}
                     </td>
 
                 </tr>
