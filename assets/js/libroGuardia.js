@@ -123,151 +123,151 @@ function obtenerEstadisticasLibroGuardia(){
    MODULO LIBRO DE GUARDIA
 ========================== */
 
-function cargarModuloLibroGuard*a(){
+function cargarModuloLibroGuardia(){
 
     const content =
-        *ocument.getElementById(
-          * "content"
+        document.getElementById(
+           "content"
         );
 
-    const e*tadisticas =
-        obtenerEstadi*ticasLibroGuardia();
+    const estadisticas =
+        obtenerEstadisticasLibroGuardia();
 
-    let regi*tros =
+    let registros =
 
         libroGuardiaSP360
-*       .slice()
-        .reverse()*
+       .slice()
+        .reverse()
 
     let timeline = "";
 
-    regi*tros.forEach(
+    registros.forEach(
 
         registro =>*{
 
             timeline += `
 
-    *           <div class="card">
+               <div class="card">
 
-   *                <strong>
+                   <strong>
 
-        *               📅
-                *       ${registro.fecha}
+                       📅
+                       ${registro.fecha}
 
-        *           </strong>
+                   </strong>
 
-            *       <br>
+                   <br>
 
                     �*
-                    ${registro.ho*a}
+                    ${registro.hora}
 
                     <br><br>
 
-*                   <strong>
+                   <strong>
 
-     *                  [${registro.modu*o}]
+                      [${registro.modulo}]
 
-                    </strong>*
+                    </strong>
                     <br><br>
 
-   *                ${registro.titulo}*
+                   ${registro.titulo}]
                     <hr>
 
-       *            ${registro.descripcion*
+                   ${registro.descripcion}]
 
                     <br><br>
 
-  *                 👤
-              *     ${registro.usuario}
+                   👤
+                   ${registro.usuario}
 
-        *       </div>
+               </div>
 
-                <br*
+                <br>
 
             `;
 
         }
 
-    )*
+    )
 
     content.innerHTML = `
 
-     *  <h2>
-            📓 Libro de Gua*dia
+       <h2>
+            📓 Libro de Guardia
         </h2>
 
-        <div cl*ss="stats">
+        <div class="stats">
 
-            <div clas*="stat">
+            <div class="stat">
 
-                <div cla*s="stat-title">
-                  * 📋 Total
+                <div class="stat-title">
+                   📋 Total
                 </div>
 
-*               <div class="stat-va*ue">
-                    ${estadis*icas.total}
-                </div>*
+               <div class="stat-value">
+                    ${estadisticas.total}
+                </div>
             </div>
 
-            <*iv class="stat">
+            <div class="stat">
 
-                *div class="stat-title">
-          *         📅 Hoy
-                </*iv>
-
-                <div class="s*at-value">
-                    ${e*tadisticas.hoy}
-                </*iv>
-
-            </div>
-
-         *  <div class="stat">
-
-            *   <div class="stat-title">
-      *             🤖 Automáticos
-      *         </div>
-
-                <*iv class="stat-value">
-           *        ${estadisticas.automaticos*
+                <div class="stat-title">
+                   📅 Hoy
                 </div>
 
-         *  </div>
-
-            <div class="*tat">
-
-                <div class=*stat-title">
-                    ✍* Manuales
+                <div class="stat-value">
+                    ${estadisticas.hoy}
                 </div>
-
-*               <div class="stat-va*ue">
-                    ${estadis*icas.manuales}
-                </d*v>
 
             </div>
 
-        </*iv>
+           <div class="stat">
+
+               <div class="stat-title">
+                  🤖 Automáticos
+               </div>
+
+                <div class="stat-value">
+                   ${estadisticas.automaticos}
+                </div>
+
+           </div>
+
+            <div class="stat">
+
+                <div class="stat-title">
+                    ✍ Manuales
+                </div>
+
+               <div class="stat-value">
+                    ${estadisticas.manuales}
+                </div>
+
+            </div>
+
+        </div>
 
         <br>
 
-        <div cl*ss="card">
+        <div class="card">
 
             <button
-  *             class="btn btn-succes*"
+               class="btn btn-success"
                 onclick="
-      *         abrirNuevoRegistroGuardia*)
+              abrirNuevoRegistroGuardias)
                 ">
 
-            *   ➕ Nuevo Registro
+               ➕ Nuevo Registro
 
-            <*button>
+            <button>
 
             <br><br>
 
-   *        <input
-                id=*buscar_guardia"
-                pl*ceholder="
+           <input
+                id="buscar_guardia"
+                placeholder="
 Buscar registros"
-     *          onkeyup="
+               onkeyup="
                 filtrarLibroGuardia()
                 ">
 
@@ -293,47 +293,47 @@ Buscar registros"
 function abrirNuevoRegistroGu*rdia(){
 
     const content =
-     *  document.getElementById(
-       *    "content"
+       document.getElementById(
+           "content"
         );
 
-    cont*nt.innerHTML = `
+    content.innerHTML = `
 
         <h2>
-   *        ➕ Nuevo Registro
-        <*h2>
+           ➕ Nuevo Registro
+        <h2>
 
         <div class="card">
 
- *          <input
-                i*="titulo_guardia"
-                *laceholder="
+           <input
+                id="titulo_guardia"
+                placeholder="
 Título">
 
            *<textarea
-                id="desc*ipcion_guardia"
-                pl*ceholder="
+                id="descripcion_guardia"
+                placeholder="
 Descripción">
-         *  </textarea>
+           </textarea>
 
         </div>
 
-   *    <br>
+       <br>
 
         <button
-        *   class="btn btn-success"
-       *    onclick="
-            guardarR*gistroManual()
+           class="btn btn-success"
+           onclick="
+            guardarRegistroManual()
             ">
 
-   *        ✅ Guardar
+           ✅ Guardar
 
-        </butto*>
+        </button>
 
         <button
-            cla*s="btn btn-primary"
-            on*lick="
-            cargarModuloLib*oGuardia()
+            class="btn btn-primary"
+            onclick="
+            cargarModuloLibroGuardia()
             ">
 
             ⬅ Volver
